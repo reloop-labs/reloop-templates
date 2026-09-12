@@ -63,11 +63,6 @@ export function DocSidebar({
                     }`}
                   >
                     <span className="truncate">{tpl.title}</span>
-                    {tpl.badge && (
-                      <span className="shrink-0 text-[9px] font-medium px-1.5 py-0.2 rounded bg-zinc-200/70 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
-                        {tpl.badge}
-                      </span>
-                    )}
                   </button>
                 );
               })}

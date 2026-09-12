@@ -104,7 +104,6 @@ export const amazonInvoiceTemplate: EmailTemplate = {
   id: "amazon-invoice",
   title: "Amazon Order Invoice",
   category: "Brands & Recreations",
-  badge: "Popular",
   description: "The classic e-commerce order confirmation and receipt with delivery tracker, itemized breakdown, and shipping details.",
   component: AmazonInvoicePreview,
   code: `import React from "react";
@@ -114,7 +113,6 @@ import {
   Body,
   Container,
   Section,
-  Heading,
   Text,
   Hr,
   Row,
@@ -125,7 +123,7 @@ import {
 export default function AmazonInvoiceEmail({
   customerName = "Alex Morgan",
   orderNumber = "114-8921820-4109823",
-  itemName = "Sony WH-1000XM5 Wireless Headphones",
+  itemName = "Sony WH-1000XM5 Wireless Noise-Canceling Headphones",
   itemPrice = "$348.00",
   orderTotal = "$377.58",
 }: {
@@ -138,91 +136,485 @@ export default function AmazonInvoiceEmail({
   return (
     <Html lang="en">
       <Head />
-      <Body style={{ backgroundColor: "#f6f6f6", fontFamily: "sans-serif" }}>
-        <Container style={{ maxWidth: "600px", margin: "20px auto", backgroundColor: "#ffffff", borderRadius: "8px", overflow: "hidden", border: "1px solid #e0e0e0" }}>
-          {/* Amazon Header */}
+      <Body style={{ backgroundColor: "#f6f6f6", fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", margin: 0, padding: "20px 0" }}>
+        <Container style={{ maxWidth: "600px", margin: "0 auto", backgroundColor: "#ffffff", borderRadius: "12px", overflow: "hidden", border: "1px solid #e5e7eb" }}>
+          {/* Header */}
           <Section style={{ backgroundColor: "#131921", padding: "16px 24px" }}>
             <Row>
               <Column>
-                <Text style={{ color: "#ffffff", fontSize: "22px", fontWeight: "bold", margin: 0 }}>
+                <Text style={{ color: "#ffffff", fontSize: "22px", fontWeight: "800", margin: 0 }}>
                   amazon<span style={{ color: "#febd69" }}>.com</span>
                 </Text>
               </Column>
               <Column align="right">
-                <Text style={{ color: "#d5d9d9", fontSize: "12px", margin: 0 }}>
+                <Text style={{ color: "#d5d9d9", fontSize: "12px", fontFamily: "monospace", margin: 0 }}>
                   Order #{orderNumber}
                 </Text>
               </Column>
             </Row>
           </Section>
 
-          {/* Delivery Tracker */}
-          <Section style={{ backgroundColor: "#f0f2f2", padding: "14px 24px", borderBottom: "1px solid #d5d9d9" }}>
-            <Text style={{ color: "#007600", fontSize: "14px", fontWeight: "bold", margin: 0 }}>
-              ✓ Arriving Tomorrow by 8 PM
-            </Text>
+          {/* Delivery Tracker Banner */}
+          <Section style={{ backgroundColor: "#f0f2f2", padding: "16px 24px", borderBottom: "1px solid #d5d9d9" }}>
+            <Row>
+              <Column style={{ width: "44px" }}>
+                <div style={{ width: "36px", height: "36px", backgroundColor: "#febd69", borderRadius: "50%", textAlign: "center", lineHeight: "36px", fontSize: "18px" }}>
+                  🚚
+                </div>
+              </Column>
+              <Column style={{ paddingLeft: "12px" }}>
+                <Text style={{ color: "#007600", fontSize: "14px", fontWeight: "700", margin: 0 }}>
+                  Arriving Tomorrow by 8 PM
+                </Text>
+                <Text style={{ color: "#555555", fontSize: "12px", margin: "2px 0 0 0" }}>
+                  Track package &amp; view delivery updates
+                </Text>
+              </Column>
+            </Row>
           </Section>
 
-          {/* Body Content */}
+          {/* Main Content */}
           <Section style={{ padding: "24px" }}>
-            <Heading style={{ fontSize: "18px", margin: "0 0 8px 0" }}>Hi {customerName},</Heading>
-            <Text style={{ color: "#555", fontSize: "14px", margin: "0 0 20px 0" }}>
-              Thank you for your order. We will notify you when your items are on the way.
+            <Text style={{ fontSize: "18px", fontWeight: "700", color: "#111111", margin: "0 0 6px 0" }}>
+              Hi {customerName},
+            </Text>
+            <Text style={{ fontSize: "13px", color: "#555555", margin: "0 0 20px 0", lineHeight: "1.5" }}>
+              Thank you for your order. We’ll send a confirmation when your items ship.
             </Text>
 
-            {/* Line Item */}
-            <Section style={{ border: "1px solid #e0e0e0", borderRadius: "6px", padding: "16px" }}>
-              <Text style={{ fontWeight: "bold", fontSize: "14px", margin: "0 0 4px 0" }}>{itemName}</Text>
-              <Text style={{ color: "#888", fontSize: "12px", margin: "0 0 8px 0" }}>Qty: 1</Text>
-              <Text style={{ fontWeight: "bold", fontSize: "14px", margin: 0 }}>{itemPrice}</Text>
+            {/* Product Card */}
+            <Section style={{ border: "1px solid #e0e0e0", borderRadius: "8px", padding: "16px", backgroundColor: "#ffffff" }}>
+              <Row>
+                <Column style={{ width: "64px" }}>
+                  <div style={{ width: "64px", height: "64px", backgroundColor: "#f7f7f7", borderRadius: "6px", textAlign: "center", lineHeight: "64px", fontSize: "26px" }}>
+                    📦
+                  </div>
+                </Column>
+                <Column style={{ paddingLeft: "16px" }}>
+                  <Text style={{ fontSize: "13px", fontWeight: "700", color: "#111111", margin: "0 0 4px 0" }}>
+                    {itemName}
+                  </Text>
+                  <Text style={{ fontSize: "12px", color: "#666666", margin: "0 0 8px 0" }}>
+                    Color: Black • Quantity: 1
+                  </Text>
+                  <Text style={{ fontSize: "14px", fontWeight: "700", color: "#111111", margin: 0 }}>
+                    {itemPrice}
+                  </Text>
+                </Column>
+              </Row>
+              <Hr style={{ borderColor: "#f0f0f0", margin: "14px 0" }} />
+              <Row>
+                <Column>
+                  <Text style={{ fontSize: "12px", color: "#666666", margin: 0 }}>
+                    Sold by: Amazon.com Services LLC
+                  </Text>
+                </Column>
+                <Column align="right">
+                  <Link href="#" style={{ color: "#007185", fontSize: "12px", fontWeight: "600", textDecoration: "none" }}>
+                    View or manage order &rarr;
+                  </Link>
+                </Column>
+              </Row>
             </Section>
 
-            {/* Summary */}
-            <Section style={{ marginTop: "24px", padding: "16px", backgroundColor: "#fafafa", borderRadius: "6px" }}>
+            {/* 2-Column: Shipping Address & Order Summary */}
+            <Section style={{ marginTop: "20px" }}>
               <Row>
-                <Column><Text style={{ margin: 0, fontWeight: "bold" }}>Total Before Tax:</Text></Column>
-                <Column align="right"><Text style={{ margin: 0 }}>{itemPrice}</Text></Column>
-              </Row>
-              <Row>
-                <Column><Text style={{ margin: "8px 0", fontWeight: "bold", fontSize: "16px" }}>Order Total:</Text></Column>
-                <Column align="right"><Text style={{ margin: "8px 0", fontWeight: "bold", fontSize: "16px" }}>{orderTotal}</Text></Column>
+                <Column style={{ width: "48%", backgroundColor: "#fafafa", border: "1px solid #eaeaea", borderRadius: "8px", padding: "14px", verticalAlign: "top" }}>
+                  <Text style={{ fontSize: "12px", fontWeight: "700", color: "#111111", margin: "0 0 6px 0" }}>
+                    Shipping Address
+                  </Text>
+                  <Text style={{ fontSize: "12px", color: "#555555", lineHeight: "1.6", margin: 0 }}>
+                    Alex Morgan<br />
+                    452 Market Street, Suite 400<br />
+                    San Francisco, CA 94105
+                  </Text>
+                </Column>
+                <Column style={{ width: "4%" }} />
+                <Column style={{ width: "48%", backgroundColor: "#fafafa", border: "1px solid #eaeaea", borderRadius: "8px", padding: "14px", verticalAlign: "top" }}>
+                  <Text style={{ fontSize: "12px", fontWeight: "700", color: "#111111", margin: "0 0 8px 0" }}>
+                    Order Summary
+                  </Text>
+                  <Row style={{ fontSize: "12px", color: "#555555", lineHeight: "1.8" }}>
+                    <Column><Text style={{ margin: 0 }}>Item Subtotal:</Text></Column>
+                    <Column align="right"><Text style={{ margin: 0, color: "#111111" }}>{itemPrice}</Text></Column>
+                  </Row>
+                  <Row style={{ fontSize: "12px", color: "#555555", lineHeight: "1.8" }}>
+                    <Column><Text style={{ margin: 0 }}>Shipping &amp; Handling:</Text></Column>
+                    <Column align="right"><Text style={{ margin: 0, color: "#007600", fontWeight: "600" }}>FREE</Text></Column>
+                  </Row>
+                  <Row style={{ fontSize: "12px", color: "#555555", lineHeight: "1.8" }}>
+                    <Column><Text style={{ margin: 0 }}>Estimated Tax:</Text></Column>
+                    <Column align="right"><Text style={{ margin: 0, color: "#111111" }}>$29.58</Text></Column>
+                  </Row>
+                  <Hr style={{ borderColor: "#e0e0e0", margin: "6px 0" }} />
+                  <Row>
+                    <Column><Text style={{ fontSize: "13px", fontWeight: "700", color: "#111111", margin: 0 }}>Order Total:</Text></Column>
+                    <Column align="right"><Text style={{ fontSize: "14px", fontWeight: "700", color: "#111111", margin: 0 }}>{orderTotal}</Text></Column>
+                  </Row>
+                </Column>
               </Row>
             </Section>
+          </Section>
+
+          {/* Footer */}
+          <Section style={{ backgroundColor: "#f0f2f2", padding: "20px 24px", borderTop: "1px solid #e0e0e0", textAlign: "center" }}>
+            <Text style={{ fontSize: "11px", color: "#777777", margin: "0 0 4px 0" }}>
+              Need help with your order? Visit the Customer Service portal.
+            </Text>
+            <Text style={{ fontSize: "10px", color: "#999999", margin: 0 }}>
+              &copy; 2026 Amazon.com, Inc. or its affiliates. All rights reserved.
+            </Text>
           </Section>
         </Container>
       </Body>
     </Html>
   );
 }`,
-  html: `<!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"><title>Amazon Order Confirmation</title></head>
-<body style="background:#f6f6f6;font-family:sans-serif;margin:0;padding:20px;">
-  <table align="center" width="600" style="background:#ffffff;border:1px solid #e0e0e0;border-radius:8px;overflow:hidden;" cellpadding="0" cellspacing="0">
-    <tr style="background:#131921;color:#fff;">
-      <td style="padding:16px 24px;"><strong>amazon</strong><span style="color:#febd69">.com</span></td>
-      <td align="right" style="padding:16px 24px;font-size:12px;color:#ccc;">Order #114-8921820-4109823</td>
-    </tr>
-    <tr style="background:#f0f2f2;border-bottom:1px solid #d5d9d9;">
-      <td colspan="2" style="padding:12px 24px;color:#007600;font-weight:bold;font-size:14px;">✓ Arriving Tomorrow by 8 PM</td>
-    </tr>
-    <tr>
-      <td colspan="2" style="padding:24px;">
-        <h2 style="margin:0 0 10px;">Hi Alex,</h2>
-        <p style="color:#555;font-size:14px;">Thank you for your order.</p>
-        <table width="100%" style="border:1px solid #e0e0e0;border-radius:6px;padding:16px;margin:20px 0;">
-          <tr>
-            <td><strong>Sony WH-1000XM5 Headphones</strong><br><span style="color:#888;font-size:12px;">Qty: 1</span></td>
-            <td align="right"><strong>$348.00</strong></td>
-          </tr>
-        </table>
-        <table width="100%" style="background:#fcfcfc;padding:12px;border-radius:6px;">
-          <tr><td>Order Total:</td><td align="right"><strong>$377.58</strong></td></tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-</body>
+  html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" lang="en">
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <title>Amazon Order Confirmation</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+      * {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+    </style>
+  </head>
+  <body dir="ltr" lang="en" style="background-color:rgb(243,244,246);margin:0;padding:20px 0;">
+    <!--$--><!--html--><!--head--><!--body-->
+    <table
+      border="0"
+      width="100%"
+      cellpadding="0"
+      cellspacing="0"
+      role="presentation"
+      align="center">
+      <tbody>
+        <tr>
+          <td
+            dir="ltr"
+            lang="en"
+            style="background-color:rgb(243,244,246);margin:0rem;text-align:center;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">
+            <!-- Container Table (max-width: 600px) -->
+            <table
+              align="center"
+              width="100%"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              role="presentation"
+              style="max-width:600px;margin-right:auto;margin-left:auto;background-color:rgb(255,255,255);border-radius:12px;overflow:hidden;border:1px solid rgb(229,231,235);text-align:left">
+              <tbody>
+                <tr style="width:100%">
+                  <td>
+                    <!-- Section 1: Header (Amazon logo + Order Number) -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation"
+                      style="background-color:rgb(19,25,33)">
+                      <tbody>
+                        <tr>
+                          <td style="padding:16px 24px">
+                            <table
+                              align="center"
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation">
+                              <tbody style="width:100%">
+                                <tr style="width:100%">
+                                  <td
+                                    data-id="__react-email-column"
+                                    style="width:50%;vertical-align:middle;text-align:left">
+                                    <p style="font-size:22px;font-weight:800;letter-spacing:-0.5px;color:rgb(255,255,255);margin:0">
+                                      amazon<span style="color:rgb(254,189,105);font-size:14px;font-weight:700">.com</span>
+                                    </p>
+                                  </td>
+                                  <td
+                                    align="right"
+                                    data-id="__react-email-column"
+                                    style="width:50%;vertical-align:middle;text-align:right">
+                                    <p style="font-size:12px;color:rgb(213,217,217);font-family:monospace;margin:0">
+                                      Order #114-8921820-4109823
+                                    </p>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- Section 2: Delivery Status Banner -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation"
+                      style="background-color:rgb(240,242,242);border-bottom:1px solid rgb(213,217,217)">
+                      <tbody>
+                        <tr>
+                          <td style="padding:16px 24px">
+                            <table
+                              align="center"
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation">
+                              <tbody style="width:100%">
+                                <tr style="width:100%">
+                                  <td
+                                    data-id="__react-email-column"
+                                    style="width:40px;vertical-align:middle">
+                                    <div style="width:36px;height:36px;background-color:rgb(254,189,105);border-radius:50%;text-align:center;line-height:36px;font-size:18px">
+                                      🚚
+                                    </div>
+                                  </td>
+                                  <td
+                                    data-id="__react-email-column"
+                                    style="padding-left:12px;vertical-align:middle;text-align:left">
+                                    <p style="font-size:14px;font-weight:700;color:rgb(0,118,0);margin:0;line-height:1.2">
+                                      Arriving Tomorrow by 8 PM
+                                    </p>
+                                    <p style="font-size:12px;color:rgb(85,85,85);margin:2px 0 0 0;line-height:1.4">
+                                      Track package &amp; view delivery updates
+                                    </p>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- Section 3: Greeting and Main Order Details -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation"
+                      style="background-color:rgb(255,255,255)">
+                      <tbody>
+                        <tr>
+                          <td style="padding:24px;text-align:left">
+                            <h2 style="font-size:18px;font-weight:700;color:rgb(17,17,17);margin:0 0 6px 0">
+                              Hi Alex,
+                            </h2>
+                            <p style="font-size:13px;color:rgb(85,85,85);line-height:1.5;margin:0 0 20px 0">
+                              Thank you for your order. We’ll send a confirmation when your items ship.
+                            </p>
+
+                            <!-- Product Box -->
+                            <table
+                              align="center"
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation"
+                              style="border:1px solid rgb(224,224,224);border-radius:8px;background-color:rgb(255,255,255);margin-bottom:20px">
+                              <tbody>
+                                <tr>
+                                  <td style="padding:16px">
+                                    <table
+                                      align="center"
+                                      width="100%"
+                                      border="0"
+                                      cellpadding="0"
+                                      cellspacing="0"
+                                      role="presentation">
+                                      <tbody style="width:100%">
+                                        <tr style="width:100%">
+                                          <td
+                                            data-id="__react-email-column"
+                                            style="width:64px;vertical-align:top">
+                                            <div style="width:64px;height:64px;background-color:rgb(247,247,247);border-radius:6px;border:1px solid rgb(238,238,238);text-align:center;line-height:64px;font-size:26px">
+                                              📦
+                                            </div>
+                                          </td>
+                                          <td
+                                            data-id="__react-email-column"
+                                            style="padding-left:16px;vertical-align:top;text-align:left">
+                                            <p style="font-size:13px;font-weight:700;color:rgb(17,17,17);line-height:1.4;margin:0 0 4px 0">
+                                              Sony WH-1000XM5 Wireless Noise-Canceling Headphones
+                                            </p>
+                                            <p style="font-size:12px;color:rgb(102,102,102);margin:0 0 8px 0">
+                                              Color: Black • Quantity: 1
+                                            </p>
+                                            <p style="font-size:14px;font-weight:700;color:rgb(17,17,17);margin:0">
+                                              $348.00
+                                            </p>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                    <hr style="border:none;border-top:1px solid rgb(240,240,240);margin:14px 0" />
+                                    <table
+                                      align="center"
+                                      width="100%"
+                                      border="0"
+                                      cellpadding="0"
+                                      cellspacing="0"
+                                      role="presentation">
+                                      <tbody style="width:100%">
+                                        <tr style="width:100%">
+                                          <td
+                                            data-id="__react-email-column"
+                                            style="font-size:12px;color:rgb(102,102,102);text-align:left">
+                                            Sold by: Amazon.com Services LLC
+                                          </td>
+                                          <td
+                                            align="right"
+                                            data-id="__react-email-column"
+                                            style="text-align:right">
+                                            <a
+                                              href="https://amazon.com"
+                                              target="_blank"
+                                              style="color:rgb(0,113,133);font-size:12px;font-weight:600;text-decoration:none">
+                                              View or manage order &rarr;
+                                            </a>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+
+                            <!-- Two Columns: Shipping Address & Order Summary -->
+                            <table
+                              align="center"
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation">
+                              <tbody style="width:100%">
+                                <tr style="width:100%">
+                                  <td
+                                    data-id="__react-email-column"
+                                    style="width:48%;background-color:rgb(250,250,250);border:1px solid rgb(234,234,234);border-radius:8px;padding:14px;vertical-align:top;text-align:left">
+                                    <p style="font-size:12px;font-weight:700;color:rgb(17,17,17);margin:0 0 6px 0">
+                                      Shipping Address
+                                    </p>
+                                    <p style="font-size:12px;color:rgb(85,85,85);line-height:1.6;margin:0">
+                                      Alex Morgan<br />
+                                      452 Market Street, Suite 400<br />
+                                      San Francisco, CA 94105
+                                    </p>
+                                  </td>
+                                  <td style="width:4%"></td>
+                                  <td
+                                    data-id="__react-email-column"
+                                    style="width:48%;background-color:rgb(250,250,250);border:1px solid rgb(234,234,234);border-radius:8px;padding:14px;vertical-align:top;text-align:left">
+                                    <p style="font-size:12px;font-weight:700;color:rgb(17,17,17);margin:0 0 8px 0">
+                                      Order Summary
+                                    </p>
+                                    <table
+                                      align="center"
+                                      width="100%"
+                                      border="0"
+                                      cellpadding="0"
+                                      cellspacing="0"
+                                      role="presentation"
+                                      style="font-size:12px;color:rgb(85,85,85);line-height:1.8">
+                                      <tbody>
+                                        <tr>
+                                          <td style="text-align:left">Item Subtotal:</td>
+                                          <td align="right" style="color:rgb(17,17,17);text-align:right">$348.00</td>
+                                        </tr>
+                                        <tr>
+                                          <td style="text-align:left">Shipping &amp; Handling:</td>
+                                          <td align="right" style="color:rgb(0,118,0);font-weight:600;text-align:right">FREE</td>
+                                        </tr>
+                                        <tr>
+                                          <td style="text-align:left">Estimated Tax:</td>
+                                          <td align="right" style="color:rgb(17,17,17);text-align:right">$29.58</td>
+                                        </tr>
+                                        <tr>
+                                          <td colspan="2" style="border-top:1px solid rgb(224,224,224);padding-top:6px;margin-top:6px">
+                                            <table
+                                              align="center"
+                                              width="100%"
+                                              border="0"
+                                              cellpadding="0"
+                                              cellspacing="0"
+                                              role="presentation">
+                                              <tbody>
+                                                <tr>
+                                                  <td style="font-size:13px;font-weight:700;color:rgb(17,17,17);text-align:left">
+                                                    Order Total:
+                                                  </td>
+                                                  <td align="right" style="font-size:14px;font-weight:700;color:rgb(17,17,17);text-align:right">
+                                                    $377.58
+                                                  </td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- Section 4: Footer -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation"
+                      style="background-color:rgb(240,242,242);border-top:1px solid rgb(224,224,224)">
+                      <tbody>
+                        <tr>
+                          <td style="padding:20px 24px;text-align:center">
+                            <p style="font-size:11px;color:rgb(119,119,119);line-height:1.5;margin:0 0 4px 0">
+                              Need help with your order? Visit the Customer Service portal.
+                            </p>
+                            <p style="font-size:10px;color:rgb(153,153,153);line-height:1.5;margin:0">
+                              &copy; 2026 Amazon.com, Inc. or its affiliates. All rights reserved.
+                            </p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!--/$-->
+  </body>
 </html>`,
   usageCode: `import AmazonInvoiceEmail from "@/templates/amazon-invoice";
 import { reloop } from "@reloop/sdk";

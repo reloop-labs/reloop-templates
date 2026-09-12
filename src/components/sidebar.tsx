@@ -135,11 +135,6 @@ export function Sidebar({ selectedTemplateId, onSelectTemplate }: SidebarProps) 
                           />
                           <span className="truncate">{item.name}</span>
                         </div>
-                        {item.badge && (
-                          <span className="text-[9px] px-1.5 py-0.2 rounded bg-indigo-500/20 text-indigo-300 uppercase font-mono">
-                            {item.badge}
-                          </span>
-                        )}
                       </button>
                     );
                   })}

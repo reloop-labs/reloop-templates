@@ -66,59 +66,312 @@ import {
   Body,
   Container,
   Section,
+  Row,
+  Column,
   Text,
   Button,
   Hr,
+  Link,
 } from "@react-email/components";
 
 interface ResetPasswordProps {
   resetUrl?: string;
-  userName?: string;
+  userEmail?: string;
+  expiryMinutes?: number;
 }
 
 export default function ResetPasswordEmail({
-  resetUrl = "https://reloop.sh/reset-password?token=example",
-  userName = "Developer",
+  resetUrl = "https://reloop.sh/reset-password?token=rst_81920381029",
+  userEmail = "alex@example.com",
+  expiryMinutes = 30,
 }: ResetPasswordProps) {
   return (
-    <Html>
+    <Html lang="en">
       <Head />
-      <Body style={{ background: "#fafafa", fontFamily: "sans-serif", margin: 0, padding: "24px" }}>
-        <Container style={{ maxWidth: "540px", margin: "0 auto", background: "#ffffff", borderRadius: "12px", padding: "32px", border: "1px solid #eaeaea" }}>
-          <Text style={{ fontSize: "20px", fontWeight: "bold", color: "#111827", margin: "0 0 12px" }}>
-            Reset your password
-          </Text>
-          <Text style={{ fontSize: "14px", color: "#4b5563", lineHeight: "1.6", margin: "0 0 24px" }}>
-            Hi {userName}, click below to create a new password. This link is valid for 30 minutes.
-          </Text>
-          <Button href={resetUrl} style={{ background: "#7c3aed", color: "#ffffff", padding: "12px 24px", borderRadius: "8px", fontWeight: "bold", fontSize: "14px", textDecoration: "none", display: "block", textAlign: "center" }}>
-            Reset Password
-          </Button>
-          <Hr style={{ borderColor: "#eaeaea", margin: "24px 0" }} />
-          <Text style={{ fontSize: "12px", color: "#9ca3af" }}>
-            If you didn't request this change, you can safely ignore this email.
-          </Text>
+      <Body style={{ backgroundColor: "#f8fafc", fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", margin: 0, padding: "32px 0" }}>
+        <Container style={{ maxWidth: "560px", margin: "0 auto", backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "16px", overflow: "hidden" }}>
+          {/* Top Violet Accent Bar */}
+          <div style={{ height: "6px", width: "100%", backgroundColor: "#7c3aed" }} />
+
+          {/* Header */}
+          <Section style={{ padding: "28px 32px 20px 32px" }}>
+            <Row>
+              <Column style={{ width: "60%", verticalAlign: "middle" }}>
+                <div style={{ width: "36px", height: "36px", borderRadius: "10px", backgroundColor: "#ede9fe", textAlign: "center", lineHeight: "36px", color: "#7c3aed", fontSize: "16px" }}>
+                  🔑
+                </div>
+              </Column>
+              <Column style={{ width: "40%", verticalAlign: "middle", textAlign: "right" }}>
+                <Text style={{ fontSize: "12px", color: "#64748b", margin: 0 }}>
+                  Account Security
+                </Text>
+              </Column>
+            </Row>
+          </Section>
+
+          {/* Heading */}
+          <Section style={{ padding: "0 32px 24px 32px" }}>
+            <Text style={{ fontSize: "24px", fontWeight: "800", color: "#0f172a", margin: "0 0 8px 0", letterSpacing: "-0.5px" }}>
+              Reset your password
+            </Text>
+            <Text style={{ fontSize: "14px", color: "#475569", lineHeight: "1.6", margin: 0 }}>
+              We received a request to reset the password for your account (<strong style={{ color: "#0f172a" }}>{userEmail}</strong>). Click the button below to choose a secure new password.
+            </Text>
+          </Section>
+
+          {/* CTA Button */}
+          <Section style={{ padding: "0 32px 28px 32px" }}>
+            <Button
+              href={resetUrl}
+              style={{
+                display: "block",
+                width: "100%",
+                backgroundColor: "#7c3aed",
+                color: "#ffffff",
+                padding: "14px 0",
+                borderRadius: "10px",
+                fontWeight: "700",
+                fontSize: "14px",
+                textDecoration: "none",
+                textAlign: "center",
+              }}
+            >
+              Reset Password →
+            </Button>
+          </Section>
+
+          {/* Expiry Advisory Box */}
+          <Section style={{ padding: "0 32px 24px 32px" }}>
+            <table width="100%" border={0} cellPadding={0} cellSpacing={0} role="presentation" style={{ backgroundColor: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "12px", padding: "16px 20px" }}>
+              <tbody>
+                <tr>
+                  <td style={{ verticalAlign: "top" }}>
+                    <Text style={{ fontSize: "12px", fontWeight: "700", color: "#0f172a", margin: "0 0 4px 0" }}>
+                      ⏱ This link expires in {expiryMinutes} minutes
+                    </Text>
+                    <Text style={{ fontSize: "11px", color: "#64748b", margin: 0, lineHeight: "1.5" }}>
+                      If you didn't request a password reset, please ignore this email or reach out to support if you have concerns regarding your account security.
+                    </Text>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </Section>
+
+          {/* Footer */}
+          <Section style={{ padding: "18px 32px", backgroundColor: "#f8fafc", borderTop: "1px solid #e2e8f0", textAlign: "center" }}>
+            <Text style={{ fontSize: "12px", color: "#94a3b8", margin: 0 }}>
+              Reloop Security • Automated system notification
+            </Text>
+          </Section>
         </Container>
       </Body>
     </Html>
   );
 }`,
-  html: `<!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"></head>
-<body style="background:#fafafa;font-family:sans-serif;margin:0;padding:24px;">
-  <table align="center" width="540" style="background:#ffffff;border:1px solid #eaeaea;border-radius:12px;padding:32px;" cellpadding="0" cellspacing="0">
-    <tr>
-      <td>
-        <h2 style="font-size:20px;color:#111827;margin:0 0 12px;">Reset your password</h2>
-        <p style="font-size:14px;color:#4b5563;line-height:1.6;margin:0 0 24px;">Click the button below to choose a new password. This link expires in 30 minutes.</p>
-        <a href="https://reloop.sh/reset-password" style="display:block;text-align:center;background:#7c3aed;color:#ffffff;padding:12px 24px;border-radius:8px;font-weight:bold;text-decoration:none;">Reset Password</a>
-        <hr style="border:none;border-top:1px solid #eaeaea;margin:24px 0;">
-        <p style="color:#9ca3af;font-size:12px;margin:0;">If you didn't request this change, you can safely ignore this email.</p>
-      </td>
-    </tr>
-  </table>
-</body>
+  html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" lang="en">
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <title>Password Reset</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+      * {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+    </style>
+  </head>
+  <body dir="ltr" lang="en" style="background-color:rgb(248,250,252);margin:0;padding:32px 0;">
+    <!--$--><!--html--><!--head--><!--body-->
+    <table
+      border="0"
+      width="100%"
+      cellpadding="0"
+      cellspacing="0"
+      role="presentation"
+      align="center">
+      <tbody>
+        <tr>
+          <td
+            dir="ltr"
+            lang="en"
+            style="background-color:rgb(248,250,252);margin:0;text-align:center;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">
+            <!-- Main Container -->
+            <table
+              align="center"
+              width="100%"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              role="presentation"
+              style="max-width:560px;margin-right:auto;margin-left:auto;background-color:rgb(255,255,255);border-radius:16px;border:1px solid rgb(226,232,240);overflow:hidden;text-align:left">
+              <tbody>
+                <tr style="width:100%">
+                  <td>
+                    <!-- Top Accent Bar -->
+                    <table
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation">
+                      <tbody>
+                        <tr>
+                          <td style="height:6px;background-color:rgb(124,58,237)"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- Header -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation">
+                      <tbody>
+                        <tr>
+                          <td style="padding:28px 32px 20px 32px">
+                            <table
+                              align="center"
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation">
+                              <tbody style="width:100%">
+                                <tr style="width:100%">
+                                  <td
+                                    data-id="__react-email-column"
+                                    style="width:60%;vertical-align:middle;text-align:left">
+                                    <span style="display:inline-block;width:36px;height:36px;border-radius:10px;background-color:rgb(237,233,254);color:rgb(124,58,237);font-size:16px;line-height:36px;text-align:center">
+                                      🔑
+                                    </span>
+                                  </td>
+                                  <td
+                                    data-id="__react-email-column"
+                                    style="width:40%;vertical-align:middle;text-align:right">
+                                    <span style="font-size:12px;color:rgb(100,116,139)">
+                                      Account Security
+                                    </span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- Heading & Subtitle -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation">
+                      <tbody>
+                        <tr>
+                          <td style="padding:0 32px 24px 32px">
+                            <h2 style="font-size:24px;font-weight:800;color:rgb(15,23,42);margin:0 0 8px 0;letter-spacing:-0.5px">
+                              Reset your password
+                            </h2>
+                            <p style="font-size:14px;color:rgb(71,85,105);line-height:1.6;margin:0">
+                              We received a request to reset the password for your account (<strong style="color:rgb(15,23,42)">alex@example.com</strong>). Click the button below to choose a secure new password.
+                            </p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- CTA Button -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation">
+                      <tbody>
+                        <tr>
+                          <td style="padding:0 32px 28px 32px">
+                            <a
+                              href="https://reloop.sh/reset-password?token=rst_81920381029"
+                              style="line-height:100%;text-decoration:none;display:block;max-width:100%;background-color:rgb(124,58,237);border-radius:10px;color:rgb(255,255,255);font-size:14px;font-weight:700;text-align:center;padding:14px 20px">
+                              <span>Reset Password →</span>
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- Security Note Box -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation">
+                      <tbody>
+                        <tr>
+                          <td style="padding:0 32px 24px 32px">
+                            <table
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation"
+                              style="background-color:rgb(248,250,252);border:1px solid rgb(226,232,240);border-radius:12px;padding:16px 20px">
+                              <tbody>
+                                <tr>
+                                  <td style="vertical-align:top">
+                                    <p style="font-size:12px;font-weight:700;color:rgb(15,23,42);margin:0 0 4px 0">
+                                      ⏱ This link expires in 30 minutes
+                                    </p>
+                                    <p style="font-size:11px;color:rgb(100,116,139);margin:0;line-height:1.5">
+                                      If you didn't request a password reset, please ignore this email or reach out to support if you have concerns regarding your account security.
+                                    </p>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- Footer -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation">
+                      <tbody>
+                        <tr>
+                          <td style="padding:18px 32px;background-color:rgb(248,250,252);border-top:1px solid rgb(226,232,240);text-align:center">
+                            <p style="font-size:12px;color:rgb(148,163,184);margin:0">
+                              Reloop Security • Automated system notification
+                            </p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!--/$-->
+  </body>
 </html>`,
   usageCode: `import ResetPasswordEmail from "@/templates/reset-password";
 import { reloop } from "@reloop/sdk";

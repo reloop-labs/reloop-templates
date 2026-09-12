@@ -25,7 +25,6 @@ export const TEMPLATE_CATEGORIES: CategoryGroup[] = [
         filename: "hello-world.tsx",
         category: "01-Getting Started",
         description: "Official introductory template welcoming developers to Reloop Templates.",
-        badge: "Official",
       },
       {
         id: "minimal-text",

@@ -93,60 +93,379 @@ export const vercelDeploymentTemplate: EmailTemplate = {
   id: "vercel-deployment",
   title: "Vercel Deployment Alert",
   category: "Brands & Recreations",
-  badge: "Popular",
   description: "Stark monochrome, high-contrast deployment card with commit hash, branch badge, build metrics, and inspect logs CTA.",
   component: VercelDeploymentPreview,
   code: `import React from "react";
-import { Html, Head, Body, Container, Section, Heading, Text, Button, Row, Column } from "@react-email/components";
+import {
+  Html,
+  Head,
+  Body,
+  Container,
+  Section,
+  Text,
+  Button,
+  Row,
+  Column,
+  Link,
+} from "@react-email/components";
 
 export default function VercelDeploymentEmail({
   projectName = "reloop-templates",
   domain = "templates.reloop.sh",
-  commitSha = "8bb0ab1",
+  branch = "main",
+  commitSha = "8bb0ab1 (Move star icon)",
+  duration = "22s",
 }: {
   projectName?: string;
   domain?: string;
+  branch?: string;
   commitSha?: string;
+  duration?: string;
 }) {
   return (
     <Html lang="en">
       <Head />
-      <Body style={{ backgroundColor: "#ffffff", fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}>
-        <Container style={{ maxWidth: "560px", margin: "40px auto", border: "1px solid #eaeaea", borderRadius: "8px", padding: "24px" }}>
-          <Text style={{ fontSize: "14px", fontWeight: "bold", margin: "0 0 16px 0" }}>▲ Vercel</Text>
-          <Heading style={{ fontSize: "20px", fontWeight: "bold" }}>Deployment Succeeded</Heading>
-          <Text style={{ fontSize: "14px", color: "#666" }}>
-            Your project <strong>{projectName}</strong> was deployed to production.
-          </Text>
-          <Section style={{ backgroundColor: "#fafafa", border: "1px solid #eaeaea", borderRadius: "6px", padding: "16px", margin: "20px 0" }}>
-            <Text style={{ margin: 0, fontSize: "14px", fontWeight: "600" }}>{domain}</Text>
-            <Text style={{ margin: "4px 0 0 0", fontSize: "12px", color: "#888" }}>Commit: {commitSha} (main)</Text>
+      <Body style={{ backgroundColor: "#fafafa", fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", margin: 0, padding: "30px 0" }}>
+        <Container style={{ maxWidth: "560px", margin: "0 auto", backgroundColor: "#ffffff", borderRadius: "12px", border: "1px solid #e5e7eb", overflow: "hidden" }}>
+          {/* Header */}
+          <Section style={{ padding: "20px 24px", borderBottom: "1px solid #f3f4f6" }}>
+            <Row>
+              <Column>
+                <Text style={{ fontSize: "14px", fontWeight: "700", color: "#000000", margin: 0 }}>
+                  ▲ Vercel
+                </Text>
+              </Column>
+              <Column align="right">
+                <Text style={{ fontSize: "11px", fontWeight: "600", color: "#059669", backgroundColor: "#ecfdf5", border: "1px solid #a7f3d0", borderRadius: "9999px", padding: "2px 8px", margin: 0 }}>
+                  ✓ Production Ready
+                </Text>
+              </Column>
+            </Row>
           </Section>
-          <Button href={\`https://\${domain}\`} style={{ backgroundColor: "#000000", color: "#ffffff", padding: "10px 20px", borderRadius: "6px", fontSize: "14px", fontWeight: "600", textDecoration: "none" }}>
-            Inspect Deployment
-          </Button>
+
+          {/* Main Content */}
+          <Section style={{ padding: "28px 24px" }}>
+            <Text style={{ fontSize: "20px", fontWeight: "700", color: "#111827", margin: "0 0 6px 0" }}>
+              Deployment Succeeded
+            </Text>
+            <Text style={{ fontSize: "13px", color: "#4b5563", margin: "0 0 20px 0", lineHeight: "1.5" }}>
+              Your project <strong>{projectName}</strong> was deployed to production.
+            </Text>
+
+            {/* Domains Card */}
+            <Section style={{ backgroundColor: "#f9fafb", border: "1px solid #e5e7eb", borderRadius: "8px", padding: "14px 16px", marginBottom: "16px" }}>
+              <Row>
+                <Column>
+                  <Text style={{ fontSize: "11px", fontWeight: "500", color: "#6b7280", margin: "0 0 4px 0" }}>
+                    Domains
+                  </Text>
+                  <Link href={\`https://\${domain}\`} style={{ fontSize: "13px", fontWeight: "600", color: "#111827", textDecoration: "none" }}>
+                    {domain} &rarr;
+                  </Link>
+                </Column>
+                <Column align="right">
+                  <Text style={{ fontSize: "10px", fontFamily: "monospace", backgroundColor: "#e5e7eb", borderRadius: "4px", padding: "2px 6px", color: "#374151", margin: 0 }}>
+                    Latest
+                  </Text>
+                </Column>
+              </Row>
+            </Section>
+
+            {/* Meta Details Table */}
+            <Section style={{ border: "1px solid #e5e7eb", borderRadius: "8px", overflow: "hidden", marginBottom: "24px" }}>
+              <Row style={{ padding: "10px 14px", borderBottom: "1px solid #f3f4f6" }}>
+                <Column><Text style={{ fontSize: "12px", color: "#6b7280", margin: 0 }}>Branch</Text></Column>
+                <Column align="right"><Text style={{ fontSize: "12px", fontFamily: "monospace", color: "#111827", margin: 0 }}>{branch}</Text></Column>
+              </Row>
+              <Row style={{ padding: "10px 14px", borderBottom: "1px solid #f3f4f6" }}>
+                <Column><Text style={{ fontSize: "12px", color: "#6b7280", margin: 0 }}>Commit</Text></Column>
+                <Column align="right"><Text style={{ fontSize: "12px", fontFamily: "monospace", color: "#111827", margin: 0 }}>{commitSha}</Text></Column>
+              </Row>
+              <Row style={{ padding: "10px 14px" }}>
+                <Column><Text style={{ fontSize: "12px", color: "#6b7280", margin: 0 }}>Build Duration</Text></Column>
+                <Column align="right"><Text style={{ fontSize: "12px", fontFamily: "monospace", color: "#111827", margin: 0 }}>{duration}</Text></Column>
+              </Row>
+            </Section>
+
+            {/* CTA Button */}
+            <Section style={{ textAlign: "center" }}>
+              <Button
+                href="https://vercel.com"
+                style={{ backgroundColor: "#000000", color: "#ffffff", padding: "12px 24px", borderRadius: "8px", fontSize: "13px", fontWeight: "600", textDecoration: "none", display: "inline-block", width: "100%", textAlign: "center" }}
+              >
+                Inspect Deployment
+              </Button>
+            </Section>
+          </Section>
+
+          {/* Footer */}
+          <Section style={{ backgroundColor: "#f9fafb", padding: "16px 24px", borderTop: "1px solid #f3f4f6", textAlign: "center" }}>
+            <Text style={{ fontSize: "11px", color: "#6b7280", margin: 0 }}>
+              Notifications from Vercel • To adjust preferences, visit Account Settings.
+            </Text>
+          </Section>
         </Container>
       </Body>
     </Html>
   );
 }`,
-  html: `<!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"><title>Vercel Deployment Succeeded</title></head>
-<body style="font-family:sans-serif;background:#fff;margin:0;padding:24px;">
-  <table align="center" width="560" style="border:1px solid #eaeaea;border-radius:8px;padding:24px;" cellpadding="0" cellspacing="0">
-    <tr><td><strong style="font-size:16px;">▲ Vercel</strong></td></tr>
-    <tr><td><h2 style="margin:16px 0 8px;">Deployment Succeeded</h2></td></tr>
-    <tr><td><p style="color:#666;font-size:14px;">Your project <strong>reloop-templates</strong> is live.</p></td></tr>
-    <tr>
-      <td style="background:#fafafa;border:1px solid #eaeaea;padding:16px;border-radius:6px;">
-        <strong style="font-size:14px;">templates.reloop.sh</strong><br>
-        <span style="color:#888;font-size:12px;">Branch: main • Commit: 8bb0ab1</span>
-      </td>
-    </tr>
-    <tr><td style="padding-top:20px;"><a href="#" style="background:#000;color:#fff;padding:10px 20px;border-radius:6px;font-weight:bold;text-decoration:none;display:inline-block;">Inspect Deployment</a></td></tr>
-  </table>
-</body>
+  html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" lang="en">
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <title>Vercel Deployment Succeeded</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+      * {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+    </style>
+  </head>
+  <body dir="ltr" lang="en" style="background-color:rgb(250,250,250);margin:0;padding:30px 0;">
+    <!--$--><!--html--><!--head--><!--body-->
+    <table
+      border="0"
+      width="100%"
+      cellpadding="0"
+      cellspacing="0"
+      role="presentation"
+      align="center">
+      <tbody>
+        <tr>
+          <td
+            dir="ltr"
+            lang="en"
+            style="background-color:rgb(250,250,250);margin:0;text-align:center;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">
+            <!-- Main Card Container -->
+            <table
+              align="center"
+              width="100%"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              role="presentation"
+              style="max-width:560px;margin-right:auto;margin-left:auto;background-color:rgb(255,255,255);border-radius:12px;border:1px solid rgb(229,231,235);overflow:hidden;text-align:left">
+              <tbody>
+                <tr style="width:100%">
+                  <td>
+                    <!-- Header -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation">
+                      <tbody>
+                        <tr>
+                          <td style="padding:20px 24px;border-bottom:1px solid rgb(243,244,246)">
+                            <table
+                              align="center"
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation">
+                              <tbody style="width:100%">
+                                <tr style="width:100%">
+                                  <td
+                                    data-id="__react-email-column"
+                                    style="width:50%;vertical-align:middle;text-align:left">
+                                    <p style="font-size:14px;font-weight:700;color:rgb(0,0,0);margin:0">
+                                      ▲ Vercel
+                                    </p>
+                                  </td>
+                                  <td
+                                    align="right"
+                                    data-id="__react-email-column"
+                                    style="width:50%;vertical-align:middle;text-align:right">
+                                    <p style="font-size:11px;font-weight:600;color:rgb(5,150,105);background-color:rgb(236,253,245);border:1px solid rgb(167,243,208);border-radius:9999px;padding:2px 8px;margin:0;display:inline-block">
+                                      ✓ Production Ready
+                                    </p>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- Main Content -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation">
+                      <tbody>
+                        <tr>
+                          <td style="padding:28px 24px;text-align:left">
+                            <h2 style="font-size:20px;font-weight:700;color:rgb(17,24,39);margin:0 0 6px 0">
+                              Deployment Succeeded
+                            </h2>
+                            <p style="font-size:13px;color:rgb(75,85,99);margin:0 0 20px 0;line-height:1.5">
+                              Your project <strong>reloop-templates</strong> was deployed to production.
+                            </p>
+
+                            <!-- Domains Card -->
+                            <table
+                              align="center"
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation"
+                              style="background-color:rgb(249,250,251);border:1px solid rgb(229,231,235);border-radius:8px;margin-bottom:16px">
+                              <tbody>
+                                <tr>
+                                  <td style="padding:14px 16px">
+                                    <table
+                                      align="center"
+                                      width="100%"
+                                      border="0"
+                                      cellpadding="0"
+                                      cellspacing="0"
+                                      role="presentation">
+                                      <tbody style="width:100%">
+                                        <tr style="width:100%">
+                                          <td
+                                            data-id="__react-email-column"
+                                            style="text-align:left">
+                                            <p style="font-size:11px;font-weight:500;color:rgb(107,114,128);margin:0 0 4px 0">
+                                              Domains
+                                            </p>
+                                            <a
+                                              href="https://templates.reloop.sh"
+                                              target="_blank"
+                                              style="font-size:13px;font-weight:600;color:rgb(17,24,39);text-decoration:none">
+                                              templates.reloop.sh &rarr;
+                                            </a>
+                                          </td>
+                                          <td
+                                            align="right"
+                                            data-id="__react-email-column"
+                                            style="text-align:right">
+                                            <span style="font-size:10px;font-family:monospace;background-color:rgb(229,231,235);border-radius:4px;padding:2px 6px;color:rgb(55,65,81)">
+                                              Latest
+                                            </span>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+
+                            <!-- Meta Details Table -->
+                            <table
+                              align="center"
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation"
+                              style="border:1px solid rgb(229,231,235);border-radius:8px;overflow:hidden;margin-bottom:24px">
+                              <tbody>
+                                <tr>
+                                  <td style="padding:10px 14px;border-bottom:1px solid rgb(243,244,246)">
+                                    <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                      <tbody style="width:100%">
+                                        <tr style="width:100%">
+                                          <td data-id="__react-email-column" style="font-size:12px;color:rgb(107,114,128);text-align:left">Branch</td>
+                                          <td align="right" data-id="__react-email-column" style="font-size:12px;font-family:monospace;color:rgb(17,24,39);text-align:right">main</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="padding:10px 14px;border-bottom:1px solid rgb(243,244,246)">
+                                    <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                      <tbody style="width:100%">
+                                        <tr style="width:100%">
+                                          <td data-id="__react-email-column" style="font-size:12px;color:rgb(107,114,128);text-align:left">Commit</td>
+                                          <td align="right" data-id="__react-email-column" style="font-size:12px;font-family:monospace;color:rgb(17,24,39);text-align:right">8bb0ab1 (Move star icon)</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="padding:10px 14px">
+                                    <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                      <tbody style="width:100%">
+                                        <tr style="width:100%">
+                                          <td data-id="__react-email-column" style="font-size:12px;color:rgb(107,114,128);text-align:left">Build Duration</td>
+                                          <td align="right" data-id="__react-email-column" style="font-size:12px;font-family:monospace;color:rgb(17,24,39);text-align:right">22s</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+
+                            <!-- CTA Button -->
+                            <table
+                              align="center"
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation">
+                              <tbody>
+                                <tr>
+                                  <td align="center">
+                                    <a
+                                      href="https://vercel.com"
+                                      target="_blank"
+                                      style="background-color:rgb(0,0,0);color:rgb(255,255,255);padding:12px 24px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;display:block;text-align:center">
+                                      Inspect Deployment
+                                    </a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- Footer -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation"
+                      style="background-color:rgb(249,250,251);border-top:1px solid rgb(243,244,246)">
+                      <tbody>
+                        <tr>
+                          <td style="padding:16px 24px;text-align:center">
+                            <p style="font-size:11px;color:rgb(107,114,128);margin:0">
+                              Notifications from Vercel • To adjust preferences, visit Account Settings.
+                            </p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!--/$-->
+  </body>
 </html>`,
   usageCode: `import VercelDeploymentEmail from "@/templates/vercel-deployment";
 import { reloop } from "@reloop/sdk";

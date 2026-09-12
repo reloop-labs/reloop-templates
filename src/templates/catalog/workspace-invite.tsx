@@ -70,7 +70,6 @@ export const workspaceInviteTemplate: EmailTemplate = {
   id: "workspace-invite",
   title: "Team Workspace Invite",
   category: "SaaS & Billing",
-  badge: "Collaboration",
   description: "Team collaboration invitation featuring inviter avatar, workspace meta card, role badge, and 1-click onboarding.",
   component: WorkspaceInvitePreview,
   code: `import React from "react";
@@ -80,57 +79,444 @@ import {
   Body,
   Container,
   Section,
+  Row,
+  Column,
   Text,
   Button,
   Hr,
+  Link,
 } from "@react-email/components";
 
 interface WorkspaceInviteEmailProps {
   inviterName?: string;
+  inviterEmail?: string;
   workspaceName?: string;
   role?: string;
+  teamSize?: string;
+  recipientEmail?: string;
   inviteUrl?: string;
 }
 
 export default function WorkspaceInviteEmail({
   inviterName = "Sarah Chen",
+  inviterEmail = "sarah@acme-engineering.com",
   workspaceName = "Acme Engineering",
   role = "Admin",
-  inviteUrl = "https://reloop.sh/invite/accept?token=example",
+  teamSize = "14 team members",
+  recipientEmail = "alex@example.com",
+  inviteUrl = "https://reloop.sh/invite/accept?token=inv_98120381023",
 }: WorkspaceInviteEmailProps) {
   return (
-    <Html>
+    <Html lang="en">
       <Head />
-      <Body style={{ background: "#f9fafb", fontFamily: "sans-serif", margin: 0, padding: "24px" }}>
-        <Container style={{ maxWidth: "560px", margin: "0 auto", background: "#ffffff", borderRadius: "12px", padding: "32px", border: "1px solid #e5e7eb" }}>
-          <Text style={{ fontSize: "20px", fontWeight: "bold", color: "#111827", margin: "0 0 12px" }}>
-            Join {workspaceName} on Reloop
-          </Text>
-          <Text style={{ fontSize: "14px", color: "#4b5563", lineHeight: "1.6", margin: "0 0 24px" }}>
-            {inviterName} has invited you to join their team as an <strong>{role}</strong>.
-          </Text>
-          <Button href={inviteUrl} style={{ background: "#059669", color: "#ffffff", padding: "12px 24px", borderRadius: "8px", fontWeight: "bold", fontSize: "14px", textDecoration: "none", display: "block", textAlign: "center" }}>
-            Accept Invitation
-          </Button>
+      <Body style={{ backgroundColor: "#f8fafc", fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", margin: 0, padding: "32px 0" }}>
+        <Container style={{ maxWidth: "560px", margin: "0 auto", backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "16px", overflow: "hidden" }}>
+          {/* Top Emerald Accent Stripe */}
+          <div style={{ height: "6px", width: "100%", backgroundColor: "#10b981" }} />
+
+          {/* Inviter Header */}
+          <Section style={{ padding: "28px 32px 20px 32px" }}>
+            <table border={0} cellPadding={0} cellSpacing={0} role="presentation">
+              <tbody>
+                <tr>
+                  <td style={{ verticalAlign: "middle" }}>
+                    <div style={{ width: "42px", height: "42px", borderRadius: "50%", background: "linear-gradient(135deg, #10b981 0%, #06b6d4 100%)", textAlign: "center", lineHeight: "42px", color: "#ffffff", fontWeight: "700", fontSize: "15px" }}>
+                      SC
+                    </div>
+                  </td>
+                  <td style={{ verticalAlign: "middle", paddingLeft: "12px" }}>
+                    <Text style={{ fontSize: "14px", fontWeight: "700", color: "#0f172a", margin: 0 }}>
+                      {inviterName}
+                    </Text>
+                    <Text style={{ fontSize: "12px", color: "#64748b", margin: 0 }}>
+                      {inviterEmail}
+                    </Text>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </Section>
+
+          {/* Heading */}
+          <Section style={{ padding: "0 32px 24px 32px" }}>
+            <Text style={{ fontSize: "24px", fontWeight: "800", color: "#0f172a", margin: "0 0 8px 0", letterSpacing: "-0.5px" }}>
+              Join {workspaceName} on Reloop
+            </Text>
+            <Text style={{ fontSize: "14px", color: "#475569", lineHeight: "1.6", margin: 0 }}>
+              {inviterName} has invited you to collaborate as an <strong style={{ color: "#059669" }}>{role}</strong> on the {workspaceName} workspace.
+            </Text>
+          </Section>
+
+          {/* Workspace Card */}
+          <Section style={{ padding: "0 32px 24px 32px" }}>
+            <table width="100%" border={0} cellPadding={0} cellSpacing={0} role="presentation" style={{ backgroundColor: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "12px", padding: "16px 20px" }}>
+              <tbody>
+                <tr>
+                  <td style={{ padding: "8px 0" }}>
+                    <Row>
+                      <Column style={{ width: "40%" }}>
+                        <Text style={{ fontSize: "12px", color: "#64748b", margin: 0 }}>Workspace</Text>
+                      </Column>
+                      <Column style={{ width: "60%", textAlign: "right" }}>
+                        <Text style={{ fontSize: "12px", fontWeight: "700", color: "#0f172a", margin: 0 }}>{workspaceName}</Text>
+                      </Column>
+                    </Row>
+                  </td>
+                </tr>
+                <tr>
+                  <td style={{ padding: "8px 0", borderTop: "1px solid #edf2f7" }}>
+                    <Row>
+                      <Column style={{ width: "40%" }}>
+                        <Text style={{ fontSize: "12px", color: "#64748b", margin: 0 }}>Assigned Role</Text>
+                      </Column>
+                      <Column style={{ width: "60%", textAlign: "right" }}>
+                        <span style={{ display: "inline-block", fontSize: "11px", fontWeight: "700", color: "#047857", backgroundColor: "#d1fae5", border: "1px solid #a7f3d0", borderRadius: "9999px", padding: "3px 10px" }}>
+                          {role}
+                        </span>
+                      </Column>
+                    </Row>
+                  </td>
+                </tr>
+                <tr>
+                  <td style={{ padding: "8px 0 0 0", borderTop: "1px solid #edf2f7" }}>
+                    <Row>
+                      <Column style={{ width: "40%" }}>
+                        <Text style={{ fontSize: "12px", color: "#64748b", margin: 0 }}>Team Size</Text>
+                      </Column>
+                      <Column style={{ width: "60%", textAlign: "right" }}>
+                        <Text style={{ fontSize: "12px", fontWeight: "600", color: "#0f172a", margin: 0 }}>{teamSize}</Text>
+                      </Column>
+                    </Row>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </Section>
+
+          {/* CTA Button */}
+          <Section style={{ padding: "0 32px 24px 32px" }}>
+            <Button
+              href={inviteUrl}
+              style={{
+                display: "block",
+                width: "100%",
+                backgroundColor: "#059669",
+                color: "#ffffff",
+                padding: "14px 0",
+                borderRadius: "10px",
+                fontWeight: "700",
+                fontSize: "14px",
+                textDecoration: "none",
+                textAlign: "center",
+              }}
+            >
+              Accept Invitation →
+            </Button>
+          </Section>
+
+          {/* Expiry Note */}
+          <Section style={{ padding: "0 32px 28px 32px", textAlign: "center" }}>
+            <Text style={{ fontSize: "12px", color: "#94a3b8", margin: 0 }}>
+              This invitation was sent to <strong style={{ color: "#475569" }}>{recipientEmail}</strong> and expires in 7 days.
+            </Text>
+          </Section>
+
+          {/* Footer */}
+          <Section style={{ padding: "18px 32px", backgroundColor: "#f8fafc", borderTop: "1px solid #e2e8f0", textAlign: "center" }}>
+            <Text style={{ fontSize: "12px", color: "#94a3b8", margin: 0 }}>
+              Reloop Workspaces • If you don't know the inviter, you can safely ignore this invitation.
+            </Text>
+          </Section>
         </Container>
       </Body>
     </Html>
   );
 }`,
-  html: `<!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"></head>
-<body style="background:#f9fafb;font-family:sans-serif;margin:0;padding:24px;">
-  <table align="center" width="560" style="background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:32px;" cellpadding="0" cellspacing="0">
-    <tr>
-      <td>
-        <h2 style="font-size:20px;color:#111827;margin:0 0 12px;">Join Acme Engineering on Reloop</h2>
-        <p style="color:#4b5563;font-size:14px;line-height:1.6;margin:0 0 24px;">Sarah Chen has invited you to collaborate as an <strong>Admin</strong>.</p>
-        <a href="https://reloop.sh/invite" style="display:block;text-align:center;background:#059669;color:#ffffff;padding:12px 24px;border-radius:8px;font-weight:bold;text-decoration:none;">Accept Invitation</a>
-      </td>
-    </tr>
-  </table>
-</body>
+  html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" lang="en">
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <title>Team Workspace Invite</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+      * {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+    </style>
+  </head>
+  <body dir="ltr" lang="en" style="background-color:rgb(248,250,252);margin:0;padding:32px 0;">
+    <!--$--><!--html--><!--head--><!--body-->
+    <table
+      border="0"
+      width="100%"
+      cellpadding="0"
+      cellspacing="0"
+      role="presentation"
+      align="center">
+      <tbody>
+        <tr>
+          <td
+            dir="ltr"
+            lang="en"
+            style="background-color:rgb(248,250,252);margin:0;text-align:center;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">
+            <!-- Main Container -->
+            <table
+              align="center"
+              width="100%"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              role="presentation"
+              style="max-width:560px;margin-right:auto;margin-left:auto;background-color:rgb(255,255,255);border-radius:16px;border:1px solid rgb(226,232,240);overflow:hidden;text-align:left">
+              <tbody>
+                <tr style="width:100%">
+                  <td>
+                    <!-- Emerald Top Accent -->
+                    <table
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation">
+                      <tbody>
+                        <tr>
+                          <td style="height:6px;background-color:rgb(16,185,129)"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- Inviter Header -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation">
+                      <tbody>
+                        <tr>
+                          <td style="padding:28px 32px 20px 32px">
+                            <table border="0" cellpadding="0" cellspacing="0" role="presentation">
+                              <tbody>
+                                <tr>
+                                  <td style="vertical-align:middle">
+                                    <span style="display:inline-block;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,rgb(16,185,129) 0%,rgb(6,182,212) 100%);color:rgb(255,255,255);font-size:15px;font-weight:700;line-height:42px;text-align:center">
+                                      SC
+                                    </span>
+                                  </td>
+                                  <td style="vertical-align:middle;padding-left:12px">
+                                    <p style="font-size:14px;font-weight:700;color:rgb(15,23,42);margin:0">
+                                      Sarah Chen
+                                    </p>
+                                    <p style="font-size:12px;color:rgb(100,116,139);margin:0">
+                                      sarah@acme-engineering.com
+                                    </p>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- Heading & Subtitle -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation">
+                      <tbody>
+                        <tr>
+                          <td style="padding:0 32px 24px 32px">
+                            <h2 style="font-size:24px;font-weight:800;color:rgb(15,23,42);margin:0 0 8px 0;letter-spacing:-0.5px">
+                              Join Acme Engineering on Reloop
+                            </h2>
+                            <p style="font-size:14px;color:rgb(71,85,105);line-height:1.6;margin:0">
+                              Sarah Chen has invited you to collaborate as an <strong style="color:rgb(5,150,105)">Admin</strong> on the Acme Engineering workspace.
+                            </p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- Workspace Details Box -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation">
+                      <tbody>
+                        <tr>
+                          <td style="padding:0 32px 24px 32px">
+                            <table
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation"
+                              style="background-color:rgb(248,250,252);border:1px solid rgb(226,232,240);border-radius:12px;padding:16px 20px">
+                              <tbody>
+                                <tr>
+                                  <td style="padding:8px 0">
+                                    <table
+                                      align="center"
+                                      width="100%"
+                                      border="0"
+                                      cellpadding="0"
+                                      cellspacing="0"
+                                      role="presentation">
+                                      <tbody style="width:100%">
+                                        <tr style="width:100%">
+                                          <td
+                                            data-id="__react-email-column"
+                                            style="width:40%;text-align:left">
+                                            <p style="font-size:12px;color:rgb(100,116,139);margin:0">Workspace</p>
+                                          </td>
+                                          <td
+                                            data-id="__react-email-column"
+                                            style="width:60%;text-align:right">
+                                            <p style="font-size:12px;font-weight:700;color:rgb(15,23,42);margin:0">Acme Engineering</p>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="padding:8px 0;border-top:1px solid rgb(237,242,247)">
+                                    <table
+                                      align="center"
+                                      width="100%"
+                                      border="0"
+                                      cellpadding="0"
+                                      cellspacing="0"
+                                      role="presentation">
+                                      <tbody style="width:100%">
+                                        <tr style="width:100%">
+                                          <td
+                                            data-id="__react-email-column"
+                                            style="width:40%;text-align:left">
+                                            <p style="font-size:12px;color:rgb(100,116,139);margin:0">Assigned Role</p>
+                                          </td>
+                                          <td
+                                            data-id="__react-email-column"
+                                            style="width:60%;text-align:right">
+                                            <span style="display:inline-block;font-size:11px;font-weight:700;color:rgb(4,120,87);background-color:rgb(209,250,229);border:1px solid rgb(167,243,208);border-radius:9999px;padding:3px 10px">
+                                              Admin
+                                            </span>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="padding:8px 0 0 0;border-top:1px solid rgb(237,242,247)">
+                                    <table
+                                      align="center"
+                                      width="100%"
+                                      border="0"
+                                      cellpadding="0"
+                                      cellspacing="0"
+                                      role="presentation">
+                                      <tbody style="width:100%">
+                                        <tr style="width:100%">
+                                          <td
+                                            data-id="__react-email-column"
+                                            style="width:40%;text-align:left">
+                                            <p style="font-size:12px;color:rgb(100,116,139);margin:0">Team Size</p>
+                                          </td>
+                                          <td
+                                            data-id="__react-email-column"
+                                            style="width:60%;text-align:right">
+                                            <p style="font-size:12px;font-weight:600;color:rgb(15,23,42);margin:0">14 team members</p>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- CTA Button -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation">
+                      <tbody>
+                        <tr>
+                          <td style="padding:0 32px 24px 32px">
+                            <a
+                              href="https://reloop.sh/invite/accept?token=inv_98120381023"
+                              style="line-height:100%;text-decoration:none;display:block;max-width:100%;background-color:rgb(5,150,105);border-radius:10px;color:rgb(255,255,255);font-size:14px;font-weight:700;text-align:center;padding:14px 20px">
+                              <span>Accept Invitation →</span>
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- Expiry Note -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation">
+                      <tbody>
+                        <tr>
+                          <td style="padding:0 32px 28px 32px;text-align:center">
+                            <p style="font-size:12px;color:rgb(148,163,184);margin:0">
+                              This invitation was sent to <strong style="color:rgb(71,85,105)">alex@example.com</strong> and expires in 7 days.
+                            </p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- Footer -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation">
+                      <tbody>
+                        <tr>
+                          <td style="padding:18px 32px;background-color:rgb(248,250,252);border-top:1px solid rgb(226,232,240);text-align:center">
+                            <p style="font-size:12px;color:rgb(148,163,184);margin:0">
+                              Reloop Workspaces • If you don't know the inviter, you can safely ignore this invitation.
+                            </p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!--/$-->
+  </body>
 </html>`,
   usageCode: `import WorkspaceInviteEmail from "@/templates/workspace-invite";
 import { reloop } from "@reloop/sdk";

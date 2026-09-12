@@ -75,7 +75,6 @@ export const newDeviceAlertTemplate: EmailTemplate = {
   id: "new-device-alert",
   title: "New Device Login Alert",
   category: "Auth & Security",
-  badge: "Security",
   description: "Real-time security notice alerting users to logins from unfamiliar devices, IP addresses, or foreign geolocations.",
   component: NewDeviceAlertPreview,
   code: `import React from "react";
@@ -85,67 +84,484 @@ import {
   Body,
   Container,
   Section,
+  Row,
+  Column,
   Text,
   Button,
   Hr,
+  Link,
 } from "@react-email/components";
 
 interface NewDeviceAlertProps {
+  time?: string;
   device?: string;
   location?: string;
   ip?: string;
+  verifyUrl?: string;
+  lockUrl?: string;
 }
 
 export default function NewDeviceAlertEmail({
-  device = "Firefox 129 on Linux",
+  time = "Today at 3:42 PM UTC",
+  device = "Firefox 129 on Linux Ubuntu",
   location = "Frankfurt, Germany",
   ip = "85.214.132.11",
+  verifyUrl = "https://reloop.sh/security/verify",
+  lockUrl = "https://reloop.sh/security/lock",
 }: NewDeviceAlertProps) {
   return (
-    <Html>
+    <Html lang="en">
       <Head />
-      <Body style={{ background: "#fafafa", fontFamily: "sans-serif", margin: 0, padding: "20px" }}>
-        <Container style={{ maxWidth: "560px", margin: "0 auto", background: "#ffffff", borderRadius: "12px", padding: "32px", border: "1px solid #e4e4e7" }}>
-          <Text style={{ fontSize: "20px", fontWeight: "bold", color: "#b45309", margin: "0 0 12px" }}>
-            Security Alert: New sign-in detected
-          </Text>
-          <Text style={{ fontSize: "14px", color: "#3f3f46", margin: "0 0 20px" }}>
-            We noticed a new login to your account:
-          </Text>
-          <Section style={{ background: "#f4f4f5", padding: "16px", borderRadius: "8px", fontSize: "13px", lineHeight: "1.8", color: "#27272a" }}>
-            <div><strong>Device:</strong> {device}</div>
-            <div><strong>Location:</strong> {location}</div>
-            <div><strong>IP:</strong> {ip}</div>
+      <Body style={{ backgroundColor: "#f8fafc", fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", margin: 0, padding: "32px 0" }}>
+        <Container style={{ maxWidth: "580px", margin: "0 auto", backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "16px", overflow: "hidden" }}>
+          {/* Header Banner */}
+          <Section style={{ backgroundColor: "#fef3c7", padding: "18px 28px", borderBottom: "1px solid #fde68a" }}>
+            <table border={0} cellPadding={0} cellSpacing={0} role="presentation">
+              <tbody>
+                <tr>
+                  <td style={{ verticalAlign: "middle" }}>
+                    <div style={{ width: "32px", height: "32px", borderRadius: "50%", backgroundColor: "#f59e0b", textAlign: "center", lineHeight: "32px", color: "#ffffff", fontSize: "16px" }}>
+                      ⚠️
+                    </div>
+                  </td>
+                  <td style={{ verticalAlign: "middle", paddingLeft: "12px" }}>
+                    <Text style={{ fontSize: "12px", fontWeight: "700", color: "#78350f", margin: 0 }}>
+                      Security Alert
+                    </Text>
+                    <Text style={{ fontSize: "12px", color: "#92400e", margin: 0 }}>
+                      New login from unrecognized device
+                    </Text>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </Section>
-          <Hr style={{ margin: "24px 0", borderColor: "#e4e4e7" }} />
-          <Button href="https://reloop.sh/security/lock" style={{ background: "#e11d48", color: "#ffffff", padding: "12px 20px", borderRadius: "6px", fontWeight: "bold", textDecoration: "none" }}>
-            Lock Account Immediately
-          </Button>
+
+          {/* Heading */}
+          <Section style={{ padding: "28px 28px 20px 28px" }}>
+            <Text style={{ fontSize: "22px", fontWeight: "800", color: "#0f172a", margin: "0 0 6px 0", letterSpacing: "-0.5px" }}>
+              Did you just sign in?
+            </Text>
+            <Text style={{ fontSize: "13px", color: "#475569", margin: 0, lineHeight: "1.5" }}>
+              We noticed a successful login to your Reloop account from a device or location we haven't seen before.
+            </Text>
+          </Section>
+
+          {/* Details Card */}
+          <Section style={{ padding: "0 28px 24px 28px" }}>
+            <table width="100%" border={0} cellPadding={0} cellSpacing={0} role="presentation" style={{ backgroundColor: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "12px", padding: "16px 20px" }}>
+              <tbody>
+                <tr>
+                  <td style={{ padding: "8px 0" }}>
+                    <Row>
+                      <Column style={{ width: "40%" }}>
+                        <Text style={{ fontSize: "12px", color: "#64748b", margin: 0 }}>When</Text>
+                      </Column>
+                      <Column style={{ width: "60%", textAlign: "right" }}>
+                        <Text style={{ fontSize: "12px", fontWeight: "600", color: "#0f172a", margin: 0 }}>{time}</Text>
+                      </Column>
+                    </Row>
+                  </td>
+                </tr>
+                <tr>
+                  <td style={{ padding: "8px 0", borderTop: "1px solid #edf2f7" }}>
+                    <Row>
+                      <Column style={{ width: "40%" }}>
+                        <Text style={{ fontSize: "12px", color: "#64748b", margin: 0 }}>Device / Browser</Text>
+                      </Column>
+                      <Column style={{ width: "60%", textAlign: "right" }}>
+                        <Text style={{ fontSize: "12px", fontWeight: "600", color: "#0f172a", margin: 0 }}>{device}</Text>
+                      </Column>
+                    </Row>
+                  </td>
+                </tr>
+                <tr>
+                  <td style={{ padding: "8px 0", borderTop: "1px solid #edf2f7" }}>
+                    <Row>
+                      <Column style={{ width: "40%" }}>
+                        <Text style={{ fontSize: "12px", color: "#64748b", margin: 0 }}>Approximate Location</Text>
+                      </Column>
+                      <Column style={{ width: "60%", textAlign: "right" }}>
+                        <Text style={{ fontSize: "12px", fontWeight: "600", color: "#0f172a", margin: 0 }}>📍 {location}</Text>
+                      </Column>
+                    </Row>
+                  </td>
+                </tr>
+                <tr>
+                  <td style={{ padding: "8px 0 0 0", borderTop: "1px solid #edf2f7" }}>
+                    <Row>
+                      <Column style={{ width: "40%" }}>
+                        <Text style={{ fontSize: "12px", color: "#64748b", margin: 0 }}>IP Address</Text>
+                      </Column>
+                      <Column style={{ width: "60%", textAlign: "right" }}>
+                        <Text style={{ fontSize: "12px", fontFamily: "monospace", color: "#0f172a", margin: 0 }}>{ip}</Text>
+                      </Column>
+                    </Row>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </Section>
+
+          {/* Dual Action Buttons */}
+          <Section style={{ padding: "0 28px 28px 28px" }}>
+            <Row>
+              <Column style={{ width: "48%", verticalAlign: "top" }}>
+                <Button
+                  href={verifyUrl}
+                  style={{
+                    display: "block",
+                    width: "100%",
+                    backgroundColor: "#ffffff",
+                    border: "1px solid #cbd5e1",
+                    color: "#334155",
+                    padding: "12px 0",
+                    borderRadius: "10px",
+                    fontWeight: "600",
+                    fontSize: "13px",
+                    textDecoration: "none",
+                    textAlign: "center",
+                  }}
+                >
+                  ✓ Yes, this was me
+                </Button>
+              </Column>
+              <Column style={{ width: "4%" }} />
+              <Column style={{ width: "48%", verticalAlign: "top" }}>
+                <Button
+                  href={lockUrl}
+                  style={{
+                    display: "block",
+                    width: "100%",
+                    backgroundColor: "#e11d48",
+                    color: "#ffffff",
+                    padding: "12px 0",
+                    borderRadius: "10px",
+                    fontWeight: "700",
+                    fontSize: "13px",
+                    textDecoration: "none",
+                    textAlign: "center",
+                  }}
+                >
+                  🔒 No, lock my account
+                </Button>
+              </Column>
+            </Row>
+          </Section>
+
+          {/* Footer */}
+          <Section style={{ padding: "18px 28px", backgroundColor: "#f8fafc", borderTop: "1px solid #e2e8f0", textAlign: "center" }}>
+            <Text style={{ fontSize: "12px", color: "#94a3b8", margin: 0 }}>
+              Reloop Security Team • Notifications regarding your account security cannot be disabled.
+            </Text>
+          </Section>
         </Container>
       </Body>
     </Html>
   );
 }`,
-  html: `<!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"></head>
-<body style="background:#fafafa;font-family:sans-serif;margin:0;padding:20px;">
-  <table align="center" width="560" style="background:#ffffff;border:1px solid #e4e4e7;border-radius:12px;padding:32px;" cellpadding="0" cellspacing="0">
-    <tr>
-      <td>
-        <h2 style="color:#b45309;font-size:20px;margin:0 0 12px;">Security Alert: New sign-in detected</h2>
-        <p style="color:#3f3f46;font-size:14px;margin:0 0 20px;">A login occurred from an unrecognized device:</p>
-        <div style="background:#f4f4f5;padding:16px;border-radius:8px;font-size:13px;line-height:1.8;color:#27272a;">
-          <strong>Device:</strong> Firefox 129 on Linux<br>
-          <strong>Location:</strong> Frankfurt, Germany<br>
-          <strong>IP:</strong> 85.214.132.11
-        </div>
-        <hr style="margin:24px 0;border:none;border-top:1px solid #e4e4e7;">
-        <a href="https://reloop.sh/security/lock" style="display:inline-block;background:#e11d48;color:#ffffff;padding:12px 20px;border-radius:6px;font-weight:bold;text-decoration:none;">Lock Account Immediately</a>
-      </td>
-    </tr>
-  </table>
-</body>
+  html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" lang="en">
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <title>New Device Login Alert</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+      * {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+    </style>
+  </head>
+  <body dir="ltr" lang="en" style="background-color:rgb(248,250,252);margin:0;padding:32px 0;">
+    <!--$--><!--html--><!--head--><!--body-->
+    <table
+      border="0"
+      width="100%"
+      cellpadding="0"
+      cellspacing="0"
+      role="presentation"
+      align="center">
+      <tbody>
+        <tr>
+          <td
+            dir="ltr"
+            lang="en"
+            style="background-color:rgb(248,250,252);margin:0;text-align:center;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">
+            <!-- Main Container -->
+            <table
+              align="center"
+              width="100%"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              role="presentation"
+              style="max-width:580px;margin-right:auto;margin-left:auto;background-color:rgb(255,255,255);border-radius:16px;border:1px solid rgb(226,232,240);overflow:hidden;text-align:left">
+              <tbody>
+                <tr style="width:100%">
+                  <td>
+                    <!-- Top Alert Header -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation">
+                      <tbody>
+                        <tr>
+                          <td style="background-color:rgb(254,243,199);padding:18px 28px;border-bottom:1px solid rgb(253,230,138)">
+                            <table border="0" cellpadding="0" cellspacing="0" role="presentation">
+                              <tbody>
+                                <tr>
+                                  <td style="vertical-align:middle">
+                                    <span style="display:inline-block;width:32px;height:32px;border-radius:50%;background-color:rgb(245,158,11);color:rgb(255,255,255);font-size:16px;line-height:32px;text-align:center">
+                                      ⚠️
+                                    </span>
+                                  </td>
+                                  <td style="vertical-align:middle;padding-left:12px">
+                                    <p style="font-size:12px;font-weight:700;color:rgb(120,53,15);margin:0">
+                                      Security Alert
+                                    </p>
+                                    <p style="font-size:12px;color:rgb(146,64,14);margin:0">
+                                      New login from unrecognized device
+                                    </p>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- Heading & Subtitle -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation">
+                      <tbody>
+                        <tr>
+                          <td style="padding:28px 28px 20px 28px">
+                            <h2 style="font-size:22px;font-weight:800;color:rgb(15,23,42);margin:0 0 6px 0;letter-spacing:-0.5px">
+                              Did you just sign in?
+                            </h2>
+                            <p style="font-size:13px;color:rgb(71,85,105);margin:0;line-height:1.5">
+                              We noticed a successful login to your Reloop account from a device or location we haven't seen before.
+                            </p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- Device Details Box -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation">
+                      <tbody>
+                        <tr>
+                          <td style="padding:0 28px 24px 28px">
+                            <table
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation"
+                              style="background-color:rgb(248,250,252);border:1px solid rgb(226,232,240);border-radius:12px;padding:16px 20px">
+                              <tbody>
+                                <tr>
+                                  <td style="padding:8px 0">
+                                    <table
+                                      align="center"
+                                      width="100%"
+                                      border="0"
+                                      cellpadding="0"
+                                      cellspacing="0"
+                                      role="presentation">
+                                      <tbody style="width:100%">
+                                        <tr style="width:100%">
+                                          <td
+                                            data-id="__react-email-column"
+                                            style="width:40%;text-align:left">
+                                            <p style="font-size:12px;color:rgb(100,116,139);margin:0">When</p>
+                                          </td>
+                                          <td
+                                            data-id="__react-email-column"
+                                            style="width:60%;text-align:right">
+                                            <p style="font-size:12px;font-weight:600;color:rgb(15,23,42);margin:0">Today at 3:42 PM UTC</p>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="padding:8px 0;border-top:1px solid rgb(237,242,247)">
+                                    <table
+                                      align="center"
+                                      width="100%"
+                                      border="0"
+                                      cellpadding="0"
+                                      cellspacing="0"
+                                      role="presentation">
+                                      <tbody style="width:100%">
+                                        <tr style="width:100%">
+                                          <td
+                                            data-id="__react-email-column"
+                                            style="width:40%;text-align:left">
+                                            <p style="font-size:12px;color:rgb(100,116,139);margin:0">Device / Browser</p>
+                                          </td>
+                                          <td
+                                            data-id="__react-email-column"
+                                            style="width:60%;text-align:right">
+                                            <p style="font-size:12px;font-weight:600;color:rgb(15,23,42);margin:0">Firefox 129 on Linux Ubuntu</p>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="padding:8px 0;border-top:1px solid rgb(237,242,247)">
+                                    <table
+                                      align="center"
+                                      width="100%"
+                                      border="0"
+                                      cellpadding="0"
+                                      cellspacing="0"
+                                      role="presentation">
+                                      <tbody style="width:100%">
+                                        <tr style="width:100%">
+                                          <td
+                                            data-id="__react-email-column"
+                                            style="width:40%;text-align:left">
+                                            <p style="font-size:12px;color:rgb(100,116,139);margin:0">Approximate Location</p>
+                                          </td>
+                                          <td
+                                            data-id="__react-email-column"
+                                            style="width:60%;text-align:right">
+                                            <p style="font-size:12px;font-weight:600;color:rgb(15,23,42);margin:0">📍 Frankfurt, Germany</p>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="padding:8px 0 0 0;border-top:1px solid rgb(237,242,247)">
+                                    <table
+                                      align="center"
+                                      width="100%"
+                                      border="0"
+                                      cellpadding="0"
+                                      cellspacing="0"
+                                      role="presentation">
+                                      <tbody style="width:100%">
+                                        <tr style="width:100%">
+                                          <td
+                                            data-id="__react-email-column"
+                                            style="width:40%;text-align:left">
+                                            <p style="font-size:12px;color:rgb(100,116,139);margin:0">IP Address</p>
+                                          </td>
+                                          <td
+                                            data-id="__react-email-column"
+                                            style="width:60%;text-align:right">
+                                            <p style="font-size:12px;font-family:monospace;color:rgb(15,23,42);margin:0">85.214.132.11</p>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- Dual Action Buttons -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation">
+                      <tbody>
+                        <tr>
+                          <td style="padding:0 28px 28px 28px">
+                            <table
+                              align="center"
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation">
+                              <tbody style="width:100%">
+                                <tr style="width:100%">
+                                  <td
+                                    data-id="__react-email-column"
+                                    style="width:48%;vertical-align:top">
+                                    <a
+                                      href="https://reloop.sh/security/verify"
+                                      style="line-height:100%;text-decoration:none;display:block;max-width:100%;background-color:rgb(255,255,255);border:1px solid rgb(203,213,225);border-radius:10px;color:rgb(51,65,85);font-size:13px;font-weight:600;text-align:center;padding:12px 16px">
+                                      <span>✓ Yes, this was me</span>
+                                    </a>
+                                  </td>
+                                  <td data-id="__react-email-column" style="width:4%"></td>
+                                  <td
+                                    data-id="__react-email-column"
+                                    style="width:48%;vertical-align:top">
+                                    <a
+                                      href="https://reloop.sh/security/lock"
+                                      style="line-height:100%;text-decoration:none;display:block;max-width:100%;background-color:rgb(225,29,72);border-radius:10px;color:rgb(255,255,255);font-size:13px;font-weight:700;text-align:center;padding:12px 16px">
+                                      <span>🔒 No, lock my account</span>
+                                    </a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- Footer -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation">
+                      <tbody>
+                        <tr>
+                          <td style="padding:18px 28px;background-color:rgb(248,250,252);border-top:1px solid rgb(226,232,240);text-align:center">
+                            <p style="font-size:12px;color:rgb(148,163,184);margin:0">
+                              Reloop Security Team • Notifications regarding your account security cannot be disabled.
+                            </p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!--/$-->
+  </body>
 </html>`,
   usageCode: `import NewDeviceAlertEmail from "@/templates/new-device-alert";
 import { reloop } from "@reloop/sdk";

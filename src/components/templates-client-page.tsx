@@ -57,11 +57,6 @@ export function TemplatesClientPage({ initialTemplateId }: TemplatesClientPagePr
                 <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
                   {currentTemplate.title}
                 </h1>
-                {currentTemplate.badge && (
-                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-600 dark:bg-indigo-950/60 dark:text-indigo-400 border border-indigo-200/60 dark:border-indigo-800/60">
-                    {currentTemplate.badge}
-                  </span>
-                )}
               </div>
               <CopyPageDropdown
                 template={currentTemplate}

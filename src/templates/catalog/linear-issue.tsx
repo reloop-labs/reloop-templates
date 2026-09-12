@@ -84,58 +84,323 @@ export const linearIssueTemplate: EmailTemplate = {
   id: "linear-issue",
   title: "Linear Issue Update",
   category: "Brands & Recreations",
-  badge: "Trendy",
   description: "Deep obsidian theme with purple accents, priority pill, assignee avatar, and keyboard shortcut hint.",
   component: LinearIssuePreview,
   code: `import React from "react";
-import { Html, Head, Body, Container, Section, Heading, Text, Button } from "@react-email/components";
+import {
+  Html,
+  Head,
+  Body,
+  Container,
+  Section,
+  Text,
+  Button,
+  Row,
+  Column,
+  Link,
+} from "@react-email/components";
 
 export default function LinearIssueEmail({
   issueId = "REL-241",
   title = "Optimize template compile time for Next.js 16",
   author = "Twinkal",
+  assignee = "Alex Rivera",
+  cycle = "Cycle 42 (Current)",
 }: {
   issueId?: string;
   title?: string;
   author?: string;
+  assignee?: string;
+  cycle?: string;
 }) {
   return (
     <Html lang="en">
       <Head />
-      <Body style={{ backgroundColor: "#08090c", fontFamily: "sans-serif" }}>
-        <Container style={{ maxWidth: "560px", margin: "40px auto", backgroundColor: "#0f1117", border: "1px solid #1f2230", borderRadius: "12px", padding: "28px" }}>
-          <Text style={{ color: "#8a8f98", fontSize: "12px", margin: 0 }}>{issueId}</Text>
-          <Heading style={{ color: "#ffffff", fontSize: "20px", margin: "8px 0 16px" }}>{title}</Heading>
-          <Section style={{ backgroundColor: "#141722", border: "1px solid #232738", borderRadius: "8px", padding: "16px", marginBottom: "20px" }}>
-            <Text style={{ color: "#ffffff", fontWeight: "bold", fontSize: "13px", margin: "0 0 6px" }}>{author} commented:</Text>
-            <Text style={{ color: "#b4bac5", fontSize: "13px", margin: 0 }}>
-              Migrated template builder to parallel SWC transforms. Build time dropped to 210ms.
+      <Body style={{ backgroundColor: "#08090c", fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", margin: 0, padding: "30px 0" }}>
+        <Container style={{ maxWidth: "560px", margin: "0 auto", backgroundColor: "#0f1117", border: "1px solid #1f2230", borderRadius: "12px", overflow: "hidden" }}>
+          {/* Header */}
+          <Section style={{ padding: "20px 24px", borderBottom: "1px solid #181a24" }}>
+            <Row>
+              <Column>
+                <Text style={{ fontSize: "14px", fontWeight: "700", color: "#ffffff", margin: 0 }}>
+                  Linear
+                </Text>
+              </Column>
+              <Column align="right">
+                <Text style={{ fontSize: "11px", fontWeight: "600", color: "#fb7185", backgroundColor: "rgba(225, 29, 72, 0.15)", border: "1px solid rgba(225, 29, 72, 0.3)", borderRadius: "9999px", padding: "2px 8px", margin: 0 }}>
+                  ● High Priority
+                </Text>
+              </Column>
+            </Row>
+          </Section>
+
+          {/* Main Content */}
+          <Section style={{ padding: "24px" }}>
+            <Text style={{ fontSize: "12px", fontFamily: "monospace", color: "#8a8f98", margin: "0 0 6px 0" }}>
+              {issueId}
+            </Text>
+            <Text style={{ fontSize: "18px", fontWeight: "700", color: "#ffffff", margin: "0 0 16px 0", lineHeight: "1.4" }}>
+              {title}
+            </Text>
+
+            {/* Comment Box */}
+            <Section style={{ backgroundColor: "#141722", border: "1px solid #232738", borderRadius: "8px", padding: "16px", marginBottom: "20px" }}>
+              <Text style={{ fontSize: "12px", fontWeight: "700", color: "#ffffff", margin: "0 0 6px 0" }}>
+                {author} commented:
+              </Text>
+              <Text style={{ fontSize: "13px", color: "#b4bac5", margin: 0, lineHeight: "1.5" }}>
+                Migrated template builder to parallel SWC transforms. Build time dropped to 210ms.
+              </Text>
+            </Section>
+
+            {/* Meta: Assignee & Cycle */}
+            <Section style={{ backgroundColor: "#12141d", border: "1px solid #1c202e", borderRadius: "8px", padding: "12px 16px", marginBottom: "24px" }}>
+              <Row>
+                <Column style={{ width: "50%" }}>
+                  <Text style={{ fontSize: "11px", color: "#626875", margin: "0 0 2px 0" }}>Assignee</Text>
+                  <Text style={{ fontSize: "12px", fontWeight: "600", color: "#ffffff", margin: 0 }}>{assignee}</Text>
+                </Column>
+                <Column style={{ width: "50%" }} align="right">
+                  <Text style={{ fontSize: "11px", color: "#626875", margin: "0 0 2px 0" }}>Cycle</Text>
+                  <Text style={{ fontSize: "12px", fontWeight: "600", color: "#ffffff", margin: 0 }}>{cycle}</Text>
+                </Column>
+              </Row>
+            </Section>
+
+            {/* CTA Button */}
+            <Section style={{ textAlign: "center" }}>
+              <Button
+                href="https://linear.app"
+                style={{ backgroundColor: "#5e6ad2", color: "#ffffff", padding: "12px 24px", borderRadius: "8px", fontSize: "13px", fontWeight: "600", textDecoration: "none", display: "inline-block", width: "100%", textAlign: "center" }}
+              >
+                Open Issue in Linear &rarr;
+              </Button>
+            </Section>
+          </Section>
+
+          {/* Footer */}
+          <Section style={{ backgroundColor: "#0b0c10", padding: "14px 24px", borderTop: "1px solid #181a24", textAlign: "center" }}>
+            <Text style={{ fontSize: "11px", color: "#626875", margin: 0 }}>
+              Press O then I in Linear to view notifications.
             </Text>
           </Section>
-          <Button href="https://linear.app" style={{ backgroundColor: "#5e6ad2", color: "#ffffff", padding: "10px 20px", borderRadius: "8px", fontWeight: "600", fontSize: "13px", textDecoration: "none" }}>
-            Open Issue in Linear
-          </Button>
         </Container>
       </Body>
     </Html>
   );
 }`,
-  html: `<!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"><title>Linear Issue</title></head>
-<body style="background:#08090c;font-family:sans-serif;margin:0;padding:24px;">
-  <table align="center" width="560" style="background:#0f1117;border:1px solid #1f2230;border-radius:12px;padding:24px;color:#d0d6e0;" cellpadding="0" cellspacing="0">
-    <tr><td><span style="color:#8a8f98;font-size:12px;">REL-241</span></td></tr>
-    <tr><td><h2 style="color:#fff;margin:8px 0 16px;">Optimize template compile time for Next.js 16</h2></td></tr>
-    <tr>
-      <td style="background:#141722;border:1px solid #232738;border-radius:8px;padding:16px;">
-        <strong style="color:#fff;font-size:13px;">Twinkal commented:</strong>
-        <p style="color:#b4bac5;font-size:13px;margin:6px 0 0;">Migrated template builder to parallel SWC transforms.</p>
-      </td>
-    </tr>
-    <tr><td style="padding-top:20px;"><a href="#" style="background:#5e6ad2;color:#fff;padding:10px 20px;border-radius:8px;font-weight:bold;text-decoration:none;display:inline-block;">Open Issue in Linear</a></td></tr>
-  </table>
-</body>
+  html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" lang="en">
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <title>Linear Issue Update</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+      * {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+    </style>
+  </head>
+  <body dir="ltr" lang="en" style="background-color:rgb(8,9,12);margin:0;padding:30px 0;">
+    <!--$--><!--html--><!--head--><!--body-->
+    <table
+      border="0"
+      width="100%"
+      cellpadding="0"
+      cellspacing="0"
+      role="presentation"
+      align="center">
+      <tbody>
+        <tr>
+          <td
+            dir="ltr"
+            lang="en"
+            style="background-color:rgb(8,9,12);margin:0;text-align:center;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">
+            <!-- Main Container -->
+            <table
+              align="center"
+              width="100%"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              role="presentation"
+              style="max-width:560px;margin-right:auto;margin-left:auto;background-color:rgb(15,17,23);border-radius:12px;border:1px solid rgb(31,34,48);overflow:hidden;text-align:left">
+              <tbody>
+                <tr style="width:100%">
+                  <td>
+                    <!-- Header -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation">
+                      <tbody>
+                        <tr>
+                          <td style="padding:20px 24px;border-bottom:1px solid rgb(24,26,36)">
+                            <table
+                              align="center"
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation">
+                              <tbody style="width:100%">
+                                <tr style="width:100%">
+                                  <td
+                                    data-id="__react-email-column"
+                                    style="width:50%;vertical-align:middle;text-align:left">
+                                    <p style="font-size:14px;font-weight:700;color:rgb(255,255,255);margin:0">
+                                      Linear
+                                    </p>
+                                  </td>
+                                  <td
+                                    align="right"
+                                    data-id="__react-email-column"
+                                    style="width:50%;vertical-align:middle;text-align:right">
+                                    <p style="font-size:11px;font-weight:600;color:rgb(251,113,133);background-color:rgba(225,29,72,0.15);border:1px solid rgba(225,29,72,0.3);border-radius:9999px;padding:2px 8px;margin:0;display:inline-block">
+                                      ● High Priority
+                                    </p>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- Content -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation">
+                      <tbody>
+                        <tr>
+                          <td style="padding:24px;text-align:left">
+                            <p style="font-size:12px;font-family:monospace;color:rgb(138,143,152);margin:0 0 6px 0">
+                              REL-241
+                            </p>
+                            <h2 style="font-size:18px;font-weight:700;color:rgb(255,255,255);margin:0 0 16px 0;line-height:1.4">
+                              Optimize template compile time for Next.js 16
+                            </h2>
+
+                            <!-- Comment Card -->
+                            <table
+                              align="center"
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation"
+                              style="background-color:rgb(20,23,34);border:1px solid rgb(35,39,56);border-radius:8px;margin-bottom:20px">
+                              <tbody>
+                                <tr>
+                                  <td style="padding:16px">
+                                    <p style="font-size:12px;font-weight:700;color:rgb(255,255,255);margin:0 0 6px 0">
+                                      Twinkal commented:
+                                    </p>
+                                    <p style="font-size:13px;color:rgb(180,186,197);margin:0;line-height:1.5">
+                                      Migrated template builder to parallel SWC transforms. Build time dropped to 210ms.
+                                    </p>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+
+                            <!-- Meta Card -->
+                            <table
+                              align="center"
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation"
+                              style="background-color:rgb(18,20,29);border:1px solid rgb(28,32,46);border-radius:8px;margin-bottom:24px">
+                              <tbody>
+                                <tr>
+                                  <td style="padding:12px 16px">
+                                    <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                      <tbody style="width:100%">
+                                        <tr style="width:100%">
+                                          <td data-id="__react-email-column" style="width:50%;text-align:left">
+                                            <p style="font-size:11px;color:rgb(98,104,117);margin:0 0 2px 0">Assignee</p>
+                                            <p style="font-size:12px;font-weight:600;color:rgb(255,255,255);margin:0">Alex Rivera</p>
+                                          </td>
+                                          <td align="right" data-id="__react-email-column" style="width:50%;text-align:right">
+                                            <p style="font-size:11px;color:rgb(98,104,117);margin:0 0 2px 0">Cycle</p>
+                                            <p style="font-size:12px;font-weight:600;color:rgb(255,255,255);margin:0">Cycle 42 (Current)</p>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+
+                            <!-- CTA Button -->
+                            <table
+                              align="center"
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation">
+                              <tbody>
+                                <tr>
+                                  <td align="center">
+                                    <a
+                                      href="https://linear.app"
+                                      target="_blank"
+                                      style="background-color:rgb(94,106,210);color:rgb(255,255,255);padding:12px 24px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;display:block;text-align:center">
+                                      Open Issue in Linear &rarr;
+                                    </a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- Footer -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation"
+                      style="background-color:rgb(11,12,16);border-top:1px solid rgb(24,26,36)">
+                      <tbody>
+                        <tr>
+                          <td style="padding:14px 24px;text-align:center">
+                            <p style="font-size:11px;color:rgb(98,104,117);margin:0">
+                              Press O then I in Linear to view notifications.
+                            </p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!--/$-->
+  </body>
 </html>`,
   usageCode: `import LinearIssueEmail from "@/templates/linear-issue";
 import { reloop } from "@reloop/sdk";

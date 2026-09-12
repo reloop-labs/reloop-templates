@@ -80,7 +80,6 @@ export const githubPRTemplate: EmailTemplate = {
   id: "github-pr",
   title: "GitHub Pull Request",
   category: "Brands & Recreations",
-  badge: "Popular",
   description: "GitHub dark theme pull request notification with code diff highlights, status badges, and commit details.",
   component: GitHubPRPreview,
   code: `import React from "react";
@@ -92,7 +91,8 @@ import {
   Section,
   Text,
   Link,
-  Hr,
+  Row,
+  Column,
 } from "@react-email/components";
 
 interface GitHubPREmailProps {
@@ -109,48 +109,329 @@ export default function GitHubPREmail({
   repo = "reloop-labs/reloop",
 }: GitHubPREmailProps) {
   return (
-    <Html>
+    <Html lang="en">
       <Head />
-      <Body style={{ background: "#0d1117", fontFamily: "sans-serif", margin: 0, padding: "24px" }}>
-        <Container style={{ maxWidth: "600px", margin: "0 auto", background: "#161b22", border: "1px solid #30363d", borderRadius: "10px", padding: "24px" }}>
-          <Text style={{ color: "#8b949e", fontSize: "12px", margin: "0 0 12px" }}>
-            {repo}#{prNumber}
-          </Text>
-          <Text style={{ color: "#ffffff", fontSize: "18px", fontWeight: "bold", margin: "0 0 12px" }}>
-            {prTitle}
-          </Text>
-          <Text style={{ color: "#8b949e", fontSize: "13px" }}>
-            Merged by <strong style={{ color: "#ffffff" }}>@{author}</strong>
-          </Text>
-          <Hr style={{ borderColor: "#30363d", margin: "20px 0" }} />
-          <Link href="https://github.com" style={{ background: "#238636", color: "#fff", padding: "10px 16px", borderRadius: "6px", textDecoration: "none", fontSize: "13px", fontWeight: "bold" }}>
-            View on GitHub
-          </Link>
+      <Body style={{ backgroundColor: "#010409", fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", margin: 0, padding: "30px 0" }}>
+        <Container style={{ maxWidth: "600px", margin: "0 auto", backgroundColor: "#0d1117", border: "1px solid #30363d", borderRadius: "12px", overflow: "hidden" }}>
+          {/* Header */}
+          <Section style={{ backgroundColor: "#161b22", padding: "16px 24px", borderBottom: "1px solid #30363d" }}>
+            <Row>
+              <Column>
+                <Text style={{ fontSize: "14px", fontWeight: "700", color: "#ffffff", margin: 0 }}>
+                  GitHub
+                </Text>
+              </Column>
+              <Column align="right">
+                <Text style={{ fontSize: "12px", color: "#8b949e", fontFamily: "monospace", margin: 0 }}>
+                  {repo}#{prNumber}
+                </Text>
+              </Column>
+            </Row>
+          </Section>
+
+          {/* Main Content */}
+          <Section style={{ padding: "24px" }}>
+            {/* Merged Badge & Title */}
+            <Text style={{ fontSize: "11px", fontWeight: "600", color: "#ffffff", backgroundColor: "#238636", borderRadius: "9999px", padding: "3px 10px", margin: "0 0 12px 0", display: "inline-block" }}>
+              ✓ Merged
+            </Text>
+            <Text style={{ fontSize: "18px", fontWeight: "700", color: "#ffffff", margin: "0 0 8px 0", lineHeight: "1.4" }}>
+              {prTitle}
+            </Text>
+            <Text style={{ fontSize: "12px", color: "#8b949e", margin: "0 0 20px 0" }}>
+              <strong style={{ color: "#ffffff" }}>@{author}</strong> merged 3 commits into <code style={{ backgroundColor: "#161b22", color: "#58a6ff", padding: "2px 6px", borderRadius: "4px", fontFamily: "monospace" }}>main</code> from <code style={{ backgroundColor: "#161b22", color: "#8b949e", padding: "2px 6px", borderRadius: "4px", fontFamily: "monospace" }}>feat/passkeys</code>
+            </Text>
+
+            {/* Changes Card */}
+            <Section style={{ backgroundColor: "#161b22", border: "1px solid #30363d", borderRadius: "8px", padding: "16px", marginBottom: "20px" }}>
+              <Row style={{ borderBottom: "1px solid #30363d", paddingBottom: "8px", marginBottom: "12px" }}>
+                <Column>
+                  <Text style={{ fontSize: "12px", fontWeight: "600", color: "#ffffff", margin: 0 }}>
+                    Summary of changes
+                  </Text>
+                </Column>
+                <Column align="right">
+                  <Text style={{ fontSize: "11px", color: "#8b949e", fontFamily: "monospace", margin: 0 }}>
+                    +482 -38 lines (8 files)
+                  </Text>
+                </Column>
+              </Row>
+              <Text style={{ fontSize: "12px", color: "#8b949e", margin: "0 0 12px 0", lineHeight: "1.5" }}>
+                Implements WebAuthn Level 3 registration and assertion ceremonies with hardware key and biometric fallback. Passes all FIDO2 conformance test suites.
+              </Text>
+
+              {/* Code Diff Snippet */}
+              <Section style={{ backgroundColor: "#0d1117", border: "1px solid #30363d", borderRadius: "6px", padding: "10px 12px", fontFamily: "monospace", fontSize: "11px" }}>
+                <Text style={{ color: "#3fb950", margin: "0 0 4px 0" }}>+ import &#123; createPasskeyCredential &#125; from &quot;@reloop/auth&quot;;</Text>
+                <Text style={{ color: "#3fb950", margin: "0 0 4px 0" }}>+ export const verifyAssertion = async (credential) =&gt; &#123; ... &#125;;</Text>
+                <Text style={{ color: "#f85149", margin: 0 }}>- export const verifyLegacyPassword = async () =&gt; &#123; ... &#125;;</Text>
+              </Section>
+            </Section>
+
+            {/* Status & CTA Row */}
+            <Section style={{ borderTop: "1px solid #30363d", paddingTop: "16px" }}>
+              <Row>
+                <Column>
+                  <Text style={{ fontSize: "12px", color: "#3fb950", fontWeight: "500", margin: 0 }}>
+                    ✓ All 18 CI checks passed
+                  </Text>
+                </Column>
+                <Column align="right">
+                  <Link
+                    href="https://github.com"
+                    style={{ backgroundColor: "#21262d", color: "#c9d1d9", border: "1px solid #30363d", padding: "8px 16px", borderRadius: "6px", fontSize: "12px", fontWeight: "600", textDecoration: "none", display: "inline-block" }}
+                  >
+                    View Pull Request &rarr;
+                  </Link>
+                </Column>
+              </Row>
+            </Section>
+          </Section>
+
+          {/* Footer */}
+          <Section style={{ backgroundColor: "#161b22", padding: "16px 24px", borderTop: "1px solid #30363d" }}>
+            <Row>
+              <Column>
+                <Text style={{ fontSize: "11px", color: "#8b949e", margin: 0 }}>
+                  You received this notification because you subscribed to this repository.
+                </Text>
+              </Column>
+              <Column align="right">
+                <Link href="https://github.com" style={{ fontSize: "11px", color: "#58a6ff", textDecoration: "none" }}>
+                  Notification settings
+                </Link>
+              </Column>
+            </Row>
+          </Section>
         </Container>
       </Body>
     </Html>
   );
 }`,
-  html: `<!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"></head>
-<body style="background:#0d1117;font-family:sans-serif;margin:0;padding:24px;color:#c9d1d9;">
-  <table align="center" width="600" style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:24px;" cellpadding="0" cellspacing="0">
-    <tr>
-      <td>
-        <span style="display:inline-block;padding:4px 10px;background:#238636;color:#fff;border-radius:12px;font-size:12px;font-weight:bold;">Merged</span>
-        <h2 style="color:#ffffff;font-size:18px;margin:12px 0 8px;">feat(auth): Add Passkey &amp; WebAuthn biometric authentication</h2>
-        <p style="color:#8b949e;font-size:13px;margin:0 0 16px;">reloop-labs/reloop#412 by @alex-developer (+482 -38 lines)</p>
-        <div style="background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:12px;font-family:monospace;font-size:12px;margin-bottom:20px;">
-          <div style="color:#3fb950;">+ import { createPasskeyCredential } from "@reloop/auth";</div>
-          <div style="color:#3fb950;">+ export const verifyAssertion = async () => { ... };</div>
-          <div style="color:#f85149;">- export const verifyLegacyPassword = async () => { ... };</div>
-        </div>
-        <a href="https://github.com" style="display:inline-block;background:#21262d;color:#c9d1d9;border:1px solid #30363d;padding:10px 18px;border-radius:6px;font-size:13px;text-decoration:none;font-weight:bold;">View Pull Request</a>
-      </td>
-    </tr>
-  </table>
-</body>
+  html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" lang="en">
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <title>GitHub Pull Request</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+      * {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+    </style>
+  </head>
+  <body dir="ltr" lang="en" style="background-color:rgb(1,4,9);margin:0;padding:30px 0;">
+    <!--$--><!--html--><!--head--><!--body-->
+    <table
+      border="0"
+      width="100%"
+      cellpadding="0"
+      cellspacing="0"
+      role="presentation"
+      align="center">
+      <tbody>
+        <tr>
+          <td
+            dir="ltr"
+            lang="en"
+            style="background-color:rgb(1,4,9);margin:0;text-align:center;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">
+            <!-- Main Card Container -->
+            <table
+              align="center"
+              width="100%"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              role="presentation"
+              style="max-width:600px;margin-right:auto;margin-left:auto;background-color:rgb(13,17,23);border-radius:12px;border:1px solid rgb(48,54,61);overflow:hidden;text-align:left">
+              <tbody>
+                <tr style="width:100%">
+                  <td>
+                    <!-- Header -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation"
+                      style="background-color:rgb(22,27,34);border-bottom:1px solid rgb(48,54,61)">
+                      <tbody>
+                        <tr>
+                          <td style="padding:16px 24px">
+                            <table
+                              align="center"
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation">
+                              <tbody style="width:100%">
+                                <tr style="width:100%">
+                                  <td
+                                    data-id="__react-email-column"
+                                    style="width:50%;vertical-align:middle;text-align:left">
+                                    <p style="font-size:14px;font-weight:700;color:rgb(255,255,255);margin:0">
+                                      GitHub
+                                    </p>
+                                  </td>
+                                  <td
+                                    align="right"
+                                    data-id="__react-email-column"
+                                    style="width:50%;vertical-align:middle;text-align:right">
+                                    <p style="font-size:12px;color:rgb(139,148,158);font-family:monospace;margin:0">
+                                      reloop-labs/reloop#412
+                                    </p>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- Main Content -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation">
+                      <tbody>
+                        <tr>
+                          <td style="padding:24px;text-align:left">
+                            <p style="font-size:11px;font-weight:600;color:rgb(255,255,255);background-color:rgb(35,134,54);border-radius:9999px;padding:3px 10px;margin:0 0 12px 0;display:inline-block">
+                              ✓ Merged
+                            </p>
+                            <h2 style="font-size:18px;font-weight:700;color:rgb(255,255,255);margin:0 0 8px 0;line-height:1.4">
+                              feat(auth): Add Passkey &amp; WebAuthn biometric authentication
+                            </h2>
+                            <p style="font-size:12px;color:rgb(139,148,158);margin:0 0 20px 0">
+                              <strong style="color:rgb(255,255,255)">@alex-developer</strong> merged 3 commits into <span style="background-color:rgb(22,27,34);color:rgb(88,166,255);padding:2px 6px;border-radius:4px;font-family:monospace">main</span> from <span style="background-color:rgb(22,27,34);color:rgb(139,148,158);padding:2px 6px;border-radius:4px;font-family:monospace">feat/passkeys</span>
+                            </p>
+
+                            <!-- Summary Card -->
+                            <table
+                              align="center"
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation"
+                              style="background-color:rgb(22,27,34);border:1px solid rgb(48,54,61);border-radius:8px;margin-bottom:20px">
+                              <tbody>
+                                <tr>
+                                  <td style="padding:16px">
+                                    <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-bottom:1px solid rgb(48,54,61);padding-bottom:8px;margin-bottom:12px">
+                                      <tbody style="width:100%">
+                                        <tr style="width:100%">
+                                          <td data-id="__react-email-column" style="font-size:12px;font-weight:600;color:rgb(255,255,255);text-align:left">
+                                            Summary of changes
+                                          </td>
+                                          <td align="right" data-id="__react-email-column" style="font-size:11px;color:rgb(139,148,158);font-family:monospace;text-align:right">
+                                            +482 -38 lines (8 files)
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                    <p style="font-size:12px;color:rgb(139,148,158);margin:0 0 12px 0;line-height:1.5">
+                                      Implements WebAuthn Level 3 registration and assertion ceremonies with hardware key and biometric fallback. Passes all FIDO2 conformance test suites.
+                                    </p>
+
+                                    <!-- Code Diff Box -->
+                                    <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:rgb(13,17,23);border:1px solid rgb(48,54,61);border-radius:6px">
+                                      <tbody>
+                                        <tr>
+                                          <td style="padding:10px 12px;font-family:monospace;font-size:11px">
+                                            <p style="color:rgb(63,185,80);margin:0 0 4px 0">+ import &#123; createPasskeyCredential &#125; from &quot;@reloop/auth&quot;;</p>
+                                            <p style="color:rgb(63,185,80);margin:0 0 4px 0">+ export const verifyAssertion = async (credential) =&gt; &#123; ... &#125;;</p>
+                                            <p style="color:rgb(248,81,73);margin:0">- export const verifyLegacyPassword = async () =&gt; &#123; ... &#125;;</p>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+
+                            <!-- Status & CTA -->
+                            <table
+                              align="center"
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation"
+                              style="border-top:1px solid rgb(48,54,61);padding-top:16px">
+                              <tbody style="width:100%">
+                                <tr style="width:100%">
+                                  <td data-id="__react-email-column" style="vertical-align:middle;text-align:left">
+                                    <p style="font-size:12px;color:rgb(63,185,80);font-weight:500;margin:0">
+                                      ✓ All 18 CI checks passed
+                                    </p>
+                                  </td>
+                                  <td align="right" data-id="__react-email-column" style="vertical-align:middle;text-align:right">
+                                    <a
+                                      href="https://github.com"
+                                      target="_blank"
+                                      style="background-color:rgb(33,38,45);color:rgb(201,209,217);border:1px solid rgb(48,54,61);padding:8px 16px;border-radius:6px;font-size:12px;font-weight:600;text-decoration:none;display:inline-block">
+                                      View Pull Request &rarr;
+                                    </a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- Footer -->
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation"
+                      style="background-color:rgb(22,27,34);border-top:1px solid rgb(48,54,61)">
+                      <tbody>
+                        <tr>
+                          <td style="padding:16px 24px">
+                            <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                              <tbody style="width:100%">
+                                <tr style="width:100%">
+                                  <td data-id="__react-email-column" style="font-size:11px;color:rgb(139,148,158);text-align:left">
+                                    You received this notification because you subscribed to this repository.
+                                  </td>
+                                  <td align="right" data-id="__react-email-column" style="text-align:right">
+                                    <a href="https://github.com" target="_blank" style="font-size:11px;color:rgb(88,166,255);text-decoration:none">
+                                      Notification settings
+                                    </a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!--/$-->
+  </body>
 </html>`,
   usageCode: `import GitHubPREmail from "@/templates/github-pr";
 import { reloop } from "@reloop/sdk";
