@@ -3,11 +3,37 @@
 import React, { useState, useEffect } from 'react';
 import { Logo } from './logo';
 import { ThemeToggle } from './theme-toggle';
+import { SearchModal } from './search-modal';
 import { Search, ExternalLink, Menu, X, Star } from 'lucide-react';
 
-export function SiteHeader() {
+interface SiteHeaderProps {
+  onSelectTemplate?: (id: string) => void;
+}
+
+export function SiteHeader({ onSelectTemplate }: SiteHeaderProps = {}) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [starCount, setStarCount] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setSearchOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  const handleSelectTemplate = (id: string) => {
+    setSearchOpen(false);
+    if (onSelectTemplate) {
+      onSelectTemplate(id);
+    } else {
+      window.location.href = id === 'introduction' ? '/' : `/?template=${id}`;
+    }
+  };
 
   useEffect(() => {
     // Fetch dynamic GitHub stars for reloop-templates
@@ -27,6 +53,7 @@ export function SiteHeader() {
   }, []);
 
   return (
+    <>
     <header className="sticky top-0 z-50 w-full border-b border-zinc-200/80 bg-white/95 backdrop-blur-md dark:border-zinc-800 dark:bg-black/95">
       <div className="mx-auto flex h-14 max-w-[1440px] w-full items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Left: Brand Logo & Links */}
@@ -66,18 +93,29 @@ export function SiteHeader() {
 
         {/* Right: Search, Dynamic GitHub Stars, ThemeToggle */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Search documentation input */}
-          <div className="relative hidden sm:flex items-center">
-            <Search className="w-3.5 h-3.5 absolute left-3 text-zinc-400 pointer-events-none" />
-            <input
-              type="text"
-              placeholder="Search templates..."
-              className="h-8 w-44 lg:w-64 rounded-md border border-zinc-200 bg-zinc-50/50 pl-8 pr-12 text-xs text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-400 focus:outline-none dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:focus:border-zinc-700 transition-all"
-            />
+          {/* Interactive Search Trigger Button */}
+          <button
+            type="button"
+            onClick={() => setSearchOpen(true)}
+            className="relative hidden sm:flex items-center h-8 w-44 lg:w-64 rounded-md border border-zinc-200 bg-zinc-50/50 hover:bg-zinc-100/80 hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:bg-zinc-900 dark:hover:border-zinc-700 pl-8 pr-12 text-xs text-zinc-500 dark:text-zinc-400 transition-all text-left cursor-pointer group shadow-2xs"
+            aria-label="Search templates (⌘K)"
+          >
+            <Search className="w-3.5 h-3.5 absolute left-2.5 text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors" />
+            <span className="truncate">Search templates...</span>
             <kbd className="pointer-events-none absolute right-2 top-1.5 hidden sm:inline-flex h-5 select-none items-center gap-1 rounded border border-zinc-200 bg-white px-1.5 font-mono text-[10px] font-medium text-zinc-500 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400">
               ⌘K
             </kbd>
-          </div>
+          </button>
+
+          {/* Mobile Search Icon Button */}
+          <button
+            type="button"
+            onClick={() => setSearchOpen(true)}
+            className="sm:hidden inline-flex h-8 w-8 items-center justify-center rounded-md border border-zinc-200 bg-white hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-900 text-zinc-600 dark:text-zinc-400 transition-colors cursor-pointer"
+            aria-label="Search templates"
+          >
+            <Search className="w-3.5 h-3.5" />
+          </button>
 
           {/* Dynamic GitHub Stars Button */}
           <a
@@ -121,5 +159,13 @@ export function SiteHeader() {
         </div>
       </div>
     </header>
+
+    {/* Universal Command Palette Search Modal — rendered outside header to avoid sticky stacking context */}
+    <SearchModal
+      isOpen={searchOpen}
+      onClose={() => setSearchOpen(false)}
+      onSelectTemplate={handleSelectTemplate}
+    />
+    </>
   );
 }

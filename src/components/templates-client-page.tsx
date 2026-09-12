@@ -40,7 +40,7 @@ export function TemplatesClientPage({ initialTemplateId }: TemplatesClientPagePr
   return (
     <div className="min-h-screen bg-white text-zinc-900 dark:bg-black dark:text-zinc-50">
       {/* Top Navbar */}
-      <SiteHeader />
+      <SiteHeader onSelectTemplate={handleSelectTemplate} />
 
       {/* Main Documentation Container */}
       <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
