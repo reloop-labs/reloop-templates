@@ -28,22 +28,24 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-zinc-200/80 bg-white/95 backdrop-blur-md dark:border-zinc-800 dark:bg-black/95">
-      <div className="flex h-14 w-full items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-14 max-w-[1440px] w-full items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Left: Brand Logo & Links */}
-        <div className="flex items-center gap-6">
-          <a href="/" className="flex items-center gap-2 group">
-            <Logo className="w-8 h-8 transition-transform group-hover:scale-105" />
-            <div className="flex items-center gap-1.5">
-              <span className="font-semibold text-sm tracking-tight text-zinc-900 dark:text-zinc-50">
-                Reloop
-              </span>
-              <span className="text-zinc-400 dark:text-zinc-500 text-sm font-medium">
-                Templates
-              </span>
-            </div>
-          </a>
+        <div className="flex items-center">
+          <div className="flex items-center w-64 shrink-0">
+            <a href="/" className="flex items-center gap-2 group">
+              <Logo className="w-8 h-8 transition-transform group-hover:scale-105" />
+              <div className="flex items-center gap-1.5">
+                <span className="font-semibold text-sm tracking-tight text-zinc-900 dark:text-zinc-50">
+                  Reloop
+                </span>
+                <span className="text-zinc-400 dark:text-zinc-500 text-sm font-medium">
+                  Templates
+                </span>
+              </div>
+            </a>
+          </div>
 
-          {/* Cleaned Desktop Nav Links */}
+          {/* Cleaned Desktop Nav Links aligned with sidebar partition */}
           <nav className="hidden md:flex items-center gap-5 text-sm font-medium">
             <a
               href="/"
