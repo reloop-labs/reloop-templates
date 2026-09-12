@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import React from "react";
-import { ExternalLink } from "lucide-react";
+import React from 'react';
+import { ExternalLink, Sparkles } from 'lucide-react';
 
 export function TableOfContents() {
   const items = [
-    { label: "Preview", href: "#preview" },
-    { label: "Installation", href: "#installation" },
-    { label: "Usage", href: "#usage" },
+    { label: 'Preview', href: '#preview' },
+    { label: 'Installation', href: '#installation' },
+    { label: 'Usage', href: '#usage' },
   ];
 
   return (
@@ -31,22 +31,29 @@ export function TableOfContents() {
         </ul>
       </div>
 
-      {/* Deploy on Vercel Callout Card */}
-      <div className="rounded-xl border border-zinc-200/80 bg-zinc-50/50 p-4 dark:border-zinc-800/80 dark:bg-zinc-900/40 text-xs space-y-3">
-        <div className="font-semibold text-zinc-900 dark:text-zinc-100">
-          Deploy your templates on Vercel
+      {/* Reloop Template Editor Callout Card */}
+      <div className="rounded-xl border border-zinc-200/80 bg-zinc-50/70 p-4 dark:border-zinc-800/80 dark:bg-zinc-900/50 text-xs space-y-3">
+        <div className="flex items-center justify-between">
+          <span className="font-semibold text-zinc-900 dark:text-zinc-100">
+            Reloop Editor
+          </span>
+          <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 dark:bg-blue-950 dark:text-blue-300 border border-blue-200/50 dark:border-blue-900/50">
+            Visual Builder
+          </span>
         </div>
         <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed text-[11px]">
-          Trusted by developers. Reloop provides high-throughput email delivery infrastructure and live template previews at scale.
+          Customize layouts, brand c olors, dynamic merge tags, and
+          preview live email rendering in Reloop&apos;s template
+          editor.
         </p>
         <a
-          href="https://vercel.com/new/clone?repository-url=https://github.com/reloop-labs/reloop-templates"
+          href="https://reloop.sh/dashboard/templates"
           target="_blank"
           rel="noreferrer"
-          className="inline-flex w-full items-center justify-center gap-1.5 rounded-md bg-white border border-zinc-200 px-3 py-1.5 font-medium text-zinc-900 hover:bg-zinc-50 dark:bg-zinc-950 dark:border-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-900 transition-colors text-[11px] shadow-2xs"
+          className="inline-flex w-full items-center justify-center gap-1.5 rounded-md bg-zinc-900 px-3 py-2 font-medium text-white hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 transition-colors text-[11px] shadow-2xs group"
         >
-          <span>Deploy Now</span>
-          <ExternalLink className="w-3 h-3" />
+          <span>Customize in Reloop</span>
+          <ExternalLink className="w-3 h-3 opacity-60 ml-0.5" />
         </a>
       </div>
     </div>
