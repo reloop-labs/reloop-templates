@@ -55,24 +55,6 @@ export function SiteHeader() {
               Templates
             </a>
             <a
-              href="https://docs.reloop.sh"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-1 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors"
-            >
-              <span>Documentation</span>
-              <ExternalLink className="w-3 h-3 opacity-60" />
-            </a>
-            <a
-              href="https://console.reloop.sh"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-1 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors"
-            >
-              <span>Console</span>
-              <ExternalLink className="w-3 h-3 opacity-60" />
-            </a>
-            <a
               href="https://reloop.sh"
               target="_blank"
               rel="noreferrer"

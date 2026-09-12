@@ -30,7 +30,7 @@ await reloop.emails.send({
   };
 
   return (
-    <div id="usage" className="space-y-4 pt-8">
+    <div id="usage" className="space-y-4 pt-8 scroll-mt-20">
       <h3 className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
         Usage
       </h3>

@@ -5,6 +5,9 @@ import { vercelDeploymentTemplate } from "./catalog/vercel-deployment";
 import { linearIssueTemplate } from "./catalog/linear-issue";
 import { githubPRTemplate } from "./catalog/github-pr";
 import { airbnbReservationTemplate } from "./catalog/airbnb-reservation";
+import { notionInviteTemplate } from "./catalog/notion-invite";
+import { figmaCommentTemplate } from "./catalog/figma-comment";
+import { raycastExtensionTemplate } from "./catalog/raycast-extension";
 import { magicLinkTemplate } from "./catalog/magic-link";
 import { otpCodeTemplate } from "./catalog/otp-code";
 import { newDeviceAlertTemplate } from "./catalog/new-device-alert";
@@ -24,6 +27,9 @@ export const ALL_TEMPLATES: EmailTemplate[] = [
   linearIssueTemplate,
   githubPRTemplate,
   airbnbReservationTemplate,
+  notionInviteTemplate,
+  figmaCommentTemplate,
+  raycastExtensionTemplate,
 
   // Auth & Security
   magicLinkTemplate,
@@ -61,6 +67,9 @@ export const TEMPLATE_CATEGORIES: CategoryGroup[] = [
       linearIssueTemplate,
       githubPRTemplate,
       airbnbReservationTemplate,
+      notionInviteTemplate,
+      figmaCommentTemplate,
+      raycastExtensionTemplate,
     ],
   },
   {

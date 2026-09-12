@@ -36,7 +36,7 @@ export function InstallationSection({ template }: InstallationSectionProps) {
   };
 
   return (
-    <div id="installation" className="space-y-4 pt-8">
+    <div id="installation" className="space-y-4 pt-8 scroll-mt-20">
       <h3 className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
         <span>Installation</span>
       </h3>

@@ -7,8 +7,7 @@ import { DocSidebar } from "./doc-sidebar";
 import { TableOfContents } from "./table-of-contents";
 import { CopyPageDropdown } from "./copy-page-dropdown";
 import { TemplateHeroTabs } from "./template-hero-tabs";
-import { InstallationSection } from "./installation-section";
-import { UsageSection } from "./usage-section";
+import { IntroductionPage } from "./introduction-page";
 import { getTemplateById, getAdjacentTemplates } from "../templates/registry";
 
 interface TemplatesClientPageProps {
@@ -23,15 +22,18 @@ export function TemplatesClientPage({ initialTemplateId }: TemplatesClientPagePr
     const p = searchParams.get("template");
     if (p) {
       setCurrentTemplateId(p);
+    } else {
+      setCurrentTemplateId("introduction");
     }
   }, [searchParams]);
 
-  const currentTemplate = getTemplateById(currentTemplateId);
+  const isIntro = currentTemplateId === "introduction";
+  const currentTemplate = getTemplateById(isIntro ? "amazon-invoice" : currentTemplateId);
   const adjacent = getAdjacentTemplates(currentTemplate.id);
 
   const handleSelectTemplate = (id: string) => {
     setCurrentTemplateId(id);
-    const newUrl = `/?template=${id}`;
+    const newUrl = id === "introduction" ? "/" : `/?template=${id}`;
     window.history.pushState(null, "", newUrl);
   };
 
@@ -45,45 +47,45 @@ export function TemplatesClientPage({ initialTemplateId }: TemplatesClientPagePr
         <div className="flex pt-6">
           {/* Left Sidebar */}
           <DocSidebar
-            currentTemplateId={currentTemplate.id}
+            currentTemplateId={currentTemplateId}
             onSelectTemplate={handleSelectTemplate}
           />
 
           {/* Center Main Content */}
           <main className="min-w-0 flex-1 px-4 sm:px-8 lg:px-12 pb-24">
-            {/* Title & Actions Row */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-3">
-              <div className="flex items-center gap-3">
-                <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-                  {currentTemplate.title}
-                </h1>
-              </div>
-              <CopyPageDropdown
-                template={currentTemplate}
-                onPrev={() => handleSelectTemplate(adjacent.prev.id)}
-                onNext={() => handleSelectTemplate(adjacent.next.id)}
-              />
-            </div>
+            {isIntro ? (
+              <IntroductionPage onSelectTemplate={handleSelectTemplate} />
+            ) : (
+              <>
+                {/* Title & Actions Row */}
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-3">
+                  <div className="flex items-center gap-3">
+                    <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+                      {currentTemplate.title}
+                    </h1>
+                  </div>
+                  <CopyPageDropdown
+                    template={currentTemplate}
+                    onPrev={() => handleSelectTemplate(adjacent.prev.id)}
+                    onNext={() => handleSelectTemplate(adjacent.next.id)}
+                  />
+                </div>
 
-            {/* Subtitle */}
-            <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl pb-6">
-              {currentTemplate.description}
-            </p>
+                {/* Subtitle */}
+                <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl pb-6">
+                  {currentTemplate.description}
+                </p>
 
-            {/* Hero 3-Tabs Preview / HTML / Typescript-React */}
-            <div id="preview" className="pt-2">
-              <TemplateHeroTabs template={currentTemplate} />
-            </div>
-
-            {/* Installation Section */}
-            <InstallationSection template={currentTemplate} />
-
-            {/* Usage Section */}
-            <UsageSection template={currentTemplate} />
+                {/* Hero 3-Tabs Preview / HTML / Typescript-React */}
+                <div id="preview" className="pt-2 scroll-mt-20">
+                  <TemplateHeroTabs template={currentTemplate} />
+                </div>
+              </>
+            )}
           </main>
 
           {/* Right "On This Page" Table of Contents */}
-          <TableOfContents />
+          <TableOfContents isIntroduction={isIntro} />
         </div>
       </div>
     </div>

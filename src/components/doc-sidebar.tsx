@@ -12,12 +12,7 @@ export function DocSidebar({
   currentTemplateId,
   onSelectTemplate,
 }: DocSidebarProps) {
-  const gettingStarted = [
-    { label: "Introduction", href: "#" },
-    { label: "Installation", href: "#installation" },
-    { label: "Usage", href: "#usage" },
-    { label: "CLI & SDK", href: "https://reloop.sh/docs", external: true },
-  ];
+  const isIntro = currentTemplateId === "introduction";
 
   return (
     <aside className="w-64 shrink-0 border-r border-zinc-200/80 dark:border-zinc-800/80 pr-4 pb-16 pt-2 select-none hidden md:block overflow-y-auto max-h-[calc(100vh-4rem)] sticky top-16 scrollbar-thin">
@@ -28,17 +23,17 @@ export function DocSidebar({
             Getting Started
           </h4>
           <div className="space-y-0.5 text-sm">
-            {gettingStarted.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                target={item.external ? "_blank" : undefined}
-                rel={item.external ? "noreferrer" : undefined}
-                className="flex items-center justify-between rounded-md px-2.5 py-1.5 font-medium text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100/80 dark:text-zinc-400 dark:hover:text-zinc-200 dark:hover:bg-zinc-900/60 transition-colors text-xs"
-              >
-                <span>{item.label}</span>
-              </a>
-            ))}
+            <button
+              type="button"
+              onClick={() => onSelectTemplate("introduction")}
+              className={`w-full flex items-center justify-between rounded-md px-2.5 py-1.5 text-left text-xs font-medium transition-all ${
+                isIntro
+                  ? "bg-zinc-100 font-semibold text-zinc-900 dark:bg-zinc-900 dark:text-zinc-50 shadow-2xs"
+                  : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100/60 dark:text-zinc-400 dark:hover:text-zinc-200 dark:hover:bg-zinc-900/50"
+              }`}
+            >
+              <span>Introduction</span>
+            </button>
           </div>
         </div>
 

@@ -1,33 +1,91 @@
 'use client';
 
-import React from 'react';
-import { ExternalLink, Sparkles } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ExternalLink } from 'lucide-react';
 
-export function TableOfContents() {
-  const items = [
-    { label: 'Preview', href: '#preview' },
-    { label: 'Installation', href: '#installation' },
-    { label: 'Usage', href: '#usage' },
+interface TableOfContentsProps {
+  isIntroduction?: boolean;
+}
+
+export function TableOfContents({ isIntroduction = false }: TableOfContentsProps) {
+  const introItems = [
+    { label: 'Overview', href: '#overview', id: 'overview' },
+    { label: 'Featured Brands', href: '#featured-brands', id: 'featured-brands' },
+    { label: 'Browse All', href: '#browse-all', id: 'browse-all' },
   ];
 
+  const templateItems = [
+    { label: 'Preview & Code', href: '#preview', id: 'preview' },
+  ];
+
+  const items = isIntroduction ? introItems : templateItems;
+  const [activeId, setActiveId] = useState<string>(items[0]?.id || 'preview');
+
+  useEffect(() => {
+    setActiveId(items[0]?.id || 'preview');
+  }, [isIntroduction]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sectionIds = isIntroduction
+        ? ['browse-all', 'featured-brands', 'overview']
+        : ['preview'];
+
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 240) {
+            setActiveId(id);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isIntroduction]);
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const id = href.replace('#', '');
+    const element = document.getElementById(id);
+    if (element) {
+      setActiveId(id);
+      element.scrollIntoView({ behavior: 'smooth' });
+      window.history.pushState(null, '', href);
+    }
+  };
+
   return (
-    <div className="hidden xl:block w-64 shrink-0 pl-6 select-none space-y-6 pt-2">
+    <aside className="hidden xl:block w-64 shrink-0 pl-6 select-none space-y-6 pt-2 sticky top-20 self-start max-h-[calc(100vh-6rem)] overflow-y-auto">
       {/* On This Page Nav */}
       <div className="space-y-2">
         <h4 className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 tracking-wider">
           On This Page
         </h4>
-        <ul className="space-y-1 text-xs text-zinc-500 dark:text-zinc-400">
-          {items.map((item) => (
-            <li key={item.label}>
-              <a
-                href={item.href}
-                className="hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors block py-0.5"
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
+        <ul className="space-y-1 text-xs">
+          {items.map((item) => {
+            const isActive = activeId === item.id;
+            return (
+              <li key={item.label}>
+                <a
+                  href={item.href}
+                  onClick={(e) => handleClick(e, item.href)}
+                  className={`block py-1 transition-colors ${
+                    isActive
+                      ? 'font-medium text-zinc-900 dark:text-zinc-100 border-l-2 border-zinc-900 dark:border-zinc-100 pl-2.5 -ml-2.5'
+                      : 'text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200'
+                  }`}
+                >
+                  {item.label}
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </div>
 
@@ -42,7 +100,7 @@ export function TableOfContents() {
           </span>
         </div>
         <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed text-[11px]">
-          Customize layouts, brand c olors, dynamic merge tags, and
+          Customize layouts, brand colors, dynamic merge tags, and
           preview live email rendering in Reloop&apos;s template
           editor.
         </p>
@@ -56,6 +114,7 @@ export function TableOfContents() {
           <ExternalLink className="w-3 h-3 opacity-60 ml-0.5" />
         </a>
       </div>
-    </div>
+    </aside>
   );
 }
+

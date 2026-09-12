@@ -5,7 +5,7 @@ export default async function Page(props: {
   searchParams: Promise<{ template?: string }>;
 }) {
   const searchParams = await props.searchParams;
-  const initialTemplateId = searchParams?.template || "amazon-invoice";
+  const initialTemplateId = searchParams?.template || "introduction";
 
   return <TemplatesClientPage initialTemplateId={initialTemplateId} />;
 }
