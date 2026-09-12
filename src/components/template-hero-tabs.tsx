@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { EmailTemplate } from "../templates/types";
-import { Copy, Check, Monitor, Tablet, Smartphone, ChevronDown, ChevronUp } from "lucide-react";
+import { Copy, Check, Monitor, Tablet, Smartphone } from "lucide-react";
 
 export type HeroTab = "preview" | "html" | "react";
 export type ViewportMode = "desktop" | "tablet" | "mobile";
@@ -14,7 +14,6 @@ interface TemplateHeroTabsProps {
 export function TemplateHeroTabs({ template }: TemplateHeroTabsProps) {
   const [activeTab, setActiveTab] = useState<HeroTab>("preview");
   const [viewport, setViewport] = useState<ViewportMode>("desktop");
-  const [isCodeExpanded, setIsCodeExpanded] = useState(false);
   const [copiedCode, setCopiedCode] = useState(false);
 
   const getViewportWidth = () => {
@@ -125,51 +124,10 @@ export function TemplateHeroTabs({ template }: TemplateHeroTabsProps) {
       {/* Main Hero Card Container */}
       <div className="rounded-xl border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950 overflow-hidden shadow-2xs">
         {activeTab === "preview" && (
-          <div className="relative">
-            {/* Preview Frame */}
-            <div className="min-h-[420px] p-4 sm:p-8 bg-zinc-50/50 dark:bg-zinc-900/30 bg-canvas-dots flex items-center justify-center transition-all">
-              <div className={`${getViewportWidth()} transition-all duration-300 ease-out`}>
-                <TemplateComponent />
-              </div>
+          <div className="min-h-[420px] p-4 sm:p-8 bg-zinc-50/80 dark:bg-zinc-900/40 flex items-center justify-center transition-all">
+            <div className={`${getViewportWidth()} transition-all duration-300 ease-out`}>
+              <TemplateComponent />
             </div>
-
-            {/* "View Code" Bottom Drawer Toggle */}
-            <div className="border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-2 flex justify-center">
-              <button
-                type="button"
-                onClick={() => setIsCodeExpanded(!isCodeExpanded)}
-                className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-100 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
-              >
-                <span>{isCodeExpanded ? "Hide Code" : "View Code"}</span>
-                {isCodeExpanded ? (
-                  <ChevronUp className="w-3.5 h-3.5" />
-                ) : (
-                  <ChevronDown className="w-3.5 h-3.5" />
-                )}
-              </button>
-            </div>
-
-            {/* Collapsible code preview under the preview box */}
-            {isCodeExpanded && (
-              <div className="border-t border-zinc-200 dark:border-zinc-800 bg-zinc-950 text-zinc-100 p-4 font-mono text-xs max-h-80 overflow-y-auto relative">
-                <button
-                  type="button"
-                  onClick={() => handleCopy(template.code)}
-                  className="absolute right-4 top-4 p-1.5 rounded bg-zinc-800/80 hover:bg-zinc-700 text-zinc-300 hover:text-white transition-colors"
-                  title="Copy code"
-                >
-                  {copiedCode ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                </button>
-                <pre className="overflow-x-auto leading-relaxed">
-                  {reactLines.slice(0, 30).map((l, i) => (
-                    <div key={i} className="flex gap-4">
-                      <span className="w-6 text-right select-none text-zinc-600">{i + 1}</span>
-                      <span>{l}</span>
-                    </div>
-                  ))}
-                </pre>
-              </div>
-            )}
           </div>
         )}
 

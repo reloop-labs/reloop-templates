@@ -36,7 +36,7 @@ export function PreviewCanvas({ devicePreset }: PreviewCanvasProps) {
   };
 
   return (
-    <div className="relative flex-1 h-[calc(100vh-3.5rem)] overflow-y-auto bg-canvas-dots p-6 sm:p-10 flex flex-col items-center justify-start">
+    <div className="relative flex-1 h-[calc(100vh-3.5rem)] overflow-y-auto bg-zinc-50 dark:bg-zinc-950 p-6 sm:p-10 flex flex-col items-center justify-start">
       {/* Viewport size indicator badge */}
       <div className="mb-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#121520]/80 backdrop-blur border border-[#212638] text-[11px] font-mono text-slate-400">
         <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
