@@ -8,20 +8,16 @@ export function TableOfContents() {
     { label: "Preview", href: "#preview" },
     { label: "Installation", href: "#installation" },
     { label: "Usage", href: "#usage" },
-    { label: "Composition", href: "#" },
-    { label: "Variables & Props", href: "#" },
-    { label: "Deliverability", href: "#" },
-    { label: "API Reference", href: "#" },
   ];
 
   return (
-    <div className="hidden xl:block w-64 shrink-0 pl-6 select-none space-y-8">
+    <div className="hidden xl:block w-64 shrink-0 pl-6 select-none space-y-6 pt-2">
       {/* On This Page Nav */}
-      <div className="space-y-2.5">
+      <div className="space-y-2">
         <h4 className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 tracking-wider">
           On This Page
         </h4>
-        <ul className="space-y-1.5 text-xs text-zinc-500 dark:text-zinc-400">
+        <ul className="space-y-1 text-xs text-zinc-500 dark:text-zinc-400">
           {items.map((item) => (
             <li key={item.label}>
               <a
@@ -35,10 +31,10 @@ export function TableOfContents() {
         </ul>
       </div>
 
-      {/* Deploy on Vercel Callout Card (exactly as in shadcn screenshot 1 & 3) */}
+      {/* Deploy on Vercel Callout Card */}
       <div className="rounded-xl border border-zinc-200/80 bg-zinc-50/50 p-4 dark:border-zinc-800/80 dark:bg-zinc-900/40 text-xs space-y-3">
         <div className="font-semibold text-zinc-900 dark:text-zinc-100">
-          Deploy your Reloop templates on Vercel
+          Deploy your templates on Vercel
         </div>
         <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed text-[11px]">
           Trusted by developers. Reloop provides high-throughput email delivery infrastructure and live template previews at scale.
