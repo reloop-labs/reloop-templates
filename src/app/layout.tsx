@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { ThemeProvider } from "../components/theme-provider";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Reloop Templates — Email Previewer & Gallery",
-  description: "Modern, production-ready email templates built for Reloop.",
+  title: "Reloop Templates — Production-Ready Email Templates",
+  description: "A curated collection of beautiful, responsive email templates built for Reloop.",
 };
 
 export default function RootLayout({
@@ -12,9 +13,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className="antialiased min-h-screen bg-[#090a0f] text-[#f4f4f6]">
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <body className="min-h-screen antialiased bg-white text-zinc-900 dark:bg-black dark:text-zinc-50 selection:bg-zinc-200 dark:selection:bg-zinc-800">
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

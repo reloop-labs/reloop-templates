@@ -1,0 +1,181 @@
+"use client";
+
+import React from "react";
+
+export const Logo = ({ className = "w-8 h-8" }: { className?: string }) => {
+  const fillClassName = "fill-[#2C2C2C] dark:fill-[#D2D2D2]";
+  const strokeClassName = "fill-[#4D4D4D] dark:fill-[#878787]";
+
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 200 200"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect x={55} y={51} width={83} height={8} className={fillClassName} />
+      <rect
+        x={55}
+        y={59}
+        width={75}
+        height={8}
+        transform="rotate(90 55 59)"
+        className={fillClassName}
+      />
+      <rect
+        x={146}
+        y={59}
+        width={46}
+        height={8}
+        transform="rotate(90 146 59)"
+        className={fillClassName}
+      />
+      <rect
+        x={154}
+        y={69}
+        width={44}
+        height={8}
+        transform="rotate(90 154 69)"
+        className={fillClassName}
+      />
+      <rect
+        x={138}
+        y={59}
+        width={46}
+        height={8}
+        transform="rotate(90 138 59)"
+        className={strokeClassName}
+      />
+      <rect
+        x={130}
+        y={59}
+        width={46}
+        height={8}
+        transform="rotate(90 130 59)"
+        className={strokeClassName}
+      />
+      <rect
+        x={90}
+        y={105}
+        width={29}
+        height={8}
+        transform="rotate(90 90 105)"
+        className={strokeClassName}
+      />
+      <rect
+        x={82}
+        y={105}
+        width={29}
+        height={8}
+        transform="rotate(90 82 105)"
+        className={strokeClassName}
+      />
+      <rect
+        x={138}
+        y={105}
+        width={8}
+        height={8}
+        transform="rotate(90 138 105)"
+        className={fillClassName}
+      />
+      <rect
+        x={146}
+        y={105}
+        width={8}
+        height={8}
+        transform="rotate(90 146 105)"
+        className={fillClassName}
+      />
+      <rect
+        x={146}
+        y={134}
+        width={8}
+        height={8}
+        transform="rotate(90 146 134)"
+        className={fillClassName}
+      />
+      <rect
+        x={130}
+        y={105}
+        width={8}
+        height={8}
+        transform="rotate(90 130 105)"
+        className={strokeClassName}
+      />
+      <rect
+        x={122}
+        y={105}
+        width={8}
+        height={8}
+        transform="rotate(90 122 105)"
+        className={strokeClassName}
+      />
+      <rect
+        x={98}
+        y={77}
+        width={10}
+        height={8}
+        transform="rotate(90 98 77)"
+        className={fillClassName}
+      />
+      <rect
+        x={90}
+        y={77}
+        width={10}
+        height={8}
+        transform="rotate(90 90 77)"
+        className={strokeClassName}
+      />
+      <rect
+        x={82}
+        y={77}
+        width={10}
+        height={8}
+        transform="rotate(90 82 77)"
+        className={strokeClassName}
+      />
+      <rect
+        x={136}
+        y={113}
+        width={21}
+        height={8}
+        transform="rotate(90 146 113)"
+        className={fillClassName}
+      />
+      <rect
+        x={154}
+        y={122}
+        width={20}
+        height={8}
+        transform="rotate(90 154 122)"
+        className={fillClassName}
+      />
+      <rect
+        x={138}
+        y={113}
+        width={21}
+        height={8}
+        transform="rotate(90 138 113)"
+        className={strokeClassName}
+      />
+      <rect
+        x={130}
+        y={113}
+        width={21}
+        height={8}
+        transform="rotate(90 130 113)"
+        className={strokeClassName}
+      />
+      <rect
+        x={98}
+        y={113}
+        width={21}
+        height={8}
+        transform="rotate(90 98 113)"
+        className={fillClassName}
+      />
+      <rect x={55} y={134} width={83} height={8} className={fillClassName} />
+      <rect x={63} y={142} width={83} height={8} className={fillClassName} />
+    </svg>
+  );
+};
