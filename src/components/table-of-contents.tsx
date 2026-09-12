@@ -7,10 +7,16 @@ interface TableOfContentsProps {
   isIntroduction?: boolean;
 }
 
-export function TableOfContents({ isIntroduction = false }: TableOfContentsProps) {
+export function TableOfContents({
+  isIntroduction = false,
+}: TableOfContentsProps) {
   const introItems = [
     { label: 'Overview', href: '#overview', id: 'overview' },
-    { label: 'Featured Brands', href: '#featured-brands', id: 'featured-brands' },
+    {
+      label: 'Featured Brands',
+      href: '#featured-brands',
+      id: 'featured-brands',
+    },
     { label: 'Browse All', href: '#browse-all', id: 'browse-all' },
   ];
 
@@ -19,7 +25,9 @@ export function TableOfContents({ isIntroduction = false }: TableOfContentsProps
   ];
 
   const items = isIntroduction ? introItems : templateItems;
-  const [activeId, setActiveId] = useState<string>(items[0]?.id || 'preview');
+  const [activeId, setActiveId] = useState<string>(
+    items[0]?.id || 'preview',
+  );
 
   useEffect(() => {
     setActiveId(items[0]?.id || 'preview');
@@ -43,13 +51,18 @@ export function TableOfContents({ isIntroduction = false }: TableOfContentsProps
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll, {
+      passive: true,
+    });
     handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isIntroduction]);
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
     e.preventDefault();
     const id = href.replace('#', '');
     const element = document.getElementById(id);
@@ -111,10 +124,8 @@ export function TableOfContents({ isIntroduction = false }: TableOfContentsProps
           className="inline-flex w-full items-center justify-center gap-1.5 rounded-md bg-zinc-900 px-3 py-2 font-medium text-white hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 transition-colors text-[11px] shadow-2xs group"
         >
           <span>Customize in Reloop</span>
-          <ExternalLink className="w-3 h-3 opacity-60 ml-0.5" />
         </a>
       </div>
     </aside>
   );
 }
-
