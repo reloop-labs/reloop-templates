@@ -1,4 +1,6 @@
-"use client";
+target_path = "/Users/twinkal/Development/reloop-templates/src/components/usage-section.tsx"
+
+content = '''"use client";
 
 import React, { useState } from "react";
 import { EmailTemplate } from "../templates/types";
@@ -21,7 +23,7 @@ await reloop.emails.send({
   react: <TemplateEmail />,
 });`;
 
-  const lines = usageCode.trim().split("\n");
+  const lines = usageCode.trim().split("\\n");
 
   const handleCopy = () => {
     navigator.clipboard.writeText(usageCode);
@@ -61,3 +63,9 @@ await reloop.emails.send({
     </div>
   );
 }
+'''
+
+with open(target_path, "w") as f:
+    f.write(content)
+
+print("UsageSection updated successfully.")

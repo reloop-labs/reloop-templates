@@ -1,4 +1,6 @@
-"use client";
+target_path = "/Users/twinkal/Development/reloop-templates/src/components/installation-section.tsx"
+
+content = '''"use client";
 
 import React, { useState } from "react";
 import { EmailTemplate } from "../templates/types";
@@ -124,3 +126,9 @@ export function InstallationSection({ template }: InstallationSectionProps) {
     </div>
   );
 }
+'''
+
+with open(target_path, "w") as f:
+    f.write(content)
+
+print("InstallationSection updated successfully.")

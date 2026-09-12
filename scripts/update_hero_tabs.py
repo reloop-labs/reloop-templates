@@ -1,4 +1,6 @@
-"use client";
+target_path = "/Users/twinkal/Development/reloop-templates/src/components/template-hero-tabs.tsx"
+
+content = '''"use client";
 
 import React, { useState } from "react";
 import { EmailTemplate } from "../templates/types";
@@ -35,8 +37,8 @@ export function TemplateHeroTabs({ template }: TemplateHeroTabsProps) {
     setTimeout(() => setCopiedCode(false), 2000);
   };
 
-  const htmlLines = (template.html || "").trim().split("\n");
-  const reactLines = (template.code || "").trim().split("\n");
+  const htmlLines = (template.html || "").trim().split("\\n");
+  const reactLines = (template.code || "").trim().split("\\n");
   const TemplateComponent = template.component;
 
   return (
@@ -220,3 +222,9 @@ export function TemplateHeroTabs({ template }: TemplateHeroTabsProps) {
     </div>
   );
 }
+'''
+
+with open(target_path, "w") as f:
+    f.write(content)
+
+print("TemplateHeroTabs updated successfully.")

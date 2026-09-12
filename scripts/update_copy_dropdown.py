@@ -1,4 +1,6 @@
-"use client";
+target_path = "/Users/twinkal/Development/reloop-templates/src/components/copy-page-dropdown.tsx"
+
+content = '''"use client";
 
 import React, { useState, useRef, useEffect } from "react";
 import { EmailTemplate } from "../templates/types";
@@ -34,7 +36,7 @@ export function CopyPageDropdown({ template, onPrev, onNext }: CopyPageDropdownP
   };
 
   const handleCopyMarkdown = () => {
-    const md = `# ${template.title}\n\n${template.description}\n\n\`\`\`tsx\n${template.code}\n\`\`\`\n`;
+    const md = `# ${template.title}\\n\\n${template.description}\\n\\n\`\`\`tsx\\n${template.code}\\n\`\`\`\\n`;
     navigator.clipboard.writeText(md);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -142,3 +144,9 @@ export function CopyPageDropdown({ template, onPrev, onNext }: CopyPageDropdownP
     </div>
   );
 }
+'''
+
+with open(target_path, "w") as f:
+    f.write(content)
+
+print("CopyPageDropdown updated successfully.")

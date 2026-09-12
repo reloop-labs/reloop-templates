@@ -1,4 +1,6 @@
-"use client";
+target_path = "/Users/twinkal/Development/reloop-templates/src/app/page.tsx"
+
+content = '''"use client";
 
 import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
@@ -101,3 +103,9 @@ export default function Page() {
     </Suspense>
   );
 }
+'''
+
+with open(target_path, "w") as f:
+    f.write(content)
+
+print("Page updated successfully.")

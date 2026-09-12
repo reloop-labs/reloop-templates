@@ -1,4 +1,6 @@
-"use client";
+target_path = "/Users/twinkal/Development/reloop-templates/src/components/doc-sidebar.tsx"
+
+content = '''"use client";
 
 import React from "react";
 import { TEMPLATE_CATEGORIES } from "../templates/registry";
@@ -78,3 +80,9 @@ export function DocSidebar({
     </aside>
   );
 }
+'''
+
+with open(target_path, "w") as f:
+    f.write(content)
+
+print("Sidebar updated successfully.")
