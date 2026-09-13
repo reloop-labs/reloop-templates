@@ -17,7 +17,6 @@ export function TableOfContents({
       href: '#featured-brands',
       id: 'featured-brands',
     },
-    { label: 'Browse All', href: '#browse-all', id: 'browse-all' },
   ];
 
   const templateItems = [
@@ -36,8 +35,8 @@ export function TableOfContents({
   useEffect(() => {
     const handleScroll = () => {
       const sectionIds = isIntroduction
-        ? ['browse-all', 'featured-brands', 'overview']
-        : ['preview'];
+          ? ['featured-brands', 'overview']
+          : ['preview'];
 
       for (const id of sectionIds) {
         const el = document.getElementById(id);

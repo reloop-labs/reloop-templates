@@ -12,6 +12,7 @@ import { magicLinkTemplate } from "./catalog/magic-link";
 import { otpCodeTemplate } from "./catalog/otp-code";
 import { newDeviceAlertTemplate } from "./catalog/new-device-alert";
 import { resetPasswordTemplate } from "./catalog/reset-password";
+import { apiKeyCreatedTemplate } from "./catalog/api-key-created";
 import { paymentFailedTemplate } from "./catalog/payment-failed";
 import { usageLimitTemplate } from "./catalog/usage-limit";
 import { workspaceInviteTemplate } from "./catalog/workspace-invite";
@@ -36,6 +37,7 @@ export const ALL_TEMPLATES: EmailTemplate[] = [
   otpCodeTemplate,
   newDeviceAlertTemplate,
   resetPasswordTemplate,
+  apiKeyCreatedTemplate,
 
   // SaaS & Billing
   paymentFailedTemplate,
@@ -79,6 +81,7 @@ export const TEMPLATE_CATEGORIES: CategoryGroup[] = [
       otpCodeTemplate,
       newDeviceAlertTemplate,
       resetPasswordTemplate,
+      apiKeyCreatedTemplate,
     ],
   },
   {

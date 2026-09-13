@@ -44,6 +44,7 @@ const TEMPLATE_KEYWORDS: Record<string, string> = {
   "otp-code": "otp verification 2fa two factor code pin auth security number digits",
   "new-device-alert": "new device signin alert login location security ip warning audit",
   "reset-password": "reset password forgot credentials account auth security recovery change",
+  "api-key-created": "api key created secret token credentials auth security developer access revoke prefix",
   "payment-failed": "payment failed dunning billing card decline stripe subscription overdue invoice",
   "usage-limit": "usage quota limit warning meter capacity upgrade saas tier 85 percent threshold",
   "workspace-invite": "workspace invite member team join organization saas collaborate",

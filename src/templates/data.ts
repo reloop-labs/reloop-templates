@@ -60,6 +60,13 @@ export const TEMPLATE_CATEGORIES: CategoryGroup[] = [
         category: "02-Auth & Security",
         description: "6-digit OTP verification code with security advisory.",
       },
+      {
+        id: "api-key-created",
+        name: "api-key-created",
+        filename: "api-key-created.tsx",
+        category: "02-Auth & Security",
+        description: "Security notice alerting account owners when an API key is generated.",
+      },
     ],
   },
   {
