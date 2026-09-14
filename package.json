@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-email/components": "^1.0.12",
+    "@react-email/render": "^2.1.0",
     "clsx": "^2.1.1",
     "lucide-react": "^1.16.0",
     "next": "latest",
@@ -18,12 +20,12 @@
     "tailwind-merge": "^3.0.2"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.9",
     "@types/node": "^22.13.9",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
-    "typescript": "^5.8.2",
+    "postcss": "^8.5.3",
     "tailwindcss": "^4.0.9",
-    "@tailwindcss/postcss": "^4.0.9",
-    "postcss": "^8.5.3"
+    "typescript": "^5.8.2"
   }
 }

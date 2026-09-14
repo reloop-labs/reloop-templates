@@ -19,6 +19,7 @@ import { workspaceInviteTemplate } from "./catalog/workspace-invite";
 import { founderWelcomeTemplate } from "./catalog/founder-welcome";
 import { weeklyDigestTemplate } from "./catalog/weekly-digest";
 import { helloWorldTemplate } from "./catalog/hello-world";
+import { tracwellSuiteTemplates } from "./catalog/tracwell-suite";
 
 export const ALL_TEMPLATES: EmailTemplate[] = [
   // Brands & Recreations
@@ -48,6 +49,9 @@ export const ALL_TEMPLATES: EmailTemplate[] = [
   founderWelcomeTemplate,
   weeklyDigestTemplate,
   helloWorldTemplate,
+
+  // Lumen Suite — Tracwell layout rebranded to Lumen (Welcome / 80% / 100%)
+  ...tracwellSuiteTemplates,
 ];
 
 export const TEMPLATES_BY_ID: Record<string, EmailTemplate> = Object.fromEntries(
@@ -55,7 +59,12 @@ export const TEMPLATES_BY_ID: Record<string, EmailTemplate> = Object.fromEntries
 );
 
 export interface CategoryGroup {
-  name: "Brands & Recreations" | "Auth & Security" | "SaaS & Billing" | "Growth & Onboarding";
+  name:
+    | "Brands & Recreations"
+    | "Auth & Security"
+    | "SaaS & Billing"
+    | "Growth & Onboarding"
+    | "Lumen Suite";
   templates: EmailTemplate[];
 }
 
@@ -99,6 +108,10 @@ export const TEMPLATE_CATEGORIES: CategoryGroup[] = [
       weeklyDigestTemplate,
       helloWorldTemplate,
     ],
+  },
+  {
+    name: "Lumen Suite",
+    templates: tracwellSuiteTemplates,
   },
 ];
 

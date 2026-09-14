@@ -28,7 +28,7 @@ export function PaymentFailedPreview() {
             Action required: Payment failed
           </h2>
           <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-1.5 leading-relaxed">
-            We were unable to process your payment for your Reloop Pro subscription renewal.
+            We were unable to process your payment for your Lumen Pro subscription renewal.
           </p>
         </div>
 
@@ -36,7 +36,7 @@ export function PaymentFailedPreview() {
         <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/30 p-4 space-y-3 text-xs">
           <div className="flex justify-between items-center pb-2 border-b border-zinc-200/70 dark:border-zinc-800">
             <span className="text-zinc-500">Plan</span>
-            <span className="font-bold text-zinc-900 dark:text-white">Reloop Pro (Monthly)</span>
+            <span className="font-bold text-zinc-900 dark:text-white">Lumen Pro (Monthly)</span>
           </div>
           <div className="flex justify-between items-center pb-2 border-b border-zinc-200/70 dark:border-zinc-800">
             <span className="text-zinc-500">Attempted Amount</span>
@@ -107,11 +107,11 @@ interface PaymentFailedEmailProps {
 
 export default function PaymentFailedEmail({
   customerName = "Alex",
-  planName = "Reloop Pro (Monthly)",
+  planName = "Lumen Pro (Monthly)",
   amount = "$79.00 USD",
   cardLast4 = "4242",
   failureReason = "Card expired or declined",
-  updateUrl = "https://reloop.sh/billing/update",
+  updateUrl = "https://lumen.co/billing/update",
 }: PaymentFailedEmailProps) {
   return (
     <Html lang="en">
@@ -255,7 +255,7 @@ export default function PaymentFailedEmail({
           {/* Footer */}
           <Section style={{ padding: "18px 32px", backgroundColor: "#f8fafc", borderTop: "1px solid #e2e8f0", textAlign: "center" }}>
             <Text style={{ fontSize: "12px", color: "#94a3b8", margin: 0 }}>
-              Reloop Billing Services • Questions? Contact billing@reloop.sh
+              Lumen Billing Services • Questions? Contact billing@lumen.co
             </Text>
           </Section>
         </Container>
@@ -344,14 +344,12 @@ export default function PaymentFailedEmail({
                                       <tbody>
                                         <tr>
                                           <td style="vertical-align:middle">
-                                            <span style="display:inline-block;width:34px;height:34px;border-radius:10px;background-color:rgb(255,228,230);color:rgb(225,29,72);font-size:16px;line-height:34px;text-align:center">
+                                            <span style="display:inline-block;vertical-align:middle;width:34px;height:34px;border-radius:10px;background-color:rgb(255,228,230);color:rgb(225,29,72);font-size:16px;line-height:34px;text-align:center;margin-right:10px">
                                               ⚠️
                                             </span>
-                                          </td>
-                                          <td style="vertical-align:middle;padding-left:10px">
-                                            <p style="font-size:15px;font-weight:700;color:rgb(15,23,42);margin:0;letter-spacing:-0.3px">
+                                            <span style="display:inline-block;vertical-align:middle;font-size:15px;font-weight:700;color:rgb(15,23,42);letter-spacing:-0.3px">
                                               Billing Notice
-                                            </p>
+                                            </span>
                                           </td>
                                         </tr>
                                       </tbody>
@@ -387,7 +385,7 @@ export default function PaymentFailedEmail({
                               Action required: Payment failed
                             </h2>
                             <p style="font-size:14px;color:rgb(71,85,105);line-height:1.6;margin:0">
-                              Hi Alex, we were unable to process your recurring renewal for <strong>Reloop Pro (Monthly)</strong>.
+                              Hi Alex, we were unable to process your recurring renewal for <strong>Lumen Pro (Monthly)</strong>.
                             </p>
                           </td>
                         </tr>
@@ -432,7 +430,7 @@ export default function PaymentFailedEmail({
                                           <td
                                             data-id="__react-email-column"
                                             style="width:60%;text-align:right">
-                                            <p style="font-size:12px;font-weight:700;color:rgb(15,23,42);margin:0">Reloop Pro (Monthly)</p>
+                                            <p style="font-size:12px;font-weight:700;color:rgb(15,23,42);margin:0">Lumen Pro (Monthly)</p>
                                           </td>
                                         </tr>
                                       </tbody>
@@ -536,7 +534,7 @@ export default function PaymentFailedEmail({
                         <tr>
                           <td style="padding:0 32px 24px 32px">
                             <a
-                              href="https://reloop.sh/billing/update"
+                              href="https://lumen.co/billing/update"
                               style="line-height:100%;text-decoration:none;display:block;max-width:100%;background-color:rgb(225,29,72);border-radius:10px;color:rgb(255,255,255);font-size:14px;font-weight:700;text-align:center;padding:14px 20px">
                               <span>Update Payment Method →</span>
                             </a>
@@ -590,7 +588,7 @@ export default function PaymentFailedEmail({
                         <tr>
                           <td style="padding:18px 32px;background-color:rgb(248,250,252);border-top:1px solid rgb(226,232,240);text-align:center">
                             <p style="font-size:12px;color:rgb(148,163,184);margin:0">
-                              Reloop Billing Services • Questions? Contact billing@reloop.sh
+                              Lumen Billing Services • Questions? Contact billing@lumen.co
                             </p>
                           </td>
                         </tr>
@@ -607,14 +605,46 @@ export default function PaymentFailedEmail({
     <!--/$-->
   </body>
 </html>`,
+  plainText: `⚠️
+
+Billing Notice
+
+Payment Past Due
+
+
+ACTION REQUIRED: PAYMENT FAILED
+
+Hi Alex, we were unable to process your recurring renewal for Lumen Pro (Monthly).
+
+Plan
+
+Lumen Pro (Monthly)
+
+Attempted Amount
+
+\$79.00 USD
+
+Card on File
+
+💳 Visa ending in 4242
+
+Failure Reason
+
+Card expired or declined
+
+Update Payment Method → https://lumen.co/billing/update
+
+Grace Period: We will automatically retry this charge in 3 days. Your service and template delivery will remain uninterrupted until then.
+
+Lumen Billing Services • Questions? Contact billing@lumen.co`,
   usageCode: `import PaymentFailedEmail from "@/templates/payment-failed";
 import { reloop } from "@reloop/sdk";
 
 // Trigger dunning sequence on webhook invoice.payment_failed
 await reloop.emails.send({
-  from: "billing@reloop.sh",
+  from: "billing@lumen.co",
   to: "finance@company.com",
-  subject: "Urgent: Payment failed for Reloop Pro",
+  subject: "Urgent: Payment failed for Lumen Pro",
   react: <PaymentFailedEmail customerName="Alex" amount="$79.00" />,
 });`,
 };

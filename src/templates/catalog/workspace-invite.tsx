@@ -22,7 +22,7 @@ export function WorkspaceInvitePreview() {
 
         <div>
           <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
-            Join Acme Engineering on Reloop
+            Join Acme Engineering on Lumen
           </h2>
           <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-2 leading-relaxed">
             Sarah Chen has invited you to collaborate as an <span className="font-semibold text-emerald-600 dark:text-emerald-400">Admin</span> on the Acme Engineering workspace.
@@ -104,7 +104,7 @@ export default function WorkspaceInviteEmail({
   role = "Admin",
   teamSize = "14 team members",
   recipientEmail = "alex@example.com",
-  inviteUrl = "https://reloop.sh/invite/accept?token=inv_98120381023",
+  inviteUrl = "https://lumen.co/invite/accept?token=inv_98120381023",
 }: WorkspaceInviteEmailProps) {
   return (
     <Html lang="en">
@@ -119,12 +119,12 @@ export default function WorkspaceInviteEmail({
             <table border={0} cellPadding={0} cellSpacing={0} role="presentation">
               <tbody>
                 <tr>
-                  <td style={{ verticalAlign: "middle" }}>
+                  <td width="42" style={{ width: "42px", minWidth: "42px", maxWidth: "42px", verticalAlign: "middle" }}>
                     <div style={{ width: "42px", height: "42px", borderRadius: "50%", background: "linear-gradient(135deg, #10b981 0%, #06b6d4 100%)", textAlign: "center", lineHeight: "42px", color: "#ffffff", fontWeight: "700", fontSize: "15px" }}>
                       SC
                     </div>
                   </td>
-                  <td style={{ verticalAlign: "middle", paddingLeft: "12px" }}>
+                  <td style={{ verticalAlign: "middle", paddingLeft: "12px", textAlign: "left" }}>
                     <Text style={{ fontSize: "14px", fontWeight: "700", color: "#0f172a", margin: 0 }}>
                       {inviterName}
                     </Text>
@@ -140,7 +140,7 @@ export default function WorkspaceInviteEmail({
           {/* Heading */}
           <Section style={{ padding: "0 32px 24px 32px" }}>
             <Text style={{ fontSize: "24px", fontWeight: "800", color: "#0f172a", margin: "0 0 8px 0", letterSpacing: "-0.5px" }}>
-              Join {workspaceName} on Reloop
+              Join {workspaceName} on Lumen
             </Text>
             <Text style={{ fontSize: "14px", color: "#475569", lineHeight: "1.6", margin: 0 }}>
               {inviterName} has invited you to collaborate as an <strong style={{ color: "#059669" }}>{role}</strong> on the {workspaceName} workspace.
@@ -224,7 +224,7 @@ export default function WorkspaceInviteEmail({
           {/* Footer */}
           <Section style={{ padding: "18px 32px", backgroundColor: "#f8fafc", borderTop: "1px solid #e2e8f0", textAlign: "center" }}>
             <Text style={{ fontSize: "12px", color: "#94a3b8", margin: 0 }}>
-              Reloop Workspaces • If you don't know the inviter, you can safely ignore this invitation.
+              Lumen Workspaces • If you don't know the inviter, you can safely ignore this invitation.
             </Text>
           </Section>
         </Container>
@@ -300,12 +300,12 @@ export default function WorkspaceInviteEmail({
                             <table border="0" cellpadding="0" cellspacing="0" role="presentation">
                               <tbody>
                                 <tr>
-                                  <td style="vertical-align:middle">
+                                  <td width="42" style="width:42px;min-width:42px;max-width:42px;vertical-align:middle">
                                     <span style="display:inline-block;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,rgb(16,185,129) 0%,rgb(6,182,212) 100%);color:rgb(255,255,255);font-size:15px;font-weight:700;line-height:42px;text-align:center">
                                       SC
                                     </span>
                                   </td>
-                                  <td style="vertical-align:middle;padding-left:12px">
+                                  <td style="vertical-align:middle;padding-left:12px;text-align:left">
                                     <p style="font-size:14px;font-weight:700;color:rgb(15,23,42);margin:0">
                                       Sarah Chen
                                     </p>
@@ -333,7 +333,7 @@ export default function WorkspaceInviteEmail({
                         <tr>
                           <td style="padding:0 32px 24px 32px">
                             <h2 style="font-size:24px;font-weight:800;color:rgb(15,23,42);margin:0 0 8px 0;letter-spacing:-0.5px">
-                              Join Acme Engineering on Reloop
+                              Join Acme Engineering on Lumen
                             </h2>
                             <p style="font-size:14px;color:rgb(71,85,105);line-height:1.6;margin:0">
                               Sarah Chen has invited you to collaborate as an <strong style="color:rgb(5,150,105)">Admin</strong> on the Acme Engineering workspace.
@@ -461,7 +461,7 @@ export default function WorkspaceInviteEmail({
                         <tr>
                           <td style="padding:0 32px 24px 32px">
                             <a
-                              href="https://reloop.sh/invite/accept?token=inv_98120381023"
+                              href="https://lumen.co/invite/accept?token=inv_98120381023"
                               style="line-height:100%;text-decoration:none;display:block;max-width:100%;background-color:rgb(5,150,105);border-radius:10px;color:rgb(255,255,255);font-size:14px;font-weight:700;text-align:center;padding:14px 20px">
                               <span>Accept Invitation →</span>
                             </a>
@@ -501,7 +501,7 @@ export default function WorkspaceInviteEmail({
                         <tr>
                           <td style="padding:18px 32px;background-color:rgb(248,250,252);border-top:1px solid rgb(226,232,240);text-align:center">
                             <p style="font-size:12px;color:rgb(148,163,184);margin:0">
-                              Reloop Workspaces • If you don't know the inviter, you can safely ignore this invitation.
+                              Lumen Workspaces • If you don't know the inviter, you can safely ignore this invitation.
                             </p>
                           </td>
                         </tr>
@@ -518,14 +518,42 @@ export default function WorkspaceInviteEmail({
     <!--/$-->
   </body>
 </html>`,
+  plainText: `SC
+
+Sarah Chen
+
+sarah@acme-engineering.com
+
+
+JOIN ACME ENGINEERING ON LUMEN
+
+Sarah Chen has invited you to collaborate as an Admin on the Acme Engineering workspace.
+
+Workspace
+
+Acme Engineering
+
+Assigned Role
+
+Admin
+
+Team Size
+
+14 team members
+
+Accept Invitation → https://lumen.co/invite/accept?token=inv_98120381023
+
+This invitation was sent to alex@example.com and expires in 7 days.
+
+Lumen Workspaces • If you don't know the inviter, you can safely ignore this invitation.`,
   usageCode: `import WorkspaceInviteEmail from "@/templates/workspace-invite";
 import { reloop } from "@reloop/sdk";
 
 // Send workspace team invitation
 await reloop.emails.send({
-  from: "team@reloop.sh",
+  from: "team@lumen.co",
   to: "colleague@acme.com",
-  subject: "Sarah invited you to Acme Engineering on Reloop",
+  subject: "Sarah invited you to Acme Engineering on Lumen",
   react: <WorkspaceInviteEmail inviterName="Sarah Chen" workspaceName="Acme Engineering" />,
 });`,
 };

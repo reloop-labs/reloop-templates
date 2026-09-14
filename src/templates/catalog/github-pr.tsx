@@ -433,6 +433,32 @@ export default function GitHubPREmail({
     <!--/$-->
   </body>
 </html>`,
+  plainText: `GitHub
+
+reloop-labs/reloop#412
+
+✓ Merged
+
+
+FEAT(AUTH): ADD PASSKEY & WEBAUTHN BIOMETRIC AUTHENTICATION
+
+@alex-developer merged 3 commits into main from feat/passkeys
+
+Summary of changes +482 -38 lines (8 files)
+
+Implements WebAuthn Level 3 registration and assertion ceremonies with hardware key and biometric fallback. Passes all FIDO2 conformance test suites.
+
++ import { createPasskeyCredential } from "@reloop/auth";
+
++ export const verifyAssertion = async (credential) => { ... };
+
+- export const verifyLegacyPassword = async () => { ... };
+
+✓ All 18 CI checks passed
+
+View Pull Request → https://github.com
+
+You received this notification because you subscribed to this repository. Notification settings https://github.com`,
   usageCode: `import GitHubPREmail from "@/templates/github-pr";
 import { reloop } from "@reloop/sdk";
 

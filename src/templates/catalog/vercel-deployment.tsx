@@ -467,6 +467,28 @@ export default function VercelDeploymentEmail({
     <!--/$-->
   </body>
 </html>`,
+  plainText: `▲ Vercel
+
+✓ Production Ready
+
+
+DEPLOYMENT SUCCEEDED
+
+Your project reloop-templates was deployed to production.
+
+Domains
+
+templates.reloop.sh → https://templates.reloop.sh Latest
+
+Branch main
+
+Commit 8bb0ab1 (Move star icon)
+
+Build Duration 22s
+
+Inspect Deployment https://vercel.com
+
+Notifications from Vercel • To adjust preferences, visit Account Settings.`,
   usageCode: `import VercelDeploymentEmail from "@/templates/vercel-deployment";
 import { reloop } from "@reloop/sdk";
 

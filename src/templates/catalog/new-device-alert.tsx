@@ -22,7 +22,7 @@ export function NewDeviceAlertPreview() {
             Did you just sign in?
           </h2>
           <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-1">
-            We noticed a successful login to your Reloop account from a device or location we haven&apos;t seen before.
+            We noticed a successful login to your Lumen account from a device or location we haven&apos;t seen before.
           </p>
         </div>
 
@@ -106,8 +106,8 @@ export default function NewDeviceAlertEmail({
   device = "Firefox 129 on Linux Ubuntu",
   location = "Frankfurt, Germany",
   ip = "85.214.132.11",
-  verifyUrl = "https://reloop.sh/security/verify",
-  lockUrl = "https://reloop.sh/security/lock",
+  verifyUrl = "https://lumen.co/security/verify",
+  lockUrl = "https://lumen.co/security/lock",
 }: NewDeviceAlertProps) {
   return (
     <Html lang="en">
@@ -119,12 +119,12 @@ export default function NewDeviceAlertEmail({
             <table border={0} cellPadding={0} cellSpacing={0} role="presentation">
               <tbody>
                 <tr>
-                  <td style={{ verticalAlign: "middle" }}>
+                  <td width="32" style={{ width: "32px", minWidth: "32px", maxWidth: "32px", verticalAlign: "middle" }}>
                     <div style={{ width: "32px", height: "32px", borderRadius: "50%", backgroundColor: "#f59e0b", textAlign: "center", lineHeight: "32px", color: "#ffffff", fontSize: "16px" }}>
                       ⚠️
                     </div>
                   </td>
-                  <td style={{ verticalAlign: "middle", paddingLeft: "12px" }}>
+                  <td style={{ verticalAlign: "middle", paddingLeft: "12px", textAlign: "left" }}>
                     <Text style={{ fontSize: "12px", fontWeight: "700", color: "#78350f", margin: 0 }}>
                       Security Alert
                     </Text>
@@ -143,7 +143,7 @@ export default function NewDeviceAlertEmail({
               Did you just sign in?
             </Text>
             <Text style={{ fontSize: "13px", color: "#475569", margin: 0, lineHeight: "1.5" }}>
-              We noticed a successful login to your Reloop account from a device or location we haven't seen before.
+              We noticed a successful login to your Lumen account from a device or location we haven't seen before.
             </Text>
           </Section>
 
@@ -252,7 +252,7 @@ export default function NewDeviceAlertEmail({
           {/* Footer */}
           <Section style={{ padding: "18px 28px", backgroundColor: "#f8fafc", borderTop: "1px solid #e2e8f0", textAlign: "center" }}>
             <Text style={{ fontSize: "12px", color: "#94a3b8", margin: 0 }}>
-              Reloop Security Team • Notifications regarding your account security cannot be disabled.
+              Lumen Security Team • Notifications regarding your account security cannot be disabled.
             </Text>
           </Section>
         </Container>
@@ -314,12 +314,12 @@ export default function NewDeviceAlertEmail({
                             <table border="0" cellpadding="0" cellspacing="0" role="presentation">
                               <tbody>
                                 <tr>
-                                  <td style="vertical-align:middle">
+                                  <td width="32" style="width:32px;min-width:32px;max-width:32px;vertical-align:middle">
                                     <span style="display:inline-block;width:32px;height:32px;border-radius:50%;background-color:rgb(245,158,11);color:rgb(255,255,255);font-size:16px;line-height:32px;text-align:center">
                                       ⚠️
                                     </span>
                                   </td>
-                                  <td style="vertical-align:middle;padding-left:12px">
+                                  <td style="vertical-align:middle;padding-left:12px;text-align:left">
                                     <p style="font-size:12px;font-weight:700;color:rgb(120,53,15);margin:0">
                                       Security Alert
                                     </p>
@@ -350,7 +350,7 @@ export default function NewDeviceAlertEmail({
                               Did you just sign in?
                             </h2>
                             <p style="font-size:13px;color:rgb(71,85,105);margin:0;line-height:1.5">
-                              We noticed a successful login to your Reloop account from a device or location we haven't seen before.
+                              We noticed a successful login to your Lumen account from a device or location we haven't seen before.
                             </p>
                           </td>
                         </tr>
@@ -511,7 +511,7 @@ export default function NewDeviceAlertEmail({
                                     data-id="__react-email-column"
                                     style="width:48%;vertical-align:top">
                                     <a
-                                      href="https://reloop.sh/security/verify"
+                                      href="https://lumen.co/security/verify"
                                       style="line-height:100%;text-decoration:none;display:block;max-width:100%;background-color:rgb(255,255,255);border:1px solid rgb(203,213,225);border-radius:10px;color:rgb(51,65,85);font-size:13px;font-weight:600;text-align:center;padding:12px 16px">
                                       <span>✓ Yes, this was me</span>
                                     </a>
@@ -521,7 +521,7 @@ export default function NewDeviceAlertEmail({
                                     data-id="__react-email-column"
                                     style="width:48%;vertical-align:top">
                                     <a
-                                      href="https://reloop.sh/security/lock"
+                                      href="https://lumen.co/security/lock"
                                       style="line-height:100%;text-decoration:none;display:block;max-width:100%;background-color:rgb(225,29,72);border-radius:10px;color:rgb(255,255,255);font-size:13px;font-weight:700;text-align:center;padding:12px 16px">
                                       <span>🔒 No, lock my account</span>
                                     </a>
@@ -546,7 +546,7 @@ export default function NewDeviceAlertEmail({
                         <tr>
                           <td style="padding:18px 28px;background-color:rgb(248,250,252);border-top:1px solid rgb(226,232,240);text-align:center">
                             <p style="font-size:12px;color:rgb(148,163,184);margin:0">
-                              Reloop Security Team • Notifications regarding your account security cannot be disabled.
+                              Lumen Security Team • Notifications regarding your account security cannot be disabled.
                             </p>
                           </td>
                         </tr>
@@ -563,12 +563,42 @@ export default function NewDeviceAlertEmail({
     <!--/$-->
   </body>
 </html>`,
+  plainText: `⚠️
+
+Security Alert
+
+New login from unrecognized device
+
+
+DID YOU JUST SIGN IN?
+
+We noticed a successful login to your Lumen account from a device or location we haven't seen before.
+
+When
+
+Today at 3:42 PM UTC
+
+Device / Browser
+
+Firefox 129 on Linux Ubuntu
+
+Approximate Location
+
+📍 Frankfurt, Germany
+
+IP Address
+
+85.214.132.11
+
+✓ Yes, this was me https://lumen.co/security/verify 🔒 No, lock my account https://lumen.co/security/lock
+
+Lumen Security Team • Notifications regarding your account security cannot be disabled.`,
   usageCode: `import NewDeviceAlertEmail from "@/templates/new-device-alert";
 import { reloop } from "@reloop/sdk";
 
 // Trigger security notice on suspicious login
 await reloop.emails.send({
-  from: "security@reloop.sh",
+  from: "security@lumen.co",
   to: "user@example.com",
   subject: "Security alert: New login from Frankfurt, Germany",
   react: <NewDeviceAlertEmail location="Frankfurt, Germany" ip="85.214.132.11" />,

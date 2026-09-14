@@ -91,7 +91,7 @@ export function WeeklyDigestPreview() {
 
         {/* CTA */}
         <a
-          href="https://reloop.sh/analytics"
+          href="https://lumen.co/analytics"
           className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-sm transition-colors"
         >
           <span>View Full Analytics Dashboard</span>
@@ -136,7 +136,7 @@ export default function WeeklyDigestEmail({
   deliveryRate = "99.94%",
   openRate = "42.8%",
   dateRange = "Sep 5 - Sep 12, 2026",
-  analyticsUrl = "https://reloop.sh/analytics",
+  analyticsUrl = "https://lumen.co/analytics",
 }: WeeklyDigestProps) {
   return (
     <Html lang="en">
@@ -302,7 +302,7 @@ export default function WeeklyDigestEmail({
           {/* Footer */}
           <Section style={{ padding: "18px 32px", backgroundColor: "#f8fafc", borderTop: "1px solid #e2e8f0", textAlign: "center" }}>
             <Text style={{ fontSize: "12px", color: "#94a3b8", margin: 0 }}>
-              Reloop Analytics Digest • Automatically generated every Monday morning.
+              Lumen Analytics Digest • Automatically generated every Monday morning.
             </Text>
           </Section>
         </Container>
@@ -611,7 +611,7 @@ export default function WeeklyDigestEmail({
                         <tr>
                           <td style="padding:0 32px 28px 32px">
                             <a
-                              href="https://reloop.sh/analytics"
+                              href="https://lumen.co/analytics"
                               style="line-height:100%;text-decoration:none;display:block;max-width:100%;background-color:rgb(79,70,229);border-radius:10px;color:rgb(255,255,255);font-size:14px;font-weight:700;text-align:center;padding:14px 20px">
                               <span>View Full Analytics Dashboard →</span>
                             </a>
@@ -632,7 +632,7 @@ export default function WeeklyDigestEmail({
                         <tr>
                           <td style="padding:18px 32px;background-color:rgb(248,250,252);border-top:1px solid rgb(226,232,240);text-align:center">
                             <p style="font-size:12px;color:rgb(148,163,184);margin:0">
-                              Reloop Analytics Digest • Automatically generated every Monday morning.
+                              Lumen Analytics Digest • Automatically generated every Monday morning.
                             </p>
                           </td>
                         </tr>
@@ -649,14 +649,64 @@ export default function WeeklyDigestEmail({
     <!--/$-->
   </body>
 </html>`,
+  plainText: `Weekly Report
+
+
+EMAIL DELIVERY DIGEST
+
+Sep 5 - Sep 12, 2026
+
+Overall Health
+
+99.94% Optimal
+
+Sent
+
+142,850
+
++12.4%
+
+Delivered
+
+99.94%
+
+Zero dropouts
+
+Open Rate
+
+42.8%
+
++3.2%
+
+Top Performing Templates
+
+Magic Link Verification
+
+Auth & Security
+
+84.2% Clicks
+
+64,210 sent
+
+Amazon Order Receipt
+
+Transactional
+
+62.8% Opens
+
+48,920 sent
+
+View Full Analytics Dashboard → https://lumen.co/analytics
+
+Lumen Analytics Digest • Automatically generated every Monday morning.`,
   usageCode: `import WeeklyDigestEmail from "@/templates/weekly-digest";
 import { reloop } from "@reloop/sdk";
 
 // Send automated weekly metrics digest to engineering leads
 await reloop.emails.send({
-  from: "reports@reloop.sh",
+  from: "reports@lumen.co",
   to: "cto@company.com",
-  subject: "Reloop Weekly Digest: 142,850 emails sent with 99.94% delivery",
+  subject: "Lumen Weekly Digest: 142,850 emails sent with 99.94% delivery",
   react: <WeeklyDigestEmail totalSent="142,850" deliveryRate="99.94%" openRate="42.8%" />,
 });`,
 };

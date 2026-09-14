@@ -15,7 +15,7 @@ export function MagicLinkPreview() {
             <div className="w-8 h-8 rounded-xl bg-indigo-600 text-white flex items-center justify-center shadow-sm">
               <ShieldCheck className="w-4 h-4" />
             </div>
-            <span>Reloop Auth</span>
+            <span>Lumen Auth</span>
           </div>
           <span className="flex items-center gap-1 text-xs text-amber-600 dark:text-amber-400 font-medium bg-amber-50 dark:bg-amber-950/40 px-2.5 py-1 rounded-full border border-amber-200/60 dark:border-amber-900/60">
             <Clock className="w-3 h-3" />
@@ -65,7 +65,7 @@ export function MagicLinkPreview() {
         <div className="pt-2 border-t border-zinc-100 dark:border-zinc-800 text-xs text-zinc-500">
           <span>Or copy and paste this URL into your browser:</span>
           <div className="p-2 rounded bg-zinc-100 dark:bg-zinc-900 font-mono text-[11px] text-zinc-600 dark:text-zinc-400 break-all mt-1.5 select-all">
-            https://auth.reloop.sh/verify?token=mglk_9821804918204128941098
+            https://auth.lumen.co/verify?token=mglk_9821804918204128941098
           </div>
         </div>
       </div>
@@ -103,7 +103,7 @@ interface MagicLinkEmailProps {
 }
 
 export default function MagicLinkEmail({
-  loginUrl = "https://auth.reloop.sh/verify?token=mglk_9821804918204128941098",
+  loginUrl = "https://auth.lumen.co/verify?token=mglk_9821804918204128941098",
   userEmail = "alex@example.com",
   device = "Chrome on macOS (Sonoma)",
   location = "San Francisco, CA, USA",
@@ -131,7 +131,7 @@ export default function MagicLinkEmail({
                       </td>
                       <td style={{ verticalAlign: "middle", paddingLeft: "10px" }}>
                         <Text style={{ fontSize: "16px", fontWeight: "700", color: "#0f172a", margin: 0, letterSpacing: "-0.3px" }}>
-                          Reloop Auth
+                          Lumen Auth
                         </Text>
                       </td>
                     </tr>
@@ -330,14 +330,12 @@ export default function MagicLinkEmail({
                                       <tbody>
                                         <tr>
                                           <td style="vertical-align:middle">
-                                            <span style="display:inline-block;width:32px;height:32px;border-radius:10px;background-color:rgb(79,70,229);color:rgb(255,255,255);font-size:14px;font-weight:700;line-height:32px;text-align:center">
+                                            <span style="display:inline-block;vertical-align:middle;width:32px;height:32px;border-radius:10px;background-color:rgb(79,70,229);color:rgb(255,255,255);font-size:14px;font-weight:700;line-height:32px;text-align:center;margin-right:10px">
                                               🛡
                                             </span>
-                                          </td>
-                                          <td style="vertical-align:middle;padding-left:10px">
-                                            <p style="font-size:16px;font-weight:700;color:rgb(15,23,42);margin:0;letter-spacing:-0.3px">
-                                              Reloop Auth
-                                            </p>
+                                            <span style="display:inline-block;vertical-align:middle;font-size:16px;font-weight:700;color:rgb(15,23,42);letter-spacing:-0.3px">
+                                              Lumen Auth
+                                            </span>
                                           </td>
                                         </tr>
                                       </tbody>
@@ -392,7 +390,7 @@ export default function MagicLinkEmail({
                         <tr>
                           <td style="padding:0 32px 28px 32px">
                             <a
-                              href="https://auth.reloop.sh/verify?token=mglk_9821804918204128941098"
+                              href="https://auth.lumen.co/verify?token=mglk_9821804918204128941098"
                               style="line-height:100%;text-decoration:none;display:block;max-width:100%;background-color:rgb(79,70,229);border-radius:10px;color:rgb(255,255,255);font-size:14px;font-weight:700;text-align:center;padding:14px 20px">
                               <span>Sign In to Your Account →</span>
                             </a>
@@ -527,7 +525,7 @@ export default function MagicLinkEmail({
                               Or copy and paste this URL into your browser:
                             </p>
                             <div style="padding:10px 14px;background-color:rgb(241,245,249);border-radius:8px;font-family:monospace;font-size:11px;color:rgb(71,85,105);word-break:break-all">
-                              https://auth.reloop.sh/verify?token=mglk_9821804918204128941098
+                              https://auth.lumen.co/verify?token=mglk_9821804918204128941098
                             </div>
                           </td>
                         </tr>
@@ -563,14 +561,46 @@ export default function MagicLinkEmail({
     <!--/$-->
   </body>
 </html>`,
+  plainText: `🛡
+
+Lumen Auth
+
+⏱ Expires in 10 mins
+
+
+YOUR MAGIC SIGN-IN LINK
+
+Click the button below to securely authenticate your session for alex@example.com. No password required.
+
+Sign In to Your Account → https://auth.lumen.co/verify?token=mglk_9821804918204128941098
+
+Request Details
+
+Device
+
+Chrome on macOS (Sonoma)
+
+Location
+
+San Francisco, CA, USA
+
+IP Address
+
+198.51.100.42
+
+Or copy and paste this URL into your browser:
+
+https://auth.lumen.co/verify?token=mglk_9821804918204128941098
+
+If you didn't attempt to sign in, you can safely disregard this email.`,
   usageCode: `import MagicLinkEmail from "@/templates/magic-link";
 import { reloop } from "@reloop/sdk";
 
 // Send passwordless magic link
 await reloop.emails.send({
-  from: "security@reloop.sh",
+  from: "security@lumen.co",
   to: "developer@example.com",
-  subject: "Your Reloop Magic Sign-in Link",
-  react: <MagicLinkEmail loginUrl="https://auth.reloop.sh/verify?token=..." />,
+  subject: "Your Lumen Magic Sign-in Link",
+  react: <MagicLinkEmail loginUrl="https://auth.lumen.co/verify?token=..." />,
 });`,
 };

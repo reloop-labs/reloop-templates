@@ -490,6 +490,39 @@ export default function StripeReceiptEmail({
     <!--/$-->
   </body>
 </html>`,
+  plainText: `Acme Corp
+
+Invoice #INV-2026-089
+
+Amount paid
+
+\$120.00
+
+✓ Paid on Sep 12, 2026
+
+Description Qty / Amount
+
+Pro Plan (Monthly)
+
+Sep 12, 2026 – Oct 12, 2026
+
+\$100.00
+
+Additional Seats (2x)
+
+\$10/seat per month
+
+\$20.00
+
+Total Paid \$120.00
+
+💳 Mastercard ending in 4242 Exp 12/28
+
+Download Invoice PDF https://reloop.sh/invoice
+
+Receipt sent to billing@acmecorp.com via Stripe
+
+Questions? Reply to this email or visit our Help Center.`,
   usageCode: `import StripeReceiptEmail from "@/templates/stripe-receipt";
 import { reloop } from "@reloop/sdk";
 

@@ -290,6 +290,25 @@ export default function FigmaCommentEmail() {
     </table>
   </body>
 </html><!--/$-->`,
+  plainText: `Figma • Design System
+
+Node #284:1092
+
+Sarah Jenkins commented on Mobile Checkout Experience / Screen #4:
+
+SJ
+
+Sarah Jenkins 12 mins ago
+
+“@alex Can we update the primary CTA border radius to 8px across these checkout screens before Monday's review? Also let's verify the contrast ratio on dark mode.”
+
+Reply in Figma https://figma.com
+
+You can also reply directly to this email to leave a comment.
+
+Figma, Inc. • 760 Market St, San Francisco, CA
+
+Unsubscribe https://figma.com`,
   usageCode: `import FigmaCommentEmail from "@/templates/figma-comment";
 import { reloop } from "@reloop/sdk";
 

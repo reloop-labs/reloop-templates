@@ -655,6 +655,45 @@ export default function AirbnbReservationEmail({
     <!--/$-->
   </body>
 </html>`,
+  plainText: `airbnb
+
+Reservation Confirmed
+
+
+YOU'RE GOING TO OSLO!
+
+Reservation code: HM892K9
+
+Entire loft
+
+
+MODERN SCANDINAVIAN PENTHOUSE WITH FJORD VIEW
+
+★ 4.98 (124 reviews)
+
+Oslo Sentrum, Norway
+
+Check-in
+
+Thu, Oct 15, 2026
+
+After 3:00 PM
+
+Checkout
+
+Mon, Oct 19, 2026
+
+11:00 AM
+
+Keyless Self Check-in
+
+Smart Lock keypad entry code
+
+*4920#
+
+View Itinerary & Host Guide https://airbnb.com
+
+Airbnb, Inc. • 888 Brannan St, San Francisco, CA 94103`,
   usageCode: `import AirbnbReservationEmail from "@/templates/airbnb-reservation";
 import { reloop } from "@reloop/sdk";
 

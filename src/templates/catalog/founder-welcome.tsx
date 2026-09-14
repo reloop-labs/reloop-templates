@@ -10,7 +10,7 @@ export function FounderWelcomePreview() {
         <div className="flex items-center justify-between pb-4 border-b border-zinc-100 dark:border-zinc-800">
           <div className="flex items-center gap-2 font-bold text-base tracking-tight">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block" />
-            <span>Reloop</span>
+            <span>Lumen</span>
           </div>
           <span className="text-xs text-zinc-400">Founder Note</span>
         </div>
@@ -21,7 +21,7 @@ export function FounderWelcomePreview() {
             Hey Alex,
           </p>
           <p>
-            I wanted to personally reach out and welcome you to Reloop. We built Reloop because we got tired of brittle email HTML tables breaking in Outlook and tedious deliverability debugging.
+            I wanted to personally reach out and welcome you to Lumen. We built Lumen because we got tired of brittle email HTML tables breaking in Outlook and tedious deliverability debugging.
           </p>
           <p>
             Here are three quick things to help you get the most out of your experience:
@@ -55,12 +55,12 @@ export function FounderWelcomePreview() {
             </div>
             <div>
               <div className="font-bold text-sm text-zinc-900 dark:text-white">Twinkal</div>
-              <div className="text-xs text-zinc-500">Founder &amp; CEO, Reloop</div>
+              <div className="text-xs text-zinc-500">Founder &amp; CEO, Lumen</div>
             </div>
           </div>
 
           <a
-            href="https://reloop.sh/console"
+            href="https://lumen.co/console"
             className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-white dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-100 font-medium text-xs transition-colors"
           >
             <span>Open Console</span>
@@ -103,8 +103,8 @@ interface FounderWelcomeProps {
 export default function FounderWelcomeEmail({
   userName = "Alex",
   founderName = "Twinkal",
-  founderRole = "Founder & CEO, Reloop",
-  consoleUrl = "https://reloop.sh/console",
+  founderRole = "Founder & CEO, Lumen",
+  consoleUrl = "https://lumen.co/console",
 }: FounderWelcomeProps) {
   return (
     <Html lang="en">
@@ -118,13 +118,9 @@ export default function FounderWelcomeEmail({
                 <table border={0} cellPadding={0} cellSpacing={0} role="presentation">
                   <tbody>
                     <tr>
-                      <td style={{ verticalAlign: "middle" }}>
-                        <div style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#10b981" }}></div>
-                      </td>
-                      <td style={{ verticalAlign: "middle", paddingLeft: "8px" }}>
-                        <Text style={{ fontSize: "16px", fontWeight: "700", color: "#0f172a", margin: 0, letterSpacing: "-0.3px" }}>
-                          Reloop
-                        </Text>
+                      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+                        <span style={{ display: "inline-block", verticalAlign: "middle", width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#10b981", marginRight: "8px" }} />
+                        <span style={{ display: "inline-block", verticalAlign: "middle", fontSize: "16px", fontWeight: "700", color: "#0f172a", letterSpacing: "-0.3px" }}>Lumen</span>
                       </td>
                     </tr>
                   </tbody>
@@ -144,7 +140,7 @@ export default function FounderWelcomeEmail({
               Hey {userName},
             </Text>
             <Text style={{ fontSize: "14px", lineHeight: "1.7", color: "#334155", margin: "0 0 16px 0" }}>
-              I wanted to personally reach out and welcome you to Reloop. We built Reloop because we got tired of brittle email HTML tables breaking in Outlook and tedious deliverability debugging.
+              I wanted to personally reach out and welcome you to Lumen. We built Lumen because we got tired of brittle email HTML tables breaking in Outlook and tedious deliverability debugging.
             </Text>
             <Text style={{ fontSize: "14px", lineHeight: "1.7", color: "#334155", margin: "0 0 16px 0" }}>
               Here are three quick things to help you get the most out of your experience:
@@ -231,7 +227,7 @@ export default function FounderWelcomeEmail({
           {/* Footer */}
           <Section style={{ padding: "18px 32px", backgroundColor: "#f8fafc", borderTop: "1px solid #e2e8f0", textAlign: "center" }}>
             <Text style={{ fontSize: "12px", color: "#94a3b8", margin: 0 }}>
-              Reloop • 548 Market St, San Francisco, CA 94104
+              Lumen • 548 Market St, San Francisco, CA 94104
             </Text>
           </Section>
         </Container>
@@ -305,13 +301,9 @@ export default function FounderWelcomeEmail({
                                     <table border="0" cellpadding="0" cellspacing="0" role="presentation">
                                       <tbody>
                                         <tr>
-                                          <td style="vertical-align:middle">
-                                            <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background-color:rgb(16,185,129)"></span>
-                                          </td>
-                                          <td style="vertical-align:middle;padding-left:8px">
-                                            <p style="font-size:16px;font-weight:700;color:rgb(15,23,42);margin:0;letter-spacing:-0.3px">
-                                              Reloop
-                                            </p>
+                                          <td style="vertical-align:middle;text-align:left">
+                                            <span style="display:inline-block;vertical-align:middle;width:10px;height:10px;border-radius:50%;background-color:rgb(16,185,129);margin-right:8px"></span>
+                                            <span style="display:inline-block;vertical-align:middle;font-size:16px;font-weight:700;color:rgb(15,23,42);margin:0;letter-spacing:-0.3px">Lumen</span>
                                           </td>
                                         </tr>
                                       </tbody>
@@ -347,7 +339,7 @@ export default function FounderWelcomeEmail({
                               Hey Alex,
                             </h3>
                             <p style="font-size:14px;line-height:1.7;color:rgb(51,65,85);margin:0 0 16px 0">
-                              I wanted to personally reach out and welcome you to Reloop. We built Reloop because we got tired of brittle email HTML tables breaking in Outlook and tedious deliverability debugging.
+                              I wanted to personally reach out and welcome you to Lumen. We built Lumen because we got tired of brittle email HTML tables breaking in Outlook and tedious deliverability debugging.
                             </p>
                             <p style="font-size:14px;line-height:1.7;color:rgb(51,65,85);margin:0 0 16px 0">
                               Here are three quick things to help you get the most out of your experience:
@@ -416,7 +408,7 @@ export default function FounderWelcomeEmail({
                                               Twinkal
                                             </p>
                                             <p style="font-size:12px;color:rgb(100,116,139);margin:0">
-                                              Founder &amp; CEO, Reloop
+                                              Founder &amp; CEO, Lumen
                                             </p>
                                           </td>
                                         </tr>
@@ -427,7 +419,7 @@ export default function FounderWelcomeEmail({
                                     data-id="__react-email-column"
                                     style="width:35%;vertical-align:middle;text-align:right">
                                     <a
-                                      href="https://reloop.sh/console"
+                                      href="https://lumen.co/console"
                                       style="line-height:100%;text-decoration:none;display:inline-block;background-color:rgb(15,23,42);border-radius:8px;color:rgb(255,255,255);font-size:12px;font-weight:600;text-align:center;padding:10px 18px">
                                       <span>Open Console →</span>
                                     </a>
@@ -452,7 +444,7 @@ export default function FounderWelcomeEmail({
                         <tr>
                           <td style="padding:18px 32px;background-color:rgb(248,250,252);border-top:1px solid rgb(226,232,240);text-align:center">
                             <p style="font-size:12px;color:rgb(148,163,184);margin:0">
-                              Reloop • 548 Market St, San Francisco, CA 94104
+                              Lumen • 548 Market St, San Francisco, CA 94104
                             </p>
                           </td>
                         </tr>
@@ -469,14 +461,42 @@ export default function FounderWelcomeEmail({
     <!--/$-->
   </body>
 </html>`,
+  plainText: `Lumen
+
+Founder Note
+
+
+HEY ALEX,
+
+I wanted to personally reach out and welcome you to Lumen. We built Lumen because we got tired of brittle email HTML tables breaking in Outlook and tedious deliverability debugging.
+
+Here are three quick things to help you get the most out of your experience:
+
+1. Grab any prebuilt template: Browse our gallery and copy battle-tested templates directly into your codebase.
+
+2. Check your DNS records: Set up DKIM and SPF in our console for instant 99.9% inbox placement.
+
+3. Send your first email in 3 lines: Use our Node, Go, or Python SDKs with React Email or plain HTML.
+
+If you ever get stuck or want to suggest a new template feature, just hit reply to this email. It lands straight in my personal inbox.
+
+T
+
+Twinkal
+
+Founder & CEO, Lumen
+
+Open Console → https://lumen.co/console
+
+Lumen • 548 Market St, San Francisco, CA 94104`,
   usageCode: `import FounderWelcomeEmail from "@/templates/founder-welcome";
 import { reloop } from "@reloop/sdk";
 
 // Send personal founder note upon signup
 await reloop.emails.send({
-  from: "twinkal@reloop.sh",
+  from: "alex@lumen.co",
   to: "newuser@example.com",
-  subject: "Welcome to Reloop - personal note from the founder",
+  subject: "Welcome to Lumen - personal note from the founder",
   react: <FounderWelcomeEmail userName="Alex" />,
 });`,
 };

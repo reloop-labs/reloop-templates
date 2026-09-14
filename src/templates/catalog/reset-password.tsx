@@ -81,7 +81,7 @@ interface ResetPasswordProps {
 }
 
 export default function ResetPasswordEmail({
-  resetUrl = "https://reloop.sh/reset-password?token=rst_81920381029",
+  resetUrl = "https://lumen.co/reset-password?token=rst_81920381029",
   userEmail = "alex@example.com",
   expiryMinutes = 30,
 }: ResetPasswordProps) {
@@ -161,7 +161,7 @@ export default function ResetPasswordEmail({
           {/* Footer */}
           <Section style={{ padding: "18px 32px", backgroundColor: "#f8fafc", borderTop: "1px solid #e2e8f0", textAlign: "center" }}>
             <Text style={{ fontSize: "12px", color: "#94a3b8", margin: 0 }}>
-              Reloop Security • Automated system notification
+              Lumen Security • Automated system notification
             </Text>
           </Section>
         </Container>
@@ -299,7 +299,7 @@ export default function ResetPasswordEmail({
                         <tr>
                           <td style="padding:0 32px 28px 32px">
                             <a
-                              href="https://reloop.sh/reset-password?token=rst_81920381029"
+                              href="https://lumen.co/reset-password?token=rst_81920381029"
                               style="line-height:100%;text-decoration:none;display:block;max-width:100%;background-color:rgb(124,58,237);border-radius:10px;color:rgb(255,255,255);font-size:14px;font-weight:700;text-align:center;padding:14px 20px">
                               <span>Reset Password →</span>
                             </a>
@@ -356,7 +356,7 @@ export default function ResetPasswordEmail({
                         <tr>
                           <td style="padding:18px 32px;background-color:rgb(248,250,252);border-top:1px solid rgb(226,232,240);text-align:center">
                             <p style="font-size:12px;color:rgb(148,163,184);margin:0">
-                              Reloop Security • Automated system notification
+                              Lumen Security • Automated system notification
                             </p>
                           </td>
                         </tr>
@@ -373,14 +373,28 @@ export default function ResetPasswordEmail({
     <!--/$-->
   </body>
 </html>`,
+  plainText: `🔑 Account Security
+
+
+RESET YOUR PASSWORD
+
+We received a request to reset the password for your account (alex@example.com). Click the button below to choose a secure new password.
+
+Reset Password → https://lumen.co/reset-password?token=rst_81920381029
+
+⏱ This link expires in 30 minutes
+
+If you didn't request a password reset, please ignore this email or reach out to support if you have concerns regarding your account security.
+
+Lumen Security • Automated system notification`,
   usageCode: `import ResetPasswordEmail from "@/templates/reset-password";
 import { reloop } from "@reloop/sdk";
 
 // Send password reset link
 await reloop.emails.send({
-  from: "security@reloop.sh",
+  from: "security@lumen.co",
   to: "user@example.com",
-  subject: "Reset your Reloop password",
-  react: <ResetPasswordEmail resetUrl="https://reloop.sh/reset-password?token=..." />,
+  subject: "Reset your Lumen password",
+  react: <ResetPasswordEmail resetUrl="https://lumen.co/reset-password?token=..." />,
 });`,
 };

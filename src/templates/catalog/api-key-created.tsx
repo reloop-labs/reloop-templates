@@ -32,7 +32,7 @@ export function ApiKeyCreatedPreview() {
           </h2>
           <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
             Hey <strong className="text-zinc-900 dark:text-zinc-100">there</strong>, a new secret API key named{" "}
-            <strong className="text-zinc-900 dark:text-zinc-100">&ldquo;Production Key&rdquo;</strong> was just generated on your Reloop account. If you initiated this, no further action is required.
+            <strong className="text-zinc-900 dark:text-zinc-100">&ldquo;Production Key&rdquo;</strong> was just generated on your Lumen account. If you initiated this, no further action is required.
           </p>
         </div>
 
@@ -77,7 +77,7 @@ export function ApiKeyCreatedPreview() {
         {/* CTA Action */}
         <div>
           <a
-            href="https://reloop.sh/dashboard/settings/api-keys"
+            href="https://lumen.co/dashboard/settings/api-keys"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center w-full py-3.5 px-6 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-100 font-mono text-xs uppercase tracking-wider font-bold shadow-md transition-all gap-2"
@@ -97,8 +97,8 @@ export function ApiKeyCreatedPreview() {
 
         {/* Footer */}
         <div className="pt-4 border-t border-zinc-100 dark:border-zinc-800/80 text-[11px] text-zinc-500 dark:text-zinc-500 space-y-1">
-          <div>Reloop Security Team • 440 N Barranca Ave #4133 Covina, CA 91723</div>
-          <div>Need assistance? Contact security@reloop.sh</div>
+          <div>Lumen Security Team • 440 N Barranca Ave #4133 Covina, CA 91723</div>
+          <div>Need assistance? Contact security@lumen.co</div>
         </div>
       </div>
     </div>
@@ -146,14 +146,14 @@ export default function ApiKeyCreatedEmail({
   createdAt = "May 6, 2026 at 15:27 UTC",
   ipAddress = "192.168.1.1",
   location = "San Francisco, CA",
-  manageKeysUrl = "https://reloop.sh/dashboard/settings/api-keys",
+  manageKeysUrl = "https://lumen.co/dashboard/settings/api-keys",
 }: ApiKeyCreatedEmailProps) {
   const firstName = fullName ? fullName.split(" ")[0] : "there";
 
   return (
     <Html lang="en">
       <Head />
-      <Preview>Security Notice: A new API key was created on your Reloop account.</Preview>
+      <Preview>Security Notice: A new API key was created on your Lumen account.</Preview>
       <Body style={main}>
         <Container style={container}>
           {/* Top Header Label */}
@@ -177,7 +177,7 @@ export default function ApiKeyCreatedEmail({
               Hey, <strong>{firstName}.</strong>
             </Text>
             <Text style={paragraph}>
-              A new API key named <strong>&ldquo;{keyName}&rdquo;</strong> was just created on your Reloop account. If this was you, no action is needed.
+              A new API key named <strong>&ldquo;{keyName}&rdquo;</strong> was just created on your Lumen account. If this was you, no action is needed.
             </Text>
           </Section>
 
@@ -231,18 +231,18 @@ export default function ApiKeyCreatedEmail({
           <Section style={footerSection}>
             <Text style={footerText}>
               If you'd like to report an issue, reach out to{" "}
-              <Link href="https://reloop.sh/help" style={footerLink}>
-                Reloop Help
+              <Link href="https://lumen.co/help" style={footerLink}>
+                Lumen Help
               </Link>
               .
             </Text>
             <Text style={footerText}>
-              <Link href="https://reloop.sh/settings/notifications" style={footerLink}>
+              <Link href="https://lumen.co/settings/notifications" style={footerLink}>
                 Manage your notification settings
               </Link>
             </Text>
             <Text style={{ ...footerText, marginTop: "16px" }}>
-              Copyright © 2026 Reloop Inc. All rights reserved.
+              Copyright © 2026 Lumen Inc. All rights reserved.
               <br />
               440 N Barranca Ave #4133 Covina, CA 91723
             </Text>
@@ -452,7 +452,7 @@ const footerLink: React.CSSProperties = {
               Hey, <strong>User.</strong>
             </p>
             <p style="color:#555555;font-size:15px;line-height:1.6;margin:0 0 24px 0">
-              A new API key named <strong>“Production Key”</strong> was just created on your Reloop account. If this was you, no action is needed.
+              A new API key named <strong>“Production Key”</strong> was just created on your Lumen account. If this was you, no action is needed.
             </p>
             
             <!-- Key Prefix Display -->
@@ -498,7 +498,7 @@ const footerLink: React.CSSProperties = {
               <tbody>
                 <tr>
                   <td>
-                    <a href="https://reloop.sh/dashboard/settings/api-keys" target="_blank" style="background-color:#0e0e0e;border-radius:12px;color:#ffffff;display:inline-block;font-family:Courier, monospace;font-size:12px;font-weight:700;letter-spacing:0.1em;padding:14px 28px;text-decoration:none;text-transform:uppercase">
+                    <a href="https://lumen.co/dashboard/settings/api-keys" target="_blank" style="background-color:#0e0e0e;border-radius:12px;color:#ffffff;display:inline-block;font-family:Courier, monospace;font-size:12px;font-weight:700;letter-spacing:0.1em;padding:14px 28px;text-decoration:none;text-transform:uppercase">
                       MANAGE API KEYS
                     </a>
                   </td>
@@ -514,13 +514,13 @@ const footerLink: React.CSSProperties = {
 
             <!-- Footer -->
             <p style="color:#707070;font-size:12px;line-height:22px;margin:0">
-              If you'd like to report an issue, reach out to <a href="https://reloop.sh/help" style="color:#707070;text-decoration:underline">Reloop Help</a>.
+              If you'd like to report an issue, reach out to <a href="https://lumen.co/help" style="color:#707070;text-decoration:underline">Lumen Help</a>.
             </p>
             <p style="color:#707070;font-size:12px;line-height:22px;margin:0">
-              <a href="https://reloop.sh/settings/notifications" style="color:#707070;text-decoration:underline">Manage your notification settings</a>
+              <a href="https://lumen.co/settings/notifications" style="color:#707070;text-decoration:underline">Manage your notification settings</a>
             </p>
             <p style="color:#707070;font-size:12px;line-height:22px;margin:16px 0 0 0">
-              Copyright © 2026 Reloop Inc. All rights reserved.<br />440 N Barranca Ave #4133 Covina, CA 91723
+              Copyright © 2026 Lumen Inc. All rights reserved.<br />440 N Barranca Ave #4133 Covina, CA 91723
             </p>
           </td>
         </tr>
@@ -528,12 +528,51 @@ const footerLink: React.CSSProperties = {
     </table>
   </body>
 </html>`,
+  plainText: `SECURITY NOTICE
+
+
+A NEW API KEY WAS CREATED ON YOUR ACCOUNT.
+
+----------------------------------------
+
+Hey, User.
+
+A new API key named “Production Key” was just created on your Lumen account. If this was you, no action is needed.
+
+rl_live_abc1••••••••
+
+Production Key
+
+CREATED AT
+
+May 6, 2026 at 15:27 UTC
+
+LOCATION
+
+San Francisco, CA
+
+IP ADDRESS
+
+192.168.1.1
+
+MANAGE API KEYS https://lumen.co/dashboard/settings/api-keys
+
+If you didn't create this key, revoke it immediately from your API keys settings and contact our support team.
+
+----------------------------------------
+
+If you'd like to report an issue, reach out to Lumen Help https://lumen.co/help.
+
+Manage your notification settings https://lumen.co/settings/notifications
+
+Copyright © 2026 Lumen Inc. All rights reserved.
+440 N Barranca Ave #4133 Covina, CA 91723`,
   usageCode: `import ApiKeyCreatedEmail from "@/templates/api-key-created";
 import { reloop } from "@reloop/sdk";
 
 // Trigger automatic security advisory when an API token is created
 await reloop.emails.send({
-  from: "security@reloop.sh",
+  from: "security@lumen.co",
   to: "developer@company.com",
   subject: "Security Alert: New API key created",
   react: (
@@ -544,7 +583,7 @@ await reloop.emails.send({
       createdAt="May 6, 2026 at 15:27 UTC"
       location="San Francisco, CA"
       ipAddress="192.168.1.1"
-      manageKeysUrl="https://reloop.sh/dashboard/settings/api-keys"
+      manageKeysUrl="https://lumen.co/dashboard/settings/api-keys"
     />
   ),
 });`,

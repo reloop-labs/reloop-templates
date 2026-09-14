@@ -287,6 +287,30 @@ export default function RaycastExtensionEmail() {
     </table>
   </body>
 </html><!--/$-->`,
+  plainText: `R
+
+Raycast Store
+
+Published
+
+
+YOUR EXTENSION IS NOW LIVE
+
+Congratulations! Your extension “Reloop Tools” has passed review and is now available to thousands of Raycast developers worldwide.
+
+RT
+
+Reloop Tools
+
+by @developer • Developer Tools
+
+v1.0.0
+
+View on Raycast Store https://raycast.com/store
+
+----------------------------------------
+
+Raycast Technologies Inc. • raycast.com https://raycast.com`,
   usageCode: `import RaycastExtensionEmail from "@/templates/raycast-extension";
 import { reloop } from "@reloop/sdk";
 

@@ -402,6 +402,30 @@ export default function LinearIssueEmail({
     <!--/$-->
   </body>
 </html>`,
+  plainText: `Linear
+
+● High Priority
+
+REL-241
+
+
+OPTIMIZE TEMPLATE COMPILE TIME FOR NEXT.JS 16
+
+Twinkal commented:
+
+Migrated template builder to parallel SWC transforms. Build time dropped to 210ms.
+
+Assignee
+
+Alex Rivera
+
+Cycle
+
+Cycle 42 (Current)
+
+Open Issue in Linear → https://linear.app
+
+Press O then I in Linear to view notifications.`,
   usageCode: `import LinearIssueEmail from "@/templates/linear-issue";
 import { reloop } from "@reloop/sdk";
 

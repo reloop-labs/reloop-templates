@@ -264,6 +264,30 @@ export default function NotionInviteEmail() {
     </table>
   </body>
 </html><!--/$-->`,
+  plainText: `N
+
+Notion
+
+
+ALEX MORGAN INVITED YOU TO JOIN ACME CORP ON NOTION
+
+Collaborate with your team across shared engineering wikis, product roadmaps, and meeting notes in one unified workspace.
+
+AC
+
+Acme Corp Workspace
+
+Team Plan • 32 active members
+
+Join Workspace https://notion.so
+
+This invitation was sent to alex@example.com. If you were not expecting this invitation, you can safely ignore this email.
+
+----------------------------------------
+
+Notion Labs, Inc. • 2300 Harrison Street, San Francisco, CA 94110
+
+Manage your notifications or visit the Help Center https://notion.so/help.`,
   usageCode: `import NotionInviteEmail from "@/templates/notion-invite";
 import { reloop } from "@reloop/sdk";
 

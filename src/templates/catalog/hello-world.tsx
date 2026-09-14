@@ -5,7 +5,7 @@ import { EmailTemplate } from "../types";
 export function HelloWorldPreview() {
   return (
     <div className="w-full max-w-[600px] mx-auto bg-white border border-zinc-200 rounded-2xl overflow-hidden shadow-xl text-zinc-900 font-sans dark:bg-[#0c0d12] dark:border-zinc-800 dark:text-zinc-100">
-      {/* Signature Reloop Gradient Accent */}
+      {/* Signature Lumen Gradient Accent */}
       <div className="h-2 w-full bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600" />
 
       <div className="p-6 sm:p-8 space-y-6">
@@ -13,9 +13,9 @@ export function HelloWorldPreview() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 flex items-center justify-center font-bold text-sm shadow-sm">
-              R
+              L
             </div>
-            <span className="font-bold text-lg tracking-tight">Reloop Starter</span>
+            <span className="font-bold text-lg tracking-tight">Lumen Starter</span>
           </div>
           <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-600 dark:bg-indigo-950/50 dark:text-indigo-400">
             Official Starter
@@ -27,7 +27,7 @@ export function HelloWorldPreview() {
             Hello, World!
           </h2>
           <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-1.5 leading-relaxed">
-            Welcome to Reloop Templates. This starter layout demonstrates standard email client compatibility across Apple Mail, Gmail, and Outlook.
+            Welcome to Lumen Templates. This starter layout demonstrates standard email client compatibility across Apple Mail, Gmail, and Outlook.
           </p>
         </div>
 
@@ -57,7 +57,7 @@ export function HelloWorldPreview() {
         {/* Action Button */}
         <div>
           <a
-            href="https://reloop.sh/docs"
+            href="https://lumen.co/docs"
             className="inline-flex items-center justify-center w-full py-3.5 px-6 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-100 font-semibold text-sm shadow-sm transition-colors gap-2"
           >
             <span>Explore Documentation</span>
@@ -73,7 +73,7 @@ export const helloWorldTemplate: EmailTemplate = {
   id: "hello-world",
   title: "Hello World",
   category: "Growth & Onboarding",
-  description: "Official introductory template welcoming developers to Reloop. Features bulletproof responsive layout and dark mode styling.",
+  description: "Official introductory template welcoming developers to Lumen. Features bulletproof responsive layout and dark mode styling.",
   component: HelloWorldPreview,
   code: `import React from "react";
 import {
@@ -97,7 +97,7 @@ interface HelloWorldEmailProps {
 
 export default function HelloWorldEmail({
   name = "Developer",
-  docsUrl = "https://reloop.sh/docs",
+  docsUrl = "https://lumen.co/docs",
 }: HelloWorldEmailProps) {
   return (
     <Html lang="en">
@@ -114,15 +114,13 @@ export default function HelloWorldEmail({
                 <table border={0} cellPadding={0} cellSpacing={0} role="presentation">
                   <tbody>
                     <tr>
-                      <td style={{ verticalAlign: "middle" }}>
-                        <div style={{ width: "32px", height: "32px", borderRadius: "10px", backgroundColor: "#0f172a", textAlign: "center", lineHeight: "32px", color: "#ffffff", fontWeight: "800", fontSize: "15px" }}>
-                          R
-                        </div>
-                      </td>
-                      <td style={{ verticalAlign: "middle", paddingLeft: "10px" }}>
-                        <Text style={{ fontSize: "16px", fontWeight: "700", color: "#0f172a", margin: 0, letterSpacing: "-0.3px" }}>
-                          Reloop Starter
-                        </Text>
+                      <td style={{ verticalAlign: "middle", textAlign: "left" }}>
+                        <span style={{ display: "inline-block", verticalAlign: "middle", width: "32px", height: "32px", borderRadius: "10px", backgroundColor: "#0f172a", textAlign: "center", lineHeight: "32px", color: "#ffffff", fontWeight: "800", fontSize: "15px", marginRight: "10px" }}>
+                          L
+                        </span>
+                        <span style={{ display: "inline-block", verticalAlign: "middle", fontSize: "16px", fontWeight: "700", color: "#0f172a", letterSpacing: "-0.3px" }}>
+                          Lumen Starter
+                        </span>
                       </td>
                     </tr>
                   </tbody>
@@ -142,7 +140,7 @@ export default function HelloWorldEmail({
               Hello, {name}!
             </Text>
             <Text style={{ fontSize: "14px", color: "#475569", lineHeight: "1.6", margin: 0 }}>
-              Welcome to Reloop Templates. This starter layout demonstrates standard email client compatibility across Apple Mail, Gmail, and Outlook.
+              Welcome to Lumen Templates. This starter layout demonstrates standard email client compatibility across Apple Mail, Gmail, and Outlook.
             </Text>
           </Section>
 
@@ -213,7 +211,7 @@ export default function HelloWorldEmail({
           {/* Footer */}
           <Section style={{ padding: "18px 32px", backgroundColor: "#f8fafc", borderTop: "1px solid #e2e8f0", textAlign: "center" }}>
             <Text style={{ fontSize: "12px", color: "#94a3b8", margin: 0 }}>
-              Reloop • The modern email delivery platform for developers.
+              Lumen • The modern platform for developers.
             </Text>
           </Section>
         </Container>
@@ -301,15 +299,13 @@ export default function HelloWorldEmail({
                                     <table border="0" cellpadding="0" cellspacing="0" role="presentation">
                                       <tbody>
                                         <tr>
-                                          <td style="vertical-align:middle">
-                                            <span style="display:inline-block;width:32px;height:32px;border-radius:10px;background-color:rgb(15,23,42);color:rgb(255,255,255);font-size:15px;font-weight:800;line-height:32px;text-align:center">
-                                              R
+                                          <td style="vertical-align:middle;text-align:left">
+                                            <span style="display:inline-block;vertical-align:middle;width:32px;height:32px;border-radius:10px;background-color:rgb(15,23,42);color:rgb(255,255,255);font-size:15px;font-weight:800;line-height:32px;text-align:center;margin-right:10px">
+                                              L
                                             </span>
-                                          </td>
-                                          <td style="vertical-align:middle;padding-left:10px">
-                                            <p style="font-size:16px;font-weight:700;color:rgb(15,23,42);margin:0;letter-spacing:-0.3px">
-                                              Reloop Starter
-                                            </p>
+                                            <span style="display:inline-block;vertical-align:middle;font-size:16px;font-weight:700;color:rgb(15,23,42);margin:0;letter-spacing:-0.3px">
+                                              Lumen Starter
+                                            </span>
                                           </td>
                                         </tr>
                                       </tbody>
@@ -345,7 +341,7 @@ export default function HelloWorldEmail({
                               Hello, Developer!
                             </h2>
                             <p style="font-size:14px;color:rgb(71,85,105);line-height:1.6;margin:0">
-                              Welcome to Reloop Templates. This starter layout demonstrates standard email client compatibility across Apple Mail, Gmail, and Outlook.
+                              Welcome to Lumen Templates. This starter layout demonstrates standard email client compatibility across Apple Mail, Gmail, and Outlook.
                             </p>
                           </td>
                         </tr>
@@ -441,7 +437,7 @@ export default function HelloWorldEmail({
                         <tr>
                           <td style="padding:0 32px 32px 32px">
                             <a
-                              href="https://reloop.sh/docs"
+                              href="https://lumen.co/docs"
                               style="line-height:100%;text-decoration:none;display:block;max-width:100%;background-color:rgb(15,23,42);border-radius:10px;color:rgb(255,255,255);font-size:14px;font-weight:700;text-align:center;padding:14px 20px">
                               <span>Explore Documentation →</span>
                             </a>
@@ -462,7 +458,7 @@ export default function HelloWorldEmail({
                         <tr>
                           <td style="padding:18px 32px;background-color:rgb(248,250,252);border-top:1px solid rgb(226,232,240);text-align:center">
                             <p style="font-size:12px;color:rgb(148,163,184);margin:0">
-                              Reloop • The modern email delivery platform for developers.
+                              Lumen • The modern platform for developers.
                             </p>
                           </td>
                         </tr>
@@ -479,14 +475,36 @@ export default function HelloWorldEmail({
     <!--/$-->
   </body>
 </html>`,
+  plainText: `L
+
+Lumen Starter
+
+Official Starter
+
+
+HELLO, DEVELOPER!
+
+Welcome to Lumen Templates. This starter layout demonstrates standard email client compatibility across Apple Mail, Gmail, and Outlook.
+
+✓ Dark Mode Supported
+
+Automatically adjusts contrast for Gmail and Apple Mail dark modes.
+
+✓ Deliverability Tested
+
+Strict HTML table fallback structures ensuring zero layout distortion.
+
+Explore Documentation → https://lumen.co/docs
+
+Lumen • The modern platform for developers.`,
   usageCode: `import HelloWorldEmail from "@/templates/hello-world";
 import { reloop } from "@reloop/sdk";
 
-// Send official Reloop Hello World starter email
+// Send official Lumen Hello World starter email
 await reloop.emails.send({
   from: "welcome@yourcompany.com",
   to: "developer@example.com",
-  subject: "Hello World from Reloop",
+  subject: "Hello World from Lumen",
   react: <HelloWorldEmail name="Developer" />,
 });`,
 };

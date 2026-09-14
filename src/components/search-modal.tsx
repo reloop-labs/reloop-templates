@@ -51,6 +51,18 @@ const TEMPLATE_KEYWORDS: Record<string, string> = {
   "founder-welcome": "founder welcome ceo letter onboarding personal message greeting ceo note",
   "weekly-digest": "weekly digest newsletter analytics metrics summary performance stats report",
   "hello-world": "hello world starter minimal simple basic boilerplate clean",
+  "lumen-welcome": "lumen welcome onboarding getting started setup analytics amber",
+  "lumen-otp": "lumen otp verification code 2fa two factor pin auth security 6 digit lumen.co amber",
+  "lumen-magic-link": "lumen magic link passwordless signin login authentication session lumen.co amber",
+  "lumen-reset-password": "lumen reset password forgot credentials security account recovery lumen.co amber",
+  "lumen-invite": "lumen team workspace invite member collaboration join organization lumen.co amber",
+  "lumen-usage-80": "lumen usage limit quota 80 warning tier meter billing amber lumen.co",
+  "lumen-usage-100": "lumen usage limit quota 100 exceeded upgrade billing amber lumen.co",
+  "lumen-api-key": "lumen api key created secret token credentials auth security developer access revoke amber lumen.co",
+  "lumen-invoice": "lumen invoice payment receipt billing subscription renew pro plan visa card amber lumen.co",
+  "lumen-digest": "lumen weekly analytics digest traffic pageviews unique visitors report performance stats amber lumen.co",
+  "lumen-new-device": "lumen new device signin login alert location ip security audit warning amber lumen.co",
+  "lumen-payment-failed": "lumen payment failed dunning billing decline card overdue action required grace period amber lumen.co",
 };
 
 const ALL_SEARCH_ITEMS: SearchItem[] = [

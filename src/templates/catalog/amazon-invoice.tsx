@@ -616,6 +616,48 @@ export default function AmazonInvoiceEmail({
     <!--/$-->
   </body>
 </html>`,
+  plainText: `amazon.com
+
+Order #114-8921820-4109823
+
+🚚
+
+Arriving Tomorrow by 8 PM
+
+Track package & view delivery updates
+
+
+HI ALEX,
+
+Thank you for your order. We’ll send a confirmation when your items ship.
+
+📦
+
+Sony WH-1000XM5 Wireless Noise-Canceling Headphones
+
+Color: Black • Quantity: 1
+
+\$348.00
+
+----------------------------------------
+
+Sold by: Amazon.com Services LLC View or manage order → https://amazon.com
+
+Shipping Address
+
+Alex Morgan
+452 Market Street, Suite 400
+San Francisco, CA 94105
+
+Order Summary
+
+Item Subtotal: \$348.00 Shipping & Handling: FREE Estimated Tax: \$29.58
+
+Order Total: \$377.58
+
+Need help with your order? Visit the Customer Service portal.
+
+© 2026 Amazon.com, Inc. or its affiliates. All rights reserved.`,
   usageCode: `import AmazonInvoiceEmail from "@/templates/amazon-invoice";
 import { reloop } from "@reloop/sdk";
 

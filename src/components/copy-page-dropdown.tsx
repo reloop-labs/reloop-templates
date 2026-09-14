@@ -40,6 +40,24 @@ export function CopyPageDropdown({ template, onPrev, onNext }: CopyPageDropdownP
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const handleCopyHtml = () => {
+    navigator.clipboard.writeText(template.html || "");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleCopyPlainText = () => {
+    navigator.clipboard.writeText(template.plainText || "");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleCopyReact = () => {
+    navigator.clipboard.writeText(template.code || "");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <div className="flex items-center gap-1.5" ref={dropdownRef}>
       {/* Copy Page Dropdown Button */}
@@ -70,7 +88,41 @@ export function CopyPageDropdown({ template, onPrev, onNext }: CopyPageDropdownP
 
         {/* Dropdown Menu */}
         {isOpen && (
-          <div className="absolute right-0 z-50 mt-1.5 w-52 origin-top-right rounded-lg border border-zinc-200 bg-white p-1 text-xs shadow-lg dark:border-zinc-800 dark:bg-zinc-950">
+          <div className="absolute right-0 z-50 mt-1.5 w-56 origin-top-right rounded-lg border border-zinc-200 bg-white p-1 text-xs shadow-lg dark:border-zinc-800 dark:bg-zinc-950">
+            <button
+              type="button"
+              onClick={() => {
+                handleCopyHtml();
+                setIsOpen(false);
+              }}
+              className="flex w-full items-center gap-2 rounded-md px-2.5 py-1.5 text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-900 transition-colors"
+            >
+              <Copy className="w-3.5 h-3.5 text-zinc-500" />
+              <span>Copy HTML</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                handleCopyPlainText();
+                setIsOpen(false);
+              }}
+              className="flex w-full items-center gap-2 rounded-md px-2.5 py-1.5 text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-900 transition-colors"
+            >
+              <FileText className="w-3.5 h-3.5 text-zinc-500" />
+              <span>Copy Plain Text</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                handleCopyReact();
+                setIsOpen(false);
+              }}
+              className="flex w-full items-center gap-2 rounded-md px-2.5 py-1.5 text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-900 transition-colors"
+            >
+              <Copy className="w-3.5 h-3.5 text-zinc-500" />
+              <span>Copy React / TSX</span>
+            </button>
+            <div className="my-1 border-t border-zinc-100 dark:border-zinc-800" />
             <button
               type="button"
               onClick={() => {

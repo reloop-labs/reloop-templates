@@ -117,7 +117,7 @@ export default function UsageLimitEmail({
   maxSends = 10000,
   percentage = 85,
   daysRemaining = 14,
-  upgradeUrl = "https://reloop.sh/settings/billing",
+  upgradeUrl = "https://lumen.co/settings/billing",
 }: UsageLimitEmailProps) {
   return (
     <Html lang="en">
@@ -258,7 +258,7 @@ export default function UsageLimitEmail({
           {/* Footer */}
           <Section style={{ padding: "18px 28px", backgroundColor: "#f8fafc", borderTop: "1px solid #e2e8f0", textAlign: "center" }}>
             <Text style={{ fontSize: "12px", color: "#94a3b8", margin: 0 }}>
-              Reloop Notifications • Manage subscription quotas anytime in settings.
+              Lumen Notifications • Manage subscription quotas anytime in settings.
             </Text>
           </Section>
         </Container>
@@ -542,7 +542,7 @@ export default function UsageLimitEmail({
                         <tr>
                           <td style="padding:0 28px 28px 28px">
                             <a
-                              href="https://reloop.sh/settings/billing"
+                              href="https://lumen.co/settings/billing"
                               style="line-height:100%;text-decoration:none;display:block;max-width:100%;background-color:rgb(15,23,42);border-radius:10px;color:rgb(255,255,255);font-size:14px;font-weight:700;text-align:center;padding:14px 20px">
                               <span>Upgrade Workspace Plan ↗</span>
                             </a>
@@ -563,7 +563,7 @@ export default function UsageLimitEmail({
                         <tr>
                           <td style="padding:18px 28px;background-color:rgb(248,250,252);border-top:1px solid rgb(226,232,240);text-align:center">
                             <p style="font-size:12px;color:rgb(148,163,184);margin:0">
-                              Reloop Notifications • Manage subscription quotas anytime in settings.
+                              Lumen Notifications • Manage subscription quotas anytime in settings.
                             </p>
                           </td>
                         </tr>
@@ -580,12 +580,44 @@ export default function UsageLimitEmail({
     <!--/$-->
   </body>
 </html>`,
+  plainText: `⚡ Usage Quota Alert
+
+85% Reached
+
+
+APPROACHING MONTHLY QUOTA
+
+Your workspace has used 8,500 of 10,000 monthly email sends with 14 days remaining in your billing cycle.
+
+Monthly Email Volume
+
+8,500 / 10,000 (85%)
+
+
+
+0 sends
+
+Plan limit: 10,000 sends
+
+Upgrade to Business to unlock:
+
+✓ Unlimited monthly sends
+
+✓ Dedicated IP address
+
+✓ 99.99% SLA guarantee
+
+✓ Priority 24/7 Slack support
+
+Upgrade Workspace Plan ↗ https://lumen.co/settings/billing
+
+Lumen Notifications • Manage subscription quotas anytime in settings.`,
   usageCode: `import UsageLimitEmail from "@/templates/usage-limit";
 import { reloop } from "@reloop/sdk";
 
 // Trigger email when account exceeds 80% usage threshold
 await reloop.emails.send({
-  from: "notifications@reloop.sh",
+  from: "notifications@lumen.co",
   to: "owner@startup.io",
   subject: "Usage Alert: You've used 85% of your monthly email limit",
   react: <UsageLimitEmail currentSends={8500} maxSends={10000} percentage={85} />,

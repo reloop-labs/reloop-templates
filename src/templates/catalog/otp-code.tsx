@@ -49,7 +49,7 @@ export function OTPCodePreview() {
           <div className="space-y-0.5">
             <span className="font-semibold">Security Reminder</span>
             <p className="text-[11px] opacity-90">
-              Never share this code with anyone. Reloop staff will never request your 2FA passcode over phone, chat, or email.
+              Never share this code with anyone. Lumen staff will never request your 2FA passcode over phone, chat, or email.
             </p>
           </div>
         </div>
@@ -168,7 +168,7 @@ export default function OTPCodeEmail({
                       Security Reminder
                     </Text>
                     <Text style={{ fontSize: "11px", color: "#b45309", margin: 0, lineHeight: "1.4" }}>
-                      Never share this code with anyone. Reloop staff will never request your 2FA passcode over phone, chat, or email.
+                      Never share this code with anyone. Lumen staff will never request your 2FA passcode over phone, chat, or email.
                     </Text>
                   </td>
                 </tr>
@@ -180,7 +180,7 @@ export default function OTPCodeEmail({
           <Section style={{ padding: "18px 28px", backgroundColor: "#fafafa", borderTop: "1px solid #f4f4f5", textAlign: "center" }}>
             <Text style={{ fontSize: "12px", color: "#71717a", margin: 0 }}>
               Didn't request this code?{" "}
-              <Link href="https://reloop.sh/security" style={{ color: "#4f46e5", fontWeight: "600", textDecoration: "underline" }}>
+              <Link href="https://lumen.co/security" style={{ color: "#4f46e5", fontWeight: "600", textDecoration: "underline" }}>
                 Review active devices
               </Link>
             </Text>
@@ -350,7 +350,7 @@ export default function OTPCodeEmail({
                                       Security Reminder
                                     </p>
                                     <p style="font-size:11px;color:rgb(180,83,9);margin:0;line-height:1.4">
-                                      Never share this code with anyone. Reloop staff will never request your 2FA passcode over phone, chat, or email.
+                                      Never share this code with anyone. Lumen staff will never request your 2FA passcode over phone, chat, or email.
                                     </p>
                                   </td>
                                 </tr>
@@ -374,7 +374,7 @@ export default function OTPCodeEmail({
                           <td style="padding:18px 28px;background-color:rgb(250,250,250);border-top:1px solid rgb(244,244,245);text-align:center">
                             <p style="font-size:12px;color:rgb(113,113,122);margin:0">
                               Didn't request this code?{" "}
-                              <a href="https://reloop.sh/security" style="color:rgb(79,70,229);font-weight:600;text-decoration:underline">
+                              <a href="https://lumen.co/security" style="color:rgb(79,70,229);font-weight:600;text-decoration:underline">
                                 Review active devices
                               </a>
                             </p>
@@ -393,14 +393,32 @@ export default function OTPCodeEmail({
     <!--/$-->
   </body>
 </html>`,
+  plainText: `🔒 Two-Factor Authentication
+
+⏱ Valid for 5 mins
+
+
+VERIFICATION CODE
+
+Please enter the following 6-digit one-time passcode to confirm your login.
+
+8 4 2 9 1 0
+
+⚠️
+
+Security Reminder
+
+Never share this code with anyone. Lumen staff will never request your 2FA passcode over phone, chat, or email.
+
+Didn't request this code?{" "} Review active devices https://lumen.co/security`,
   usageCode: `import OTPCodeEmail from "@/templates/otp-code";
 import { reloop } from "@reloop/sdk";
 
 // Send 2FA One-Time Passcode
 await reloop.emails.send({
-  from: "security@reloop.sh",
+  from: "security@lumen.co",
   to: "user@example.com",
-  subject: "842910 is your Reloop verification code",
+  subject: "842910 is your Lumen verification code",
   react: <OTPCodeEmail code="842910" userName="Alex Morgan" />,
 });`,
 };
