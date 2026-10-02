@@ -41,7 +41,7 @@ export function TemplateHeroTabs({ template }: TemplateHeroTabsProps) {
       if (iframeRef.current?.contentWindow?.document?.body) {
         const doc = iframeRef.current.contentWindow.document;
         const bodyHeight = doc.body.getBoundingClientRect().height;
-        const scrollHeight = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight);
+        const scrollHeight = doc.body.scrollHeight;
         const calculated = Math.max(bodyHeight, scrollHeight);
         if (calculated > 60) {
           setIframeHeight(Math.ceil(calculated) + 8);
@@ -90,8 +90,26 @@ export function TemplateHeroTabs({ template }: TemplateHeroTabsProps) {
   }, [template.html]);
 
   useEffect(() => {
-    handleIframeLoad();
-  }, [template.id, processedHtml, viewport]);
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
+    let observer: ResizeObserver | undefined;
+    const observeContent = () => {
+      observer?.disconnect();
+      const body = iframe.contentDocument?.body;
+      if (!body) return;
+      observer = new ResizeObserver(handleIframeLoad);
+      observer.observe(body);
+      handleIframeLoad();
+    };
+
+    iframe.addEventListener("load", observeContent);
+    observeContent();
+    return () => {
+      observer?.disconnect();
+      iframe.removeEventListener("load", observeContent);
+    };
+  }, [template.id, processedHtml, activeTab]);
 
   const htmlLines = (template.html || "").trim().split("\n");
   const plainTextLines = (template.plainText || "").trim().split("\n");

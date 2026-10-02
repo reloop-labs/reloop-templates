@@ -6,6 +6,7 @@ export interface EmailTemplate {
   category:
     | "Brands & Recreations"
     | "Auth & Security"
+    | "Account Confirmation"
     | "SaaS & Billing"
     | "Growth & Onboarding"
     | "Lumen Suite";

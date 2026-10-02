@@ -20,6 +20,9 @@ import { founderWelcomeTemplate } from "./catalog/founder-welcome";
 import { weeklyDigestTemplate } from "./catalog/weekly-digest";
 import { helloWorldTemplate } from "./catalog/hello-world";
 import { tracwellSuiteTemplates } from "./catalog/tracwell-suite";
+import { folioConfirmationTemplate } from "./catalog/folio-confirmation";
+import { relayVerificationTemplate } from "./catalog/relay-verification";
+import { accountConfirmationCollectionTemplates } from "./catalog/account-confirmation-collection";
 
 export const ALL_TEMPLATES: EmailTemplate[] = [
   // Brands & Recreations
@@ -39,6 +42,11 @@ export const ALL_TEMPLATES: EmailTemplate[] = [
   newDeviceAlertTemplate,
   resetPasswordTemplate,
   apiKeyCreatedTemplate,
+
+  // Account Confirmation
+  folioConfirmationTemplate,
+  relayVerificationTemplate,
+  ...accountConfirmationCollectionTemplates,
 
   // SaaS & Billing
   paymentFailedTemplate,
@@ -62,6 +70,7 @@ export interface CategoryGroup {
   name:
     | "Brands & Recreations"
     | "Auth & Security"
+    | "Account Confirmation"
     | "SaaS & Billing"
     | "Growth & Onboarding"
     | "Lumen Suite";
@@ -91,6 +100,14 @@ export const TEMPLATE_CATEGORIES: CategoryGroup[] = [
       newDeviceAlertTemplate,
       resetPasswordTemplate,
       apiKeyCreatedTemplate,
+    ],
+  },
+  {
+    name: "Account Confirmation",
+    templates: [
+      folioConfirmationTemplate,
+      relayVerificationTemplate,
+      ...accountConfirmationCollectionTemplates,
     ],
   },
   {
